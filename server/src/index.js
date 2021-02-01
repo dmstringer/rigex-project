@@ -1,15 +1,15 @@
-require("dotenv").config();
-require("reflect-metadata");
+require('dotenv').config();
+require('reflect-metadata');
 
-const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
-const cors = require("cors");
-const { createServer } = require("http");
-const cookieParser = require("cookie-parser");
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const cors = require('cors');
+const { createServer } = require('http');
+const cookieParser = require('cookie-parser');
 
-const sequelize = require("./db/sequelize");
-const resolvers = require("./graphql/resolvers/index");
-const typeDefs = require("./graphql/schemas/index");
+const sequelize = require('./db/sequelize');
+const resolvers = require('./graphql/resolvers/index');
+const typeDefs = require('./graphql/schemas/index');
 
 const startServer = async () => {
   const server = new ApolloServer({
@@ -28,11 +28,11 @@ const startServer = async () => {
     })
   );
 
-  app.get("/", function (req, res) {
-    res.send("");
+  app.get('/', function (req, res) {
+    res.send('');
   });
 
-  server.applyMiddleware({ app, path: "/graphql" });
+  server.applyMiddleware({ app, path: '/graphql' });
 
   const httpServer = createServer(app);
 
