@@ -7,7 +7,7 @@ const cors = require('cors');
 const { createServer } = require('http');
 const cookieParser = require('cookie-parser');
 
-const sequelize = require('./db/sequelize');
+const { instantiateSequelize } = require('./db/models');
 const resolvers = require('./graphql/resolvers/index');
 const typeDefs = require('./graphql/schemas/index');
 
@@ -17,7 +17,8 @@ const startServer = async () => {
     resolvers,
     context: ({ req, res }) => ({ req, res }),
   });
-  await sequelize();
+
+  await instantiateSequelize();
 
   const app = express();
   app.use(cookieParser());
