@@ -4,17 +4,33 @@ const typeDefs = gql`
   type Query {
     login(model: UserInput!): ValidUser!
     isUniqueEmail(email: String!): Boolean!
+    getAllRigs: [Rig]!
   }
 
   type Mutation {
     createAccount(model: UserInput!): Boolean!
     upsertWell(model: WellInput!): Well!
-    deleteWell(id: ID!): Boolean!
-    deleteWells(wellIds: [ID]!): Boolean!
+    deleteWell(id: String!): Boolean!
+    deleteWells(wellIds: [String]!): Boolean!
+    upsertRig(model: RigInput!): Rig!
+    deleteRig(id: String!): Boolean!
+  }
+
+  type Rig {
+    id: String!
+    name: String!
+    createdAt: String!
+    updatedAt: String!
+    wells: [Well]
+  }
+
+  input RigInput {
+    id: String
+    name: String!
   }
 
   type User {
-    id: ID!
+    id: String!
     email: String!
     password: String!
     createdAt: String!
@@ -22,7 +38,7 @@ const typeDefs = gql`
   }
 
   type ValidUser {
-    id: ID
+    id: String
     email: String
     createdAt: String
     updatedAt: String
@@ -35,7 +51,7 @@ const typeDefs = gql`
   }
 
   type Well {
-    id: ID!
+    id: String!
     name: String!
     longitude: Float!
     latitude: Float!
@@ -45,7 +61,7 @@ const typeDefs = gql`
   }
 
   input WellInput {
-    id: ID!
+    id: String
     name: String!
     longitude: Float!
     latitude: Float!

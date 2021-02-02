@@ -41,4 +41,9 @@ module.exports = {
       return true;
     } else return false;
   },
+
+  getAllRigs: async () => {
+    const allRigs = await db.Rig.findAll({ include: [db.Well] });
+    return allRigs;
+  },
 };
