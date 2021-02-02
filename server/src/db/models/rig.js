@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: DataTypes.DATE,
   });
   Rig.associate = function (models) {
-    Rig.hasMany(models.Well);
+    Rig.hasMany(models.Well, { foreignKey: 'rigId' });
   };
   return Rig;
 };

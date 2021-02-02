@@ -45,6 +45,7 @@ const typeDefs = gql`
   }
 
   input WellInput {
+    id: ID!
     name: String!
     longitude: Float!
     latitude: Float!
