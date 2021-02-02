@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Rig = sequelize.define("Rig", {
+  const Rig = sequelize.define('Rig', {
     id: { type: DataTypes.STRING, primaryKey: true },
     name: DataTypes.STRING,
     createdAt: DataTypes.DATE,

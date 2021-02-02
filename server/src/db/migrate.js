@@ -8,10 +8,9 @@ const runSequelizeCommand = async (command) => {
   } catch (e) {}
 };
 
-const initDB = async () => {
+initDB = async () => {
   await runSequelizeCommand('db:create');
   await runSequelizeCommand('db:migrate');
-  await runSequelizeCommand('db:seed:undo:all');
   await runSequelizeCommand('db:seed:all');
 };
 

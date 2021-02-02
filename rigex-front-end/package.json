@@ -2,7 +2,9 @@
   "name": "rigex-front-end",
   "version": "0.1.0",
   "private": true,
+  "prettier": "@umbrage/prettier-config",
   "dependencies": {
+    "@umbrage/prettier-config": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
