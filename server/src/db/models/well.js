@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Well.associate = function (models) {
-    // associations can be defined here
+    Well.belongsTo(models.Rig, {foreignKey: 'rigId'})
   };
   return Well;
 };
