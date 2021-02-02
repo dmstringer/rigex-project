@@ -9,8 +9,8 @@ const typeDefs = gql`
   type Mutation {
     createAccount(model: UserInput!): Boolean!
     upsertWell(model: WellInput!): Well!
-    deleteWell(id: ID!): Well!
-    deleteWells(wellIds: [ID]!): [Well]!
+    deleteWell(id: ID!): Boolean!
+    deleteWells(wellIds: [ID]!): Boolean!
   }
 
   type User {
