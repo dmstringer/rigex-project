@@ -1,11 +1,19 @@
 const bcrypt = require('bcryptjs');
 const uuidv4 = require('uuid').v4;
 
+const { isValidEmail, isUniqueEmail } = require('../../utils');
+const { db } = require('../../db/models');
+const { invalidEmail, nonUniqueEmail } = require('../../constants/errors');
+
 module.exports = {
   createAccount: async (_, { model: { email, password } }) => {
     const isValid = isValidEmail(email);
+    const isUnique = await isUniqueEmail(email);
     if (!isValid) {
-      return false;
+      return new Error(invalidEmail);
+    }
+    if (!isUnique) {
+      return new Error(nonUniqueEmail);
     }
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
@@ -51,8 +59,7 @@ module.exports = {
     try {
       await db.Well.destroy({ where: { id } });
       return true;
-    }
-    catch (error) {
+    } catch (error) {
       return error;
     }
   },
@@ -81,4 +88,3 @@ module.exports = {
     return rig;
   },
 };
-

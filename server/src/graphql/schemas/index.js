@@ -1,9 +1,8 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Query {
     login(model: UserInput!): ValidUser!
-    isUniqueEmail(email: String!): Boolean!
     getAllRigs: [Rig]!
   }
 
