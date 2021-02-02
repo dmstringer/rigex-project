@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "prettier": "@umbrage/prettier-config",
   "scripts": {
     "build": "tsc",
     "build-db": "node src/db/migrate.js",
@@ -15,6 +16,7 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "@umbrage/prettier-config": "^1.0.0",
     "apollo-server-express": "^2.9.16",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",

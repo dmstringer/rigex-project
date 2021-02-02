@@ -1,9 +1,9 @@
-"use strict";
-const uuidv4 = require("uuid").v4;
+'use strict';
+const uuidv4 = require('uuid').v4;
 
 module.exports = (sequelize, DataTypes) => {
   const Well = sequelize.define(
-    "Well",
+    'Well',
     {
       id: {
         type: DataTypes.STRING,
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Well.associate = function (models) {
-    Well.belongsTo(models.Rig, {foreignKey: 'rigId'})
+    Well.belongsTo(models.Rig, { foreignKey: 'rigId' });
   };
   return Well;
 };
