@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const { instantiateSequelize } = require('./db/models');
 const resolvers = require('./graphql/resolvers/index');
 const typeDefs = require('./graphql/schemas/index');
+const initDB = require('./db/migrate');
 
 const startServer = async () => {
   const server = new ApolloServer({
@@ -19,6 +20,7 @@ const startServer = async () => {
   });
 
   await instantiateSequelize();
+  await initDB();
 
   const app = express();
   app.use(cookieParser());
