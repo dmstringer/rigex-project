@@ -1,8 +1,8 @@
-const { User } = require("../../db/models");
-const { Well } = require("../../db/models");
-const bcrypt = require("bcryptjs");
-const isValidEmail = require("../../utils/isValidEmail");
-const uuidv4 = require("uuid").v4;
+const bcrypt = require('bcryptjs');
+const uuidv4 = require('uuid').v4;
+
+const { db } = require('../../db/models');
+const isValidEmail = require('../../utils/isValidEmail');
 
 module.exports = {
   createAccount: async (_, { model: { email, password } }) => {
@@ -13,7 +13,7 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
-    const user = await User.create({ id: uuidv4(), email, password: hash });
+    const user = await db.User.create({ id: uuidv4(), email, password: hash });
     return user ? true : false;
   },
 
@@ -21,23 +21,33 @@ module.exports = {
     if (!model.id) {
       model.id = uuidv4();
     }
-    await Well.upsert({ ...model });
-    return Well.findByPk(model.id);
+    try {
+      await db.Well.upsert({ ...model });
+      return db.Well.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
   },
 
   deleteWell: async (_, { id }) => {
-    const deletedWell = await Well.findOne({ where: { id } });
-    await Well.destroy({ where: { id } });
-    return deletedWell;
+    try {
+      await db.Well.destroy({ where: { id } });
+      return true;
+    }
+    catch (error) {
+      return error;
+    }
   },
 
   deleteWells: async (_, { wellIds }) => {
-    const deletedWells = wellIds.map(
-      async (wellId) => await Well.findOne({ where: { id: wellId } })
-    );
-    wellIds.forEach(async (wellId) => {
-      await Well.destroy({ where: { id: wellId } });
-    });
-    return deletedWells;
+    try {
+      wellIds.forEach(async (wellId) => {
+        await db.Well.destroy({ where: { id: wellId } });
+      });
+      return true;
+    } catch (error) {
+      return error;
+    }
   },
 };
+
