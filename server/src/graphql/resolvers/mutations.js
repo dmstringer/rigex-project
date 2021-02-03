@@ -1,9 +1,6 @@
 const bcrypt = require('bcryptjs');
 const uuidv4 = require('uuid').v4;
 
-const { db } = require('../../db/models');
-const isValidEmail = require('../../utils/isValidEmail');
-
 module.exports = {
   createAccount: async (_, { model: { email, password } }) => {
     const isValid = isValidEmail(email);
@@ -15,6 +12,27 @@ module.exports = {
 
     const user = await db.User.create({ id: uuidv4(), email, password: hash });
     return user ? true : false;
+  },
+
+  deleteRig: async (_, { id }) => {
+    try {
+      const isDeleted = await db.Rig.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertRig: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.Rig.upsert({ ...model });
+      return db.Rig.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
   },
 
   upsertWell: async (_, { model }) => {
@@ -48,6 +66,19 @@ module.exports = {
     } catch (error) {
       return error;
     }
+  },
+
+  deleteRig: async (_, { id }) => {
+    const isDeleted = await Rig.destroy({ where: { id } });
+    return isDeleted ? true : false;
+  },
+
+  upsertRig: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    const rig = await Rig.upsert({ ...model });
+    return rig;
   },
 };
 
