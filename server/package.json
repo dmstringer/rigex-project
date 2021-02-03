@@ -5,9 +5,6 @@
   "main": "index.js",
   "prettier": "@umbrage/prettier-config",
   "scripts": {
-    "build": "tsc",
-    "build-db": "node src/db/migrate.js",
-    "start": "node dist/index.js",
     "start-dev": "nodemon src/index.js"
   },
   "author": "",
