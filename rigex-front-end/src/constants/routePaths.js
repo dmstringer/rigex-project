@@ -1,6 +1,6 @@
 const routePaths = {
   landing: '/landing',
-  rig: '/:rig',
+  rig: '/rig/:id',
   signUp: '/sign-up',
   login: '/login',
 };
