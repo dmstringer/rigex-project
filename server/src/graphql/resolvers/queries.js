@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const { db } = require('../../db/models');
-const isValidEmail = require('../../utils/isValidEmail');
+const { isValidEmail } = require('../../utils');
 
 module.exports = {
   login: async (_, { model: { email, password } }) => {
@@ -30,20 +30,5 @@ module.exports = {
     } else {
       return invalidUser;
     }
-  },
-
-  isUniqueEmail: async (_, { email }) => {
-    const isValid = isValidEmail(email);
-
-    const existingUser = await db.User.findOne({ where: { email } });
-
-    if (isValid && !existingUser) {
-      return true;
-    } else return false;
-  },
-
-  getAllRigs: async () => {
-    const allRigs = await db.Rig.findAll({ include: [db.Well] });
-    return allRigs;
   },
 };
