@@ -4,9 +4,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 
 import routePaths from '../../constants/routePaths';
-import logo from "../assets/rigex-logo-small.svg";
-import search from "../assets/search.svg";
-import account from "../assets/account.svg";
+import logo from "../../assets/rigex-logo-small.svg";
+import search from "../../assets/search.svg";
+import account from "../../assets/account.svg";
 import "./navBar.scss"
 
 export default function NavBar() {
