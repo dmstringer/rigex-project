@@ -18,7 +18,7 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
-    const user = await db.User.create({ id: uuidv4(), email, password: hash });
+    const user = await db.User.create({ email, password: hash });
     return user ? true : false;
   },
 

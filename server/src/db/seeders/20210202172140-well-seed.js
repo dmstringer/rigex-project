@@ -1,11 +1,9 @@
 'use strict';
-const uuidv4 = require('uuid').v4;
 
 module.exports = {
   up: (queryInterface) => {
     return queryInterface.bulkInsert('Wells', [
       {
-        id: uuidv4(),
         name: '1H234T5',
         longitude: -63.0471786,
         latitude: 18.2178068,
@@ -14,7 +12,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: uuidv4(),
         name: '456GJFKDS',
         longitude: -63.0471786,
         latitude: 18.2178068,
