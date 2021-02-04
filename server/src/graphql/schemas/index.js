@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Query {
-    login(model: UserInput!): ValidUser!
+    login(model: UserInput!): User!
     getAllRigs: [Rig]!
   }
 
@@ -31,17 +31,9 @@ const typeDefs = gql`
   type User {
     id: String!
     email: String!
-    password: String!
+    password: String
     createdAt: String!
     updatedAt: String!
-  }
-
-  type ValidUser {
-    id: String
-    email: String
-    createdAt: String
-    updatedAt: String
-    isValid: Boolean!
   }
 
   input UserInput {
