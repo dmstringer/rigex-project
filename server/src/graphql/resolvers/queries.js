@@ -25,4 +25,12 @@ module.exports = {
       };
     } else return new Error(errorMessages.incorrectPassword);
   },
+
+  getAllRigs: async(parent) => {
+    try {
+      return await db.Rig.findAll({ include: [db.Well] })
+    } catch (error) {
+      return error
+    }
+  }
 };
