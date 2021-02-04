@@ -1,7 +1,8 @@
 @import './bootstrap.min.css';
+@import './colors.scss';
 
 body {
-  background-color: #f9f9f9;
+  background-color: $base-white;
   max-width: 1024px;
   margin: auto;
 }
