@@ -4,6 +4,8 @@
   "private": true,
   "prettier": "@umbrage/prettier-config",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@apollo/client": "^3.3.7",
     "@umbrage/prettier-config": "^1.0.0",
     "graphql": "^15.5.0",
