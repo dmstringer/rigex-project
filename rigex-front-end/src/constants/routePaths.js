@@ -5,4 +5,6 @@ const routePaths = {
   login: '/login',
 };
 
+export const nestedLandingPaths = ['/rig'];
+
 export default routePaths;
