@@ -8,6 +8,7 @@ import './styles/styles.scss';
 import App from './App';
 import { store } from './store/store';
 import { typeDefs } from './constants/typeDefs';
+import history from './utils/history';
 
 const defaultOptions = {
   watchQuery: {
@@ -32,7 +33,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter history={history}>
           <App />
         </BrowserRouter>
       </Provider>

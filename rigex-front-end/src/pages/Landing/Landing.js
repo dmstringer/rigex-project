@@ -1,11 +1,19 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 
-import routePaths from '../../constants/routePaths';
 import { Rig } from '../index';
-import NavBar from '../../components/navBar/NavBar'
+import NavBar from '../../components/navBar/NavBar';
+import routePaths from '../../constants/routePaths';
+import validatePath from '../../utils/validatePath';
+import history from '../../utils/history';
 
 const Landing = () => {
+  const { pathname } = useLocation();
+  if (pathname.includes(routePaths.landing + '/')) {
+    const isValidNestedPath = validatePath();
+    if (!isValidNestedPath) history.push(routePaths.landing);
+  }
+
   return (
     <div>
       <NavBar />
