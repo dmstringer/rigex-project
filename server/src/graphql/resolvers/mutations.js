@@ -74,17 +74,4 @@ module.exports = {
       return error;
     }
   },
-
-  deleteRig: async (_, { id }) => {
-    const isDeleted = await Rig.destroy({ where: { id } });
-    return isDeleted ? true : false;
-  },
-
-  upsertRig: async (_, { model }) => {
-    if (!model.id) {
-      model.id = uuidv4();
-    }
-    const rig = await Rig.upsert({ ...model });
-    return rig;
-  },
 };
