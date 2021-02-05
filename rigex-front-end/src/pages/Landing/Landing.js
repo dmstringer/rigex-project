@@ -14,11 +14,21 @@ const Landing = () => {
     if (!isValidNestedPath) history.push(routePaths.landing);
   }
 
+  const listOfRigs = [
+    {"id": "asbhkjsahb278173",
+    "name": "Noble 1",
+    "wells": []},
+    {"id": "98yqr98gnyaoruy",
+    "name": "Noble 2",
+    "wells": []},
+  ];
+
   return (
     <div>
       <NavBar />
-      <h1>Landing Works!</h1>
-      <Route exact path={routePaths.landing + routePaths.rig} component={Rig} />
+      <Route exact path={routePaths.landing + routePaths.rig} >
+        <Rig listOfRigs={listOfRigs} />
+      </Route>
     </div>
   );
 };
