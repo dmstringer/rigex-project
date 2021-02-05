@@ -1,0 +1,65 @@
+@import '../../styles/colors.scss';
+
+.no-rigs-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  background-color: #fff;
+  padding: 20px 0;
+
+  .img-container {
+    flex: 3;
+    display: flex;
+    align-items: flex-end;
+    align-self: center;
+  }
+
+  .txt-container {
+    margin-top: 40.3px;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .add-rigs-text {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.167;
+      margin-bottom: 17px;
+    }
+
+    .sm-text {
+      margin-bottom: 40px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.25;
+      color: $text-input-font;
+    }
+    .add-rig-button {
+      background-color: $createRigButtonBlue;
+      border-radius: 3px;
+      border: 1px solid $createRigButtonBlue;
+      color: $base-white;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 2.429;
+      padding: 0 14px 0 10px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      display: flex;
+
+      .add-rig-button:hover {
+        cursor: pointer;
+      }
+
+      .add-rig-button-icon {
+        padding-bottom: 3px;
+        display: flex;
+      }
+    }
+  }
+}

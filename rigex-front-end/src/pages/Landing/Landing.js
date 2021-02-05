@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Rig } from '../index';
+import NoRigs from '../../components/rigs/noRigs';
 import NavBar from '../../components/navBar/NavBar';
 import routePaths from '../../constants/routePaths';
 import validatePath from '../../utils/validatePath';
@@ -20,26 +21,55 @@ const Landing = () => {
     if (!isValidNestedPath) history.push(routePaths.landing);
   }
 
-
   const listOfRigs = useSelector((state) => state.rigs);
   const dispatch = useDispatch();
-  const { loading, error } = useQuery(GET_ALL_RIGS, {
-    errorPolicy: 'all',
-    onCompleted: (data) => {
+  const [errorMessage, setErrorMessage] = useState('');
+  const { loading, error, data } = useQuery(GET_ALL_RIGS);
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error);
+    }
+    if (data) {
       dispatch(rigActions.getAllRigs(data));
-    },
-  });
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+    }
+  }, [dispatch, error, data, loading]);
+
+  const listOfWells = [];
+
+  Object.size = function (object) {
+    var size = 0,
+      key;
+    for (key in object) {
+      if (object.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+
+  var listOfRigsSize = Object.size(listOfRigs);
+
+  const MainWindow = () => (
+    <div className="main-window">
+      {listOfRigsSize > 0 ? (
+        <div className="right-panel">
+          <Route exact path={routePaths.landing + routePaths.rig}>
+            <Rig listOfRigs={listOfRigs} listOfWells={listOfWells} />
+          </Route>
+        </div>
+      ) : (
+        <div className="right-panel">
+          <NoRigs />
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div className="landing">
       <NavBar />
       <div className="content">
         <RigSidebar rigList={listOfRigs} />
-          <Route exact path={routePaths.landing + routePaths.rig} >
-            <Rig listOfRigs={listOfRigs} />
-          </Route>
+        <MainWindow />
       </div>
     </div>
   );
