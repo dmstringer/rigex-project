@@ -31,7 +31,6 @@ const typeDefs = gql`
   type User {
     id: String!
     email: String!
-    password: String
     createdAt: String!
     updatedAt: String!
   }
