@@ -32,3 +32,16 @@ export const GET_ALL_RIGS = gql`
     }
   }
 `;
+
+export const CREATE_RIG = gql`
+  mutation UpsertRig($rigInput: RigInput!) {
+    upsertRig(model: $rigInput) {
+      id
+      name
+      wells {
+        id
+        name
+      }
+    }
+  }
+`;
