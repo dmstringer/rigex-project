@@ -57,19 +57,17 @@ module.exports = {
 
   deleteWell: async (_, { id }) => {
     try {
-      await db.Well.destroy({ where: { id } });
-      return true;
+      const wellDeleted = await db.Well.destroy({ where: { id } });
+      return wellDeleted ? true : false;
     } catch (error) {
       return error;
     }
   },
 
-  deleteWells: async (_, { wellIds }) => {
+  deleteWells: async (_, { rigId }) => {
     try {
-      wellIds.forEach(async (wellId) => {
-        await db.Well.destroy({ where: { id: wellId } });
-      });
-      return true;
+      const wellsDeleted = await db.Well.destroy({ where: { rigId } });
+      return wellsDeleted ? true : false;
     } catch (error) {
       return error;
     }
