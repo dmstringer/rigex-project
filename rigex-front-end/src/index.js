@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import './styles/styles.scss';
@@ -33,9 +33,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <BrowserRouter history={history}>
+        <Router history={history}>
           <App />
-        </BrowserRouter>
+        </Router>
       </Provider>
     </ApolloProvider>
   </React.StrictMode>,
