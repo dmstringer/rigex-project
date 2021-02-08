@@ -8,7 +8,7 @@ const typeDefs = gql`
 
   type Mutation {
     createAccount(model: UserInput!): Boolean!
-    upsertWell(model: WellInput!): Well!
+    upsertWell(model: WellInput): Well!
     deleteWell(id: String!): Boolean!
     deleteWells(wellIds: [String]!): Boolean!
     upsertRig(model: RigInput!): Rig!
@@ -53,10 +53,10 @@ const typeDefs = gql`
 
   input WellInput {
     id: String
-    name: String!
-    longitude: Float!
-    latitude: Float!
-    rigId: String!
+    name: String
+    longitude: Float
+    latitude: Float
+    rigId: String
   }
 `;
 
