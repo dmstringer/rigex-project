@@ -7,3 +7,12 @@ export const SIGN_UP_USER = gql`
     }
   }
 `;
+
+export const LOGIN_USER = gql`
+  query Login($userInput: UserInput!) {
+    login(model: $userInput) {
+      id
+      email
+    }
+  }
+`;

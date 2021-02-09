@@ -13,7 +13,7 @@ import VisibilityOffOutlined from '@material-ui/icons/VisibilityOffOutlined';
 import Grid from '@material-ui/core/Grid';
 
 import './signUpForm.scss';
-import { SIGN_UP_USER } from '../../constants/mutations';
+import { SIGN_UP_USER } from '../../constants/serviceAPI';
 import { signUpActions } from '../../store/signUp/action';
 import logo from '../../assets/large-logo.png';
 import history from '../../utils/history';
