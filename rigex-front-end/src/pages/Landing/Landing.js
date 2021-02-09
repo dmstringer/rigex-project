@@ -6,6 +6,10 @@ import NavBar from '../../components/navBar/NavBar';
 import routePaths from '../../constants/routePaths';
 import validatePath from '../../utils/validatePath';
 import history from '../../utils/history';
+import RigSidebar from '../../components/RigSidebar/RigSidebar';
+import '../../styles/styles.scss';
+
+let listOfRigs = [];
 
 const Landing = () => {
   const { pathname } = useLocation();
@@ -15,10 +19,12 @@ const Landing = () => {
   }
 
   return (
-    <div>
+    <div className='landing'>
       <NavBar />
-      <h1>Landing Works!</h1>
-      <Route exact path={routePaths.landing + routePaths.rig} component={Rig} />
+      <div className='content'>
+        <RigSidebar rigList={listOfRigs} />
+        <Route exact path={routePaths.landing + routePaths.rig} component={Rig} />
+      </div>
     </div>
   );
 };

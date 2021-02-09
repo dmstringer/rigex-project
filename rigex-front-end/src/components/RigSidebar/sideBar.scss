@@ -1,0 +1,43 @@
+@import '../../styles/colors.scss';
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.rigsTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#sidebarButton {
+  padding: 0px;
+  border: none;
+}
+
+.sidebarContainer {
+  padding: 0px;
+}
+
+.sidebarBox {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: $sidebar-gray;
+}
+
+.sidebarText {
+  text-align: center;
+}
+
+.boxImage {
+  padding: 20px;
+}
