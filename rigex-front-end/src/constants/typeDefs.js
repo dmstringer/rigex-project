@@ -3,7 +3,10 @@ import { gql } from '@apollo/client';
 export const typeDefs = gql`
   extend type Query {
     login(model: UserInput!): ValidUser!
-    createAccount(model: UserInput!): Boolean!
+  }
+
+  type Mutation {
+    createAccount(model: UserInput!): User!
   }
 
   input UserInput {

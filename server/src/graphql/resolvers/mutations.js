@@ -19,7 +19,9 @@ module.exports = {
     const hash = bcrypt.hashSync(password, salt);
 
     const user = await db.User.create({ email, password: hash });
-    return user ? true : false;
+    return {
+      id: user.id,
+    };
   },
 
   deleteRig: async (_, { id }) => {
