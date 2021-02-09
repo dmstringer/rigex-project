@@ -16,3 +16,19 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const GET_ALL_RIGS = gql`
+  query getAllRigs {
+    getAllRigs {
+      id
+      name
+      wells {
+        id
+        name
+        longitude
+        latitude
+        rigId
+      }
+    }
+  }
+`;
