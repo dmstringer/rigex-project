@@ -25,9 +25,12 @@ const SignUpForm = () => {
     email: '',
     password: '',
     showPassword: false,
+    showHelpText: false,
   });
   const [errorMessage, setErrorMessage] = useState('');
-  const [helpMessage, setHelpMessage] = useState('');
+  const setHelpMessage = () => {
+    setUserState({ ...userState, showHelpText: !userState.showHelpText });
+  };
   const [CreateAccount, { loading, error, data }] = useMutation(SIGN_UP_USER);
   const dispatch = useDispatch();
 
@@ -120,6 +123,7 @@ const SignUpForm = () => {
                     value={userState.password}
                     onChange={handleChange}
                     onFocus={setHelpMessage}
+                    onBlur={setHelpMessage}
                     aria-describedby="password-helper-text"
                   />
                 </FormControl>
@@ -142,7 +146,7 @@ const SignUpForm = () => {
                 </IconButton>
               </Grid>
             </Grid>
-            {helpMessage ? (
+            {userState.showHelpText ? (
               <div className="invalid-box">
                 <div className="invalid-feedback">
                   At least 8 characters and contain a number.
