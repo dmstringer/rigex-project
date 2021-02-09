@@ -9,19 +9,15 @@ module.exports = {
         defaultValue: Sequelize.literal('uuid_generate_v4()'),
       },
       name: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
       longitude: {
-        allowNull: false,
         type: Sequelize.FLOAT,
       },
       latitude: {
-        allowNull: false,
         type: Sequelize.FLOAT,
       },
       rigId: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
       createdAt: {
