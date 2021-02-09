@@ -10,7 +10,7 @@ const typeDefs = gql`
     createAccount(model: UserInput!): User!
     upsertWell(model: WellInput): Well!
     deleteWell(id: String!): Boolean!
-    deleteWells(wellIds: [String]!): Boolean!
+    deleteWells(rigId: String!): Boolean!
     upsertRig(model: RigInput!): Rig!
     deleteRig(id: String!): Boolean!
   }
@@ -31,7 +31,6 @@ const typeDefs = gql`
   type User {
     id: String!
     email: String!
-    password: String
     createdAt: String!
     updatedAt: String!
   }
