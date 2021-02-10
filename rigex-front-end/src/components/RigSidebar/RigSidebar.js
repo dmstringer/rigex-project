@@ -6,7 +6,7 @@ import RigList from '../../components/RigSidebar/RigList';
 import EmptyCard from '../../components/RigSidebar/EmptyCard';
 import './sideBar.scss';
 
-function RigSidebar(props) {
+const RigSidebar = ({ rigList }) => {
   return (
     <div className='sideBar'>
       <div className='rigsTitle'>
@@ -21,9 +21,9 @@ function RigSidebar(props) {
           <AddBoxIcon fontSize='large' />
         </IconButton>
       </div>
-      {props.rigList.length ? <RigList rigList={props.rigList} /> : <EmptyCard />}
+      {rigList.length ? <RigList rigList={rigList} /> : <EmptyCard />}
     </div>
   );
-}
+};
 
 export default RigSidebar;

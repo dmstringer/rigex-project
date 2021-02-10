@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { List, ListItemText, MenuItem } from '@material-ui/core';
 
 import './sideBar.scss';
 
-function RigList(props) {
+const RigList = ({ rigList }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
 
-  props.rigList.sort((a, b) => (a.name > b.name ? 1 : -1));
+  useEffect(() => {
+    rigList.sort((a, b) => (a.name > b.name ? 1 : -1));
+  });
 
   return (
     <List>
-      {props.rigList.map((rig, index) => (
+      {rigList.map((rig, index) => (
         <MenuItem
           button
           key={rig.id}
@@ -28,6 +30,6 @@ function RigList(props) {
       ))}
     </List>
   );
-}
+};
 
 export default RigList;

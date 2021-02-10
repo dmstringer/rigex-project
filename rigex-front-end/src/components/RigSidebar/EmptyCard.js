@@ -4,7 +4,7 @@ import { Box, Typography } from '@material-ui/core';
 import emptyRigs from '../../assets/Tower@1.5x.svg';
 import './sideBar.scss';
 
-function EmptyCard() {
+const EmptyCard = () => {
   return (
     <Box className='sidebarBox'>
       <img className='boxImage' alt='Oil Rig' src={emptyRigs} title='Oil Rig' />
@@ -13,6 +13,6 @@ function EmptyCard() {
       </Typography>
     </Box>
   );
-}
+};
 
 export default EmptyCard;
