@@ -27,6 +27,7 @@ export const typeDefs = gql`
   extend type Mutation {
     upsertRig(model: RigInput!): Rig!
     createAccount(model: UserInput!): User!
+    upsertWell(model: WellInput!): Well!
   }
 
   input UserInput {
@@ -37,5 +38,13 @@ export const typeDefs = gql`
   input RigInput {
     name: String!
     id: String
+  }
+
+  input WellInput {
+    id: String
+    name: String
+    longitude: Float
+    latitude: Float
+    rigId: String
   }
 `;
