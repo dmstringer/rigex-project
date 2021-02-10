@@ -1,0 +1,140 @@
+@import '../../styles/colors.scss';
+
+.login-container {
+  display: grid;
+  grid-template-columns: 253px 518px 253px;
+  grid-template-rows: 302.5px 419px 302.5px;
+}
+
+.login-area {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.nested-login-container {
+  display: grid;
+  grid-template-columns: 193.5px 131px 193.5px;
+  grid-template-rows: 89.5px 220px 109.5px;
+  justify-items: center;
+}
+
+.logo {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.form {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.bottom-links {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+.text-input {
+  border: 0;
+  background-color: $text-input-background !important;
+  width: 518px;
+  height: 64px;
+  border-radius: 10px;
+  padding-bottom: 14px;
+}
+
+.input-button {
+  border: none;
+  outline: none;
+  background-color: $input-button !important;
+  width: 518px;
+  height: 64px;
+  border-radius: 8px !important;
+  color: $input-button-font !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  font-family: 'proxima-nova', sans-serif !important;
+  text-transform: none !important;
+}
+
+.input-label {
+  color: $text-input-font !important;
+}
+
+.input-start-icon {
+  color: $input-start-icon !important;
+  margin-right: 7px;
+  margin-left: 15px;
+  margin-bottom: 8px;
+}
+
+.MuiInputLabel-shrink {
+  margin-top: 19px !important;
+  font-size: 12px !important;
+  margin-bottom: 5px;
+  color: $text-input-font !important;
+}
+
+.MuiInputBase-root {
+  margin-top: 24px !important;
+}
+
+.MuiInputBase-input:-webkit-autofill {
+  -webkit-transition-delay: 9999s;
+}
+
+.MuiFormControl-root {
+  width: 100%;
+}
+
+.input-icon-button {
+  color: $password-visible-icon !important;
+  margin-left: 24px !important;
+}
+
+.MuiIconButton-root {
+  outline: none;
+  border: 0;
+}
+
+.input-field-text {
+  color: $input-field-text !important;
+  font-size: 16px !important;
+}
+
+.forgot-password {
+  color: $hyperlink;
+  size: 14px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.divider {
+  width: 518px;
+  height: 1px;
+  color: $divider;
+}
+
+.new-account-text {
+  color: $new-account-text;
+  size: 14px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.new-account-link {
+  color: $hyperlink;
+}
+
+.new-account-link:hover,
+.input-button:hover,
+.hyperlink-hover:hover {
+  cursor: pointer;
+}

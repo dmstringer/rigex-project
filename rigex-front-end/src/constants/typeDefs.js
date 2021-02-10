@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const typeDefs = gql`
   extend type Query {
-    login(model: UserInput!): ValidUser!
+    login(model: UserInput!): User!
   }
 
   type Mutation {
