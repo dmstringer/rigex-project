@@ -29,7 +29,7 @@ const Landing = () => {
   });
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-  let listOfRigs = data.getAllRigs;
+  const listOfRigs = useSelector((state) => state.rigs);
 
   return (
     <div className='landing'>
