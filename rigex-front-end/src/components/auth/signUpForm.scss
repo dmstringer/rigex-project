@@ -1,10 +1,13 @@
 @import '../../styles/colors.scss';
 
 .signUp-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   background-color: #ffffff;
   grid-template-columns: 253px 518px 253px;
-  grid-template-rows: 302.5px 419px 302.5px;
 }
 
 .signUp-area {
