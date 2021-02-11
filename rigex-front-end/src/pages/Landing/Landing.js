@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Rig } from '../index';
 import NavBar from '../../components/navBar/NavBar';
@@ -20,8 +20,9 @@ const Landing = () => {
     if (!isValidNestedPath) history.push(routePaths.landing);
   }
 
+  const listOfRigs = useSelector((state) => state.rigs);
   const dispatch = useDispatch();
-  const { loading, error, data } = useQuery(GET_ALL_RIGS, {
+  const { loading, error } = useQuery(GET_ALL_RIGS, {
     errorPolicy: 'all',
     onCompleted: (data) => {
       dispatch(rigActions.getAllRigs(data));
@@ -29,14 +30,17 @@ const Landing = () => {
   });
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-  const listOfRigs = useSelector((state) => state.rigs);
 
   return (
-    <div className='landing'>
+    <div className="landing">
       <NavBar />
-      <div className='content'>
+      <div className="content">
         <RigSidebar rigList={listOfRigs} />
-        <Route exact path={routePaths.landing + routePaths.rig} component={Rig} />
+        <Route
+          exact
+          path={routePaths.landing + routePaths.rig}
+          component={Rig}
+        />
       </div>
     </div>
   );
