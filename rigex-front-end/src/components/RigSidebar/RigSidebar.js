@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Typography } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
 import RigList from '../../components/RigSidebar/RigList';
@@ -10,15 +10,14 @@ const RigSidebar = ({ rigList }) => {
   return (
     <div className='sideBar'>
       <div className='rigsTitle'>
-        <Typography variant='h6'>Rigs</Typography>
+        <h2>Rigs</h2>
         <IconButton
           id='sidebarButton'
           onClick={() => {
             alert('TEST');
           }}
-          color='primary'
         >
-          <AddBoxIcon fontSize='large' />
+          <AddBoxIcon fontSize='large' color='primary' />
         </IconButton>
       </div>
       {rigList.length ? <RigList rigList={rigList} /> : <EmptyCard />}

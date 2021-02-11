@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { List, ListItemText, MenuItem } from '@material-ui/core';
 
 import './sideBar.scss';
 
 const RigList = ({ rigList }) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const handleListItemClick = (event, index) => {
+  const [selectedIndex, setSelectedIndex] = React.useState();
+  const handleListItemClick = (index) => {
     setSelectedIndex(index);
   };
 
@@ -14,21 +13,21 @@ const RigList = ({ rigList }) => {
   });
 
   return (
-    <List>
+    <ul className='rigList'>
       {rigList.map((rig, index) => (
-        <MenuItem
-          button
+        <li
+          className={selectedIndex === index ? 'rigListItem selected' : 'rigListItem'}
           key={rig.id}
-          selected={selectedIndex === { index }}
-          onClick={(event) => {
-            handleListItemClick(event, { index });
-            alert('TEST');
+          onClick={() => {
+            handleListItemClick(index);
           }}
         >
-          <ListItemText primary={rig.name} />
-        </MenuItem>
+          <div>
+            <span>{rig.name}</span>
+          </div>
+        </li>
       ))}
-    </List>
+    </ul>
   );
 };
 

@@ -18,6 +18,7 @@
 #sidebarButton {
   padding: 0px;
   border: none;
+  color: $input-button;
 }
 
 .sidebarContainer {
@@ -36,8 +37,36 @@
 
 .sidebarText {
   text-align: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  padding: 10px;
 }
 
 .boxImage {
-  padding: 20px;
+  padding: 10px;
+}
+
+.rigList {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.rigListItem {
+  margin: 0;
+  border: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 6px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rigListItem:hover,
+.selected {
+  background-color: $sidebar-gray;
 }

@@ -9,7 +9,7 @@ import routePaths from '../../constants/routePaths';
 import validatePath from '../../utils/validatePath';
 import history from '../../utils/history';
 import RigSidebar from '../../components/RigSidebar/RigSidebar';
-import '../../styles/styles.scss';
+import './landing.scss';
 import { GET_ALL_RIGS } from '../../constants/serviceAPI';
 import { rigActions } from '../../store/rig/action';
 
