@@ -21,7 +21,6 @@ module.exports = {
     const user = await db.User.create({ email, password: hash });
     return {
       id: user.id,
-      email: user.email,
     };
   },
 
