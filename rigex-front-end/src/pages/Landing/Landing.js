@@ -1,11 +1,17 @@
 import React from 'react';
 import { Route, useLocation } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Rig } from '../index';
 import NavBar from '../../components/navBar/NavBar';
 import routePaths from '../../constants/routePaths';
 import validatePath from '../../utils/validatePath';
 import history from '../../utils/history';
+import RigSidebar from '../../components/RigSidebar/RigSidebar';
+import './landing.scss';
+import { GET_ALL_RIGS } from '../../constants/serviceAPI';
+import { rigActions } from '../../store/rig/action';
 
 const Landing = () => {
   const { pathname } = useLocation();
@@ -14,21 +20,27 @@ const Landing = () => {
     if (!isValidNestedPath) history.push(routePaths.landing);
   }
 
-  const listOfRigs = [
-    {"id": "asbhkjsahb278173",
-    "name": "Noble 1",
-    "wells": []},
-    {"id": "98yqr98gnyaoruy",
-    "name": "Noble 2",
-    "wells": []},
-  ];
+
+  const listOfRigs = useSelector((state) => state.rigs);
+  const dispatch = useDispatch();
+  const { loading, error } = useQuery(GET_ALL_RIGS, {
+    errorPolicy: 'all',
+    onCompleted: (data) => {
+      dispatch(rigActions.getAllRigs(data));
+    },
+  });
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
 
   return (
-    <div>
+    <div className="landing">
       <NavBar />
-      <Route exact path={routePaths.landing + routePaths.rig} >
-        <Rig listOfRigs={listOfRigs} />
-      </Route>
+      <div className="content">
+        <RigSidebar rigList={listOfRigs} />
+          <Route exact path={routePaths.landing + routePaths.rig} >
+            <Rig listOfRigs={listOfRigs} />
+          </Route>
+      </div>
     </div>
   );
 };
