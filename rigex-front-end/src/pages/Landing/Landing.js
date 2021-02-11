@@ -20,6 +20,7 @@ const Landing = () => {
     if (!isValidNestedPath) history.push(routePaths.landing);
   }
 
+
   const listOfRigs = useSelector((state) => state.rigs);
   const dispatch = useDispatch();
   const { loading, error } = useQuery(GET_ALL_RIGS, {
@@ -36,11 +37,9 @@ const Landing = () => {
       <NavBar />
       <div className="content">
         <RigSidebar rigList={listOfRigs} />
-        <Route
-          exact
-          path={routePaths.landing + routePaths.rig}
-          component={Rig}
-        />
+          <Route exact path={routePaths.landing + routePaths.rig} >
+            <Rig listOfRigs={listOfRigs} />
+          </Route>
       </div>
     </div>
   );

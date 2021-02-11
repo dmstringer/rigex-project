@@ -18,12 +18,12 @@ export default function NavBar() {
           <Button href={routePaths.landing} color="inherit" >
             <img src={logo} alt="Rigex" />
           </Button>
-          <div className="iconBox">
+          <div className="nav-icon-box">
             <IconButton aria-label="search bar button" >
-              <img src={search} alt="search" className="icon"/>
+              <img src={search} alt="search" className="nav-icon"/>
             </IconButton>
             <IconButton aria-label="account of current user" >
-              <img src={account} alt="account" className="icon" />
+              <img src={account} alt="account" className="nav-icon" />
             </IconButton>
           </div>
         </Toolbar>
