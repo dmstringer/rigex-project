@@ -1,5 +1,9 @@
 @import './colors.scss';
 
+html {
+  background-color: $window-background;
+}
+
 body {
   background-color: $base-white;
   max-width: 1024px;
