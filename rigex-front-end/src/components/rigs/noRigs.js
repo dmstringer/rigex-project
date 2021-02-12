@@ -11,7 +11,7 @@ const NoRigs = () => {
       </div>
       <div className="txt-container">
         <span className="add-rigs-text">
-          Start organizaing your rigs & wells!
+          Start organizing your rigs & wells!
         </span>
         <span className="sm-text">Get started by creating your first rig.</span>
         <button className="add-rig-button">
