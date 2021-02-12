@@ -37,20 +37,9 @@ const Landing = () => {
 
   const listOfWells = [];
 
-  Object.size = function (object) {
-    var size = 0,
-      key;
-    for (key in object) {
-      if (object.hasOwnProperty(key)) size++;
-    }
-    return size;
-  };
-
-  var listOfRigsSize = Object.size(listOfRigs);
-
   const MainWindow = () => (
     <div className="main-window">
-      {listOfRigsSize > 0 ? (
+      {listOfRigs.length > 0 ? (
         <div className="right-panel">
           <Route exact path={routePaths.landing + routePaths.rig}>
             <Rig listOfRigs={listOfRigs} listOfWells={listOfWells} />
