@@ -32,3 +32,15 @@ export const GET_ALL_RIGS = gql`
     }
   }
 `;
+
+export const UPSERT_WELL = gql`
+  mutation upsertWell($wellInput: WellInput!) {
+    upsertWell(model: $wellInput) {
+      id
+      name
+      longitude
+      latitude
+      rigId
+    }
+  }
+`;
