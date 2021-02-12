@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import './rig.scss';
 import rigImage from '../../assets/rig.svg';
 import CreateWellModal from '../../components/createWellModal/createWell';
+import WellsTable from '../../components/WellsTable/WellsTable';
 
 const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpenStatus }) => {
   const { id } = useParams();
@@ -44,7 +45,7 @@ const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpe
         </div>
       </div>
       {listOfWells.length ? (
-        <div className="wells-table">{'Wells Table goes here'}</div>
+        <WellsTable listOfWells={listOfWells} />
       ) : (
         <div className="wells-table">
           <div className="image-container">
