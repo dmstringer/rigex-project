@@ -8,7 +8,7 @@ import rigImage from '../../assets/rig.svg';
 const Rig = ({ listOfRigs }) => {
   const { id } = useParams();
 
-  let rigName = `No Rig with id: ${id} Found`;
+  let rigName = "";
   let listOfWells = [];
 
   listOfRigs.map((rig) => {
@@ -38,7 +38,7 @@ const Rig = ({ listOfRigs }) => {
           )}
         </div>
       </div>
-      {listOfWells.length ? null : (
+      {listOfWells.length ? <div className="wells-table">{"Wells Table goes here"}</div> : (
         <div className="wells-table">
           <div className="image-container">
             <img src={rigImage} alt="rig svg" />
