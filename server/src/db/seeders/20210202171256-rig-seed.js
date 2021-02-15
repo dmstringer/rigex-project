@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Rigs', [
       {
         id: '12e8a014-f0d2-40e8-bfcf-8113ecb9126f',
-        name: 'Big Papa',
+        name: 'Rig A',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
