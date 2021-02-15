@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Route, useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { Route, useLocation, useParams } from 'react-router-dom';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Rig } from '../index';
@@ -10,32 +10,103 @@ import routePaths from '../../constants/routePaths';
 import validatePath from '../../utils/validatePath';
 import history from '../../utils/history';
 import RigSidebar from '../../components/RigSidebar/RigSidebar';
-import './landing.scss';
 import { GET_ALL_RIGS } from '../../constants/serviceAPI';
 import { rigActions } from '../../store/rig/action';
+import CreateRig from '../../components/createRig/CreateRig';
+import { CREATE_RIG } from '../../constants/serviceAPI';
+import './landing.scss';
 
 const Landing = () => {
   const { pathname } = useLocation();
+  const [newRigOpen, setNewRigOpen] = useState(false);
+  const [currentRigSelection, setCurrentRigSelection] = useState('');
+  const [newlyCreatedRig, setNewlyCreated] = useState('');
+  const { pathId } = useParams();
+  const listOfRigs = useSelector((state) => {
+    return state.rigs.sort((a, b) => (a.name > b.name ? 1 : -1));
+  });
+
   if (pathname.includes(routePaths.landing + '/')) {
     const isValidNestedPath = validatePath();
-    if (!isValidNestedPath) history.push(routePaths.landing);
+
+    let rigExists = false;
+
+    for (let rig in listOfRigs) {
+      if (rig.id === pathId) {
+        rigExists = true;
+        break;
+      }
+    }
+    if (!isValidNestedPath || !rigExists) {
+      history.push(routePaths.landing);
+    }
   }
 
-  const listOfRigs = useSelector((state) => state.rigs);
   const dispatch = useDispatch();
-  const [errorMessage, setErrorMessage] = useState('');
-  const { loading, error, data } = useQuery(GET_ALL_RIGS);
-
-  useEffect(() => {
-    if (error) {
-      setErrorMessage(error);
-    }
-    if (data) {
+  const [getAllRigs, { getLoading, getError }] = useLazyQuery(GET_ALL_RIGS, {
+    errorPolicy: 'all',
+    onCompleted: (data) => {
       dispatch(rigActions.getAllRigs(data));
+    },
+  });
+  const [createNewRig, { createLoading, createError }] = useMutation(
+    CREATE_RIG,
+    {
+      onCompleted: ({ upsertRig: { id } }) => {
+        if (id) {
+          setNewRigOpen(false);
+          setNewlyCreated(id);
+          getAllRigs();
+        }
+      },
     }
-  }, [dispatch, error, data, loading]);
+  );
 
   const listOfWells = [];
+
+  const handleNewRigOpen = () => {
+    setNewRigOpen(true);
+  };
+
+  const handleNewRigClose = () => {
+    setNewRigOpen(false);
+  };
+
+  const handleCreate = (rigName) => {
+    createNewRig({
+      variables: { rigInput: { name: rigName } },
+    });
+  };
+
+  const handleRigSelect = (id) => {
+    setCurrentRigSelection(id);
+    history.push(routePaths.landing + `/rig/${id}`);
+  };
+
+  useEffect(() => {
+    getAllRigs();
+  }, []);
+
+  useEffect(() => {
+    if (newlyCreatedRig.length) {
+      handleRigSelect(newlyCreatedRig);
+    } else if (listOfRigs.length) {
+      handleRigSelect(listOfRigs[0].id);
+    }
+  }, [listOfRigs, newlyCreatedRig]);
+
+  useEffect(() => {
+    if (createError) {
+      console.log(createError);
+    }
+  }, [createLoading, createError]);
+
+  if (getLoading) {
+    return 'Loading...';
+  }
+  if (getError) {
+    return `Error! ${getError.message}`;
+  }
 
   const MainWindow = () => (
     <div className="main-window">
@@ -47,7 +118,7 @@ const Landing = () => {
         </div>
       ) : (
         <div className="right-panel">
-          <NoRigs />
+          <NoRigs handleNewRigOpen={handleNewRigOpen} />
         </div>
       )}
     </div>
@@ -57,9 +128,19 @@ const Landing = () => {
     <div className="landing">
       <NavBar />
       <div className="content">
-        <RigSidebar rigList={listOfRigs} />
+        <RigSidebar
+          rigList={listOfRigs}
+          handleNewRigOpen={handleNewRigOpen}
+          handleRigSelect={handleRigSelect}
+          currentSelection={currentRigSelection}
+        />
         <MainWindow />
       </div>
+      <CreateRig
+        isOpen={newRigOpen}
+        handleClose={handleNewRigClose}
+        handleCreate={handleCreate}
+      />
     </div>
   );
 };

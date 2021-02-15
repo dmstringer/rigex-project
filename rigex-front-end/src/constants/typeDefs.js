@@ -6,10 +6,6 @@ export const typeDefs = gql`
     getAllRigs: [Rigs]
   }
 
-  type Mutation {
-    createAccount(model: UserInput!): User!
-  }
-
   type Rig {
     id: String!
     name: String!
@@ -28,8 +24,17 @@ export const typeDefs = gql`
     updatedAt: String!
   }
 
+  extend type Mutation {
+    upsertRig(model: RigInput!): Rig!
+    createAccount(model: UserInput!): User!
+  }
+
   input UserInput {
     email: String!
     password: String!
+  }
+
+  input RigInput {
+    name: String!
   }
 `;

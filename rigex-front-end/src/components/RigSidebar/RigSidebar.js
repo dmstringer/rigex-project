@@ -6,21 +6,29 @@ import RigList from '../../components/RigSidebar/RigList';
 import EmptyCard from '../../components/RigSidebar/EmptyCard';
 import './sideBar.scss';
 
-const RigSidebar = ({ rigList }) => {
+const RigSidebar = ({
+  rigList,
+  handleNewRigOpen,
+  handleRigSelect,
+  currentSelection,
+}) => {
   return (
-    <div className='sideBar'>
-      <div className='rigsTitle'>
+    <div className="sideBar">
+      <div className="rigsTitle">
         <h2>Rigs</h2>
-        <IconButton
-          id='sidebarButton'
-          onClick={() => {
-            alert('TEST');
-          }}
-        >
-          <AddBoxIcon fontSize='large' color='primary' />
+        <IconButton id="sidebarButton" onClick={handleNewRigOpen}>
+          <AddBoxIcon fontSize="large" color="primary" />
         </IconButton>
       </div>
-      {rigList.length ? <RigList rigList={rigList} /> : <EmptyCard />}
+      {rigList.length ? (
+        <RigList
+          rigList={rigList}
+          handleRigSelect={handleRigSelect}
+          currentSelection={currentSelection}
+        />
+      ) : (
+        <EmptyCard />
+      )}
     </div>
   );
 };

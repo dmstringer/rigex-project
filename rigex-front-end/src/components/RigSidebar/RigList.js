@@ -1,29 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './sideBar.scss';
 
-const RigList = ({ rigList }) => {
-  const [selectedIndex, setSelectedIndex] = React.useState();
-  const handleListItemClick = (index) => {
-    setSelectedIndex(index);
-  };
-
-  useEffect(() => {
-    rigList.sort((a, b) => (a.name > b.name ? 1 : -1));
-  });
-
+const RigList = ({ rigList, handleRigSelect, currentSelection }) => {
   return (
-    <ul className='rigList'>
-      {rigList.map((rig, index) => (
+    <ul className="rigList">
+      {rigList.map(({ id, name }) => (
         <li
-          className={selectedIndex === index ? 'rigListItem selected' : 'rigListItem'}
-          key={rig.id}
+          className={
+            currentSelection === id ? 'rigListItem selected' : 'rigListItem'
+          }
+          key={id}
           onClick={() => {
-            handleListItemClick(index);
+            handleRigSelect(id);
           }}
         >
           <div>
-            <span>{rig.name}</span>
+            <span>{name}</span>
           </div>
         </li>
       ))}
