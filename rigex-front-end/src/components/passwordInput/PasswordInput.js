@@ -12,7 +12,7 @@ import {
   VisibilityOffOutlined,
 } from '@material-ui/icons';
 
-const PasswordInput = ({ handleChange }) => {
+const PasswordInput = ({ handleChange, updatePasswordFocus }) => {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const handleShowPasswordClick = () => {
     setPasswordIsVisible(!passwordIsVisible);
@@ -29,6 +29,8 @@ const PasswordInput = ({ handleChange }) => {
             Password
           </InputLabel>
           <Input
+            onFocus={updatePasswordFocus}
+            onBlur={updatePasswordFocus}
             disableUnderline
             type={passwordIsVisible ? 'text' : 'password'}
             id="password"

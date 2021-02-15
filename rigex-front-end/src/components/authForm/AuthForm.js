@@ -10,11 +10,16 @@ import './authForm.scss';
 
 const AuthForm = ({ handleSubmit, authType }) => {
   const [userState, setUserState] = useState({ email: '', password: '' });
+  const [passwordFocus, setPasswordFocus] = useState(false);
 
   const isLoginType = authType === 'login';
 
   const handleChange = ({ target: { value, name } }) => {
     setUserState((oldState) => ({ ...oldState, [name]: value }));
+  };
+
+  const updatePasswordFocus = () => {
+    setPasswordFocus(!passwordFocus);
   };
 
   return (
@@ -24,7 +29,15 @@ const AuthForm = ({ handleSubmit, authType }) => {
           <img className="logo" src={logo} alt="Rigex logo" />
           <form className="form">
             <EmailInput handleChange={handleChange} />
-            <PasswordInput handleChange={handleChange} />
+            <PasswordInput
+              handleChange={handleChange}
+              updatePasswordFocus={updatePasswordFocus}
+            />
+            {!isLoginType && passwordFocus && (
+              <p className="password-tooltip">
+                At least 8 characters and contains a number.
+              </p>
+            )}
             <Button
               className="input-button"
               type="submit"
@@ -57,7 +70,12 @@ const AuthForm = ({ handleSubmit, authType }) => {
               </div>
             ) : (
               <div>
-                <p className="login-link-text">
+                <p
+                  className="login-link-text"
+                  style={
+                    !isLoginType && passwordFocus ? { marginTop: '55px' } : {}
+                  }
+                >
                   Already have an account?{' '}
                   <span
                     className="login-link"
