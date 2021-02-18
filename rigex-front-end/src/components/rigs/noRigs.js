@@ -3,7 +3,7 @@ import AddIcon from '@material-ui/icons/Add';
 import './noRigs.scss';
 import rigImage from '../../assets/rig.svg';
 
-const NoRigs = ({ handleNewRigOpen }) => {
+const NoRigs = ({ handleRigModalOpen }) => {
   return (
     <div className="no-rigs-panel">
       <div className="img-container">
@@ -14,7 +14,10 @@ const NoRigs = ({ handleNewRigOpen }) => {
           Start organizing your rigs & wells!
         </span>
         <span className="sm-text">Get started by creating your first rig.</span>
-        <button className="add-rig-button" onClick={handleNewRigOpen}>
+        <button
+          className="add-rig-button"
+          onClick={() => handleRigModalOpen('create')}
+        >
           <AddIcon className="add-rig-button-icon" />
           Create rig
         </button>

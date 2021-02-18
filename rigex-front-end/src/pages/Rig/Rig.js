@@ -5,10 +5,10 @@ import AddIcon from '@material-ui/icons/Add';
 import './rig.scss';
 import rigImage from '../../assets/rig.svg';
 
-const Rig = ({ listOfRigs }) => {
+const Rig = ({ listOfRigs, handleRigModalOpen }) => {
   const { id } = useParams();
 
-  let rigName = "";
+  let rigName = '';
   let listOfWells = [];
 
   listOfRigs.map((rig) => {
@@ -24,7 +24,10 @@ const Rig = ({ listOfRigs }) => {
       <div className="title-bar">
         <h2>{rigName}</h2>
         <div>
-          <button className="edit-rig-button">
+          <button
+            className="edit-rig-button"
+            onClick={() => handleRigModalOpen('update', rigName, id)}
+          >
             <div>
               <EditIcon className="button-icon" fontSize="small" /> Edit rig
             </div>
@@ -38,7 +41,9 @@ const Rig = ({ listOfRigs }) => {
           )}
         </div>
       </div>
-      {listOfWells.length ? <div className="wells-table">{"Wells Table goes here"}</div> : (
+      {listOfWells.length ? (
+        <div className="wells-table">{'Wells Table goes here'}</div>
+      ) : (
         <div className="wells-table">
           <div className="image-container">
             <img src={rigImage} alt="rig svg" />

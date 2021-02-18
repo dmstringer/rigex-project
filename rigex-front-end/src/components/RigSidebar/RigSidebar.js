@@ -8,7 +8,7 @@ import './sideBar.scss';
 
 const RigSidebar = ({
   rigList,
-  handleNewRigOpen,
+  handleRigModalOpen,
   handleRigSelect,
   currentSelection,
 }) => {
@@ -16,7 +16,10 @@ const RigSidebar = ({
     <div className="sideBar">
       <div className="rigsTitle">
         <h2>Rigs</h2>
-        <IconButton id="sidebarButton" onClick={handleNewRigOpen}>
+        <IconButton
+          id="sidebarButton"
+          onClick={() => handleRigModalOpen('create')}
+        >
           <AddBoxIcon fontSize="large" color="primary" />
         </IconButton>
       </div>
