@@ -12,12 +12,14 @@ import history from '../../utils/history';
 import RigSidebar from '../../components/RigSidebar/RigSidebar';
 import { GET_ALL_RIGS } from '../../constants/serviceAPI';
 import { rigActions } from '../../store/rig/action';
+import { wellActions } from '../../store/wells/action';
 import RigModal from '../../components/RigModal/RigModal';
 import { CREATE_OR_UPDATE_RIG } from '../../constants/serviceAPI';
 import './landing.scss';
 
 const Landing = () => {
   const { pathname } = useLocation();
+  const addWellState = useSelector((state) => state.wells.addSuccess)
   const [rigModalOpen, setRigModalOpen] = useState({
     isOpen: false,
     type: '',
@@ -26,6 +28,11 @@ const Landing = () => {
   });
   const [currentRigSelection, setCurrentRigSelection] = useState('');
   const [newlyCreatedRig, setNewlyCreated] = useState('');
+  const [wellModalOpen, setWellModalOpen] = useState(false)
+
+  const handleWellModalOpenStatus = () => {
+    setWellModalOpen(!wellModalOpen)
+  }
 
   const { pathId } = useParams();
   const listOfRigs = useSelector((state) => {
@@ -73,8 +80,6 @@ const Landing = () => {
     }
   );
 
-  const listOfWells = [];
-
   const handleRigModalOpen = (type, currentName, id) => {
     if (currentName && id) {
       setRigModalOpen({ type, currentName, isOpen: true, id });
@@ -103,7 +108,17 @@ const Landing = () => {
     if (pathname === routePaths.landing) {
       getAllRigs();
     }
-  }, [pathname]);
+  }, [getAllRigs, pathname]);
+
+  useEffect(() => {
+    if (addWellState !== "confirmed") {
+      getAllRigs()
+    }
+    if (addWellState === true) {
+      dispatch(wellActions.clearSuccess())
+    }
+
+  }, [getAllRigs, dispatch, addWellState])
 
   useEffect(() => {
     if (newlyCreatedRig.length) {
@@ -133,8 +148,9 @@ const Landing = () => {
           <Route exact path={routePaths.landing + routePaths.rig}>
             <Rig
               listOfRigs={listOfRigs}
-              listOfWells={listOfWells}
               handleRigModalOpen={handleRigModalOpen}
+              wellModalOpen={wellModalOpen}
+              handleWellModalOpenStatus={handleWellModalOpenStatus}
             />
           </Route>
         </div>

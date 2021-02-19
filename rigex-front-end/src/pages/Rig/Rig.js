@@ -1,11 +1,13 @@
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 
 import './rig.scss';
 import rigImage from '../../assets/rig.svg';
+import CreateWellModal from '../../components/createWellModal/createWell';
 
-const Rig = ({ listOfRigs, handleRigModalOpen }) => {
+const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpenStatus }) => {
   const { id } = useParams();
 
   let rigName = '';
@@ -32,13 +34,13 @@ const Rig = ({ listOfRigs, handleRigModalOpen }) => {
               <EditIcon className="button-icon" fontSize="small" /> Edit rig
             </div>
           </button>
-          {listOfWells.length ? null : (
-            <button className="add-well-button">
+          { (listOfWells.length) ? (
+            <button className="add-well-button" onClick={handleWellModalOpenStatus}>
               <div>
                 <AddIcon className="button-icon" fontSize="small" /> Create well
               </div>
             </button>
-          )}
+          ) : null }
         </div>
       </div>
       {listOfWells.length ? (
@@ -52,11 +54,10 @@ const Rig = ({ listOfRigs, handleRigModalOpen }) => {
             <span className="add-wells-text">
               Let's create some wells on this rig!
             </span>
-            <span className="small-text">
-              {' '}
-              Get started by creating a well.{' '}
+            <span className="small-text" >
+              Get started by creating a well.
             </span>
-            <button className="add-well-button">
+            <button className="add-well-button" onClick={handleWellModalOpenStatus}>
               <div>
                 <AddIcon className="button-icon" fontSize="small" /> Create well
               </div>
@@ -64,6 +65,11 @@ const Rig = ({ listOfRigs, handleRigModalOpen }) => {
           </div>
         </div>
       )}
+      <CreateWellModal 
+        wellModalOpen={wellModalOpen} 
+        handleWellModalClose={handleWellModalOpenStatus}
+        rigId={id}
+      />
     </div>
   );
 };
