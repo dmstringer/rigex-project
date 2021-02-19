@@ -3,6 +3,7 @@ const routePaths = {
   rig: '/rig/:id',
   signUp: '/sign-up',
   login: '/login',
+  vital: '/vital-resources',
 };
 
 export const nestedLandingPaths = ['/rig'];
