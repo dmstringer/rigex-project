@@ -1,34 +1,33 @@
 @import '../../styles/colors.scss';
 
 .iconBox {
-    display: "flex";
-    flex-direction: "row";
-    justify-content: "space-between";
-    width: 120px;
-    margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: 'space-between';
+  width: 120px;
+  margin-left: auto;
 
-    button {
-        width: 45px;
-        height: 45px;
-        margin-right: 15px;
-        color: $shadow;
-    }
+  button {
+    width: 45px;
+    height: 45px;
+    margin-right: 15px;
+    color: $nav-bar-icons;
+  }
 }
 
 .logo {
-    padding-left: 30px;
+  padding-left: 30px;
 }
 
 .navBar {
-    display: flex;
-    align-items: center;
-    background: $base-white;
-    height: 87px;
-    box-shadow: 0 3px 3px $shadow;
+  display: flex;
+  align-items: center;
+  background: $base-white;
+  height: 87px;
+  box-shadow: 0 3px 3px $box-shadow;
 
-
-    button {
-        background-color: $base-white;
-        border: 0px;
-    }
+  button {
+    background-color: $base-white;
+    border: 0px;
+  }
 }
