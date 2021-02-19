@@ -3,6 +3,7 @@ const routePaths = {
   rig: '/rig/:id',
   signUp: '/sign-up',
   login: '/login',
+  rigScheduler: '/rig-scheduler',
 };
 
 export const nestedLandingPaths = ['/rig'];
