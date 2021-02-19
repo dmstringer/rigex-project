@@ -30,7 +30,7 @@
         grid-column-end: 3;
         grid-row-start: 2;
         grid-row-end: 3;
-        margin-bottom: 20px !important;
+        height: 220px;
 
         .input-button.MuiButtonBase-root {
           border: none;
@@ -45,6 +45,7 @@
           font-family: 'proxima-nova', sans-serif !important;
           text-transform: none !important;
           margin-top: 4px;
+          margin-bottom: 20px;
         }
 
         @import '../../styles/colors.scss';
@@ -102,6 +103,13 @@
           .MuiFormControl-root.auth-form-control {
             width: 100%;
           }
+        }
+        .password-tooltip {
+          text-align: center;
+          color: $text-input-font;
+          font-weight: 400;
+          margin-top: 10px;
+          margin-bottom: 16px;
         }
       }
 
