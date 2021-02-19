@@ -36,5 +36,6 @@ export const typeDefs = gql`
 
   input RigInput {
     name: String!
+    id: String
   }
 `;

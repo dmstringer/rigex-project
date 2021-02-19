@@ -12,15 +12,21 @@ import history from '../../utils/history';
 import RigSidebar from '../../components/RigSidebar/RigSidebar';
 import { GET_ALL_RIGS } from '../../constants/serviceAPI';
 import { rigActions } from '../../store/rig/action';
-import CreateRig from '../../components/createRig/CreateRig';
-import { CREATE_RIG } from '../../constants/serviceAPI';
+import RigModal from '../../components/RigModal/RigModal';
+import { CREATE_OR_UPDATE_RIG } from '../../constants/serviceAPI';
 import './landing.scss';
 
 const Landing = () => {
   const { pathname } = useLocation();
-  const [newRigOpen, setNewRigOpen] = useState(false);
+  const [rigModalOpen, setRigModalOpen] = useState({
+    isOpen: false,
+    type: '',
+    currentName: '',
+    id: '',
+  });
   const [currentRigSelection, setCurrentRigSelection] = useState('');
   const [newlyCreatedRig, setNewlyCreated] = useState('');
+
   const { pathId } = useParams();
   const listOfRigs = useSelector((state) => {
     return state.rigs.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -49,12 +55,17 @@ const Landing = () => {
       dispatch(rigActions.getAllRigs(data));
     },
   });
-  const [createNewRig, { createLoading, createError }] = useMutation(
-    CREATE_RIG,
+  const [createOrUpdateRig, { createLoading, createError }] = useMutation(
+    CREATE_OR_UPDATE_RIG,
     {
       onCompleted: ({ upsertRig: { id } }) => {
         if (id) {
-          setNewRigOpen(false);
+          setRigModalOpen({
+            isOpen: false,
+            type: '',
+            currentName: '',
+            id: '',
+          });
           setNewlyCreated(id);
           getAllRigs();
         }
@@ -64,17 +75,22 @@ const Landing = () => {
 
   const listOfWells = [];
 
-  const handleNewRigOpen = () => {
-    setNewRigOpen(true);
+  const handleRigModalOpen = (type, currentName, id) => {
+    if (currentName && id) {
+      setRigModalOpen({ type, currentName, isOpen: true, id });
+    } else {
+      setRigModalOpen({ type, isOpen: true, currentName: '', id: '' });
+    }
   };
 
-  const handleNewRigClose = () => {
-    setNewRigOpen(false);
+  const handleRigModalClose = () => {
+    setRigModalOpen({ type: '', isOpen: false, currentName: '', id: '' });
   };
 
-  const handleCreate = (rigName) => {
-    createNewRig({
-      variables: { rigInput: { name: rigName } },
+  const handleCreateOrUpdate = (name, id) => {
+    const rigDetails = id ? { name, id } : { name };
+    createOrUpdateRig({
+      variables: { rigInput: rigDetails },
     });
   };
 
@@ -115,12 +131,16 @@ const Landing = () => {
       {listOfRigs.length > 0 ? (
         <div className="right-panel">
           <Route exact path={routePaths.landing + routePaths.rig}>
-            <Rig listOfRigs={listOfRigs} listOfWells={listOfWells} />
+            <Rig
+              listOfRigs={listOfRigs}
+              listOfWells={listOfWells}
+              handleRigModalOpen={handleRigModalOpen}
+            />
           </Route>
         </div>
       ) : (
         <div className="right-panel">
-          <NoRigs handleNewRigOpen={handleNewRigOpen} />
+          <NoRigs handleRigModalOpen={handleRigModalOpen} />
         </div>
       )}
     </div>
@@ -132,16 +152,16 @@ const Landing = () => {
       <div className="content">
         <RigSidebar
           rigList={listOfRigs}
-          handleNewRigOpen={handleNewRigOpen}
+          handleRigModalOpen={handleRigModalOpen}
           handleRigSelect={handleRigSelect}
           currentSelection={currentRigSelection}
         />
         <MainWindow />
       </div>
-      <CreateRig
-        isOpen={newRigOpen}
-        handleClose={handleNewRigClose}
-        handleCreate={handleCreate}
+      <RigModal
+        rigDetails={rigModalOpen}
+        handleClose={handleRigModalClose}
+        handleCreateOrUpdate={handleCreateOrUpdate}
       />
     </div>
   );
