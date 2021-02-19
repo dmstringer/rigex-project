@@ -84,8 +84,10 @@ const Landing = () => {
   };
 
   useEffect(() => {
-    getAllRigs();
-  }, []);
+    if (pathname === routePaths.landing) {
+      getAllRigs();
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (newlyCreatedRig.length) {
