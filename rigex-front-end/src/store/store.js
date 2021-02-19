@@ -5,7 +5,8 @@ import thunkMiddleware from 'redux-thunk';
 import loginReducer from './login/reducers';
 import rigReducer from './rig/reducers';
 import aboutTextReducer from './aboutText/reducers';
-import wellReducer from './wells/reducers'
+import wellReducer from './wells/reducers';
+import rigSchedulerReducer from './rigScheduler/reducers';
 
 export const store = createStore(
   combineReducers(
@@ -14,6 +15,7 @@ export const store = createStore(
       rigs: rigReducer,
       aboutText: aboutTextReducer,
       wells: wellReducer,
+      rigScheduler: rigSchedulerReducer,
     },
     composeWithDevTools()
   ),

@@ -73,3 +73,37 @@ export const DELETE_WELL = gql`
     deleteWell(id: $id)
   }
 `;
+
+export const GET_CONTENT_TEXTS_BY_TYPE = gql`
+  query getContentTextsByType($id: String!) {
+    getContentTextsByType(id: $id) {
+      id
+      name
+      section
+      titleColor
+      backgroundColor
+      content {
+        id
+        text
+        type
+      }
+    }
+  }
+`;
+
+export const GET_ALL_CONTENT_TEXTS_BY_TYPE = gql`
+  query getAllContentTextsByType {
+    getAllContentTextsByType {
+      id
+      name
+      section
+      titleColor
+      backgroundColor
+      content {
+        id
+        text
+        type
+      }
+    }
+  }
+`;

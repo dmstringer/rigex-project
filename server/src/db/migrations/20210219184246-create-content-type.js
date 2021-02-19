@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      section: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       titleColor: {
         type: Sequelize.STRING,
         allowNull: false,
