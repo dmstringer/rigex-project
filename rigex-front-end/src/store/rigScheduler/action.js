@@ -8,7 +8,16 @@ const getAllContentTextsByType = (lists) => {
     });
   };
 };
+const getAllTeamResources = (resources) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_ALL_TEAM_RESOURCES,
+      payload: resources,
+    });
+  };
+};
 
 export const rigSchedulerActions = {
   getAllContentTextsByType,
+  getAllTeamResources,
 };
