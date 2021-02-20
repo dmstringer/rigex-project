@@ -17,6 +17,16 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const GET_ALL_ABOUT_TEXT = gql`
+  query getAllAboutText {
+    getAllAboutText {
+      id
+      type
+      text
+    }
+  }
+`;
+
 export const GET_ALL_RIGS = gql`
   query getAllRigs {
     getAllRigs {

@@ -4,6 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import loginReducer from './login/reducers';
 import rigReducer from './rig/reducers';
+import aboutTextReducer from './aboutText/reducers';
 import wellReducer from './wells/reducers'
 
 export const store = createStore(
@@ -11,7 +12,8 @@ export const store = createStore(
     {
       login: loginReducer,
       rigs: rigReducer,
-      wells: wellReducer
+      aboutText: aboutTextReducer,
+      wells: wellReducer,
     },
     composeWithDevTools()
   ),

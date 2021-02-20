@@ -26,6 +26,14 @@ module.exports = {
     } else return new Error(errorMessages.incorrectPassword);
   },
 
+  getAllAboutText: async () => {
+    try {
+      return await db.AboutText.findAll()
+    } catch (error) {
+      return (error)
+    }
+  },
+
   getAllRigs: async(parent) => {
     try {
       return await db.Rig.findAll({ include: [db.Well] })
