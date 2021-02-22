@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Query {
     login(model: UserInput!): User!
+    getAllAboutTextTypes: [AboutTextTypes]!
     getAllAboutText: [AboutText]!
     getAllRigs: [Rig]!
     getAllContentTypes: [ContentType]!
@@ -14,6 +15,8 @@ const typeDefs = gql`
     createAccount(model: UserInput!): User!
     upsertAboutText(model: AboutTextInput!): AboutText!
     deleteAboutText(id: String!): String!
+    upsertAboutTextTypes(model: AboutTextTypesInput!): AboutTextTypes!
+    deleteAboutTextTypes(id: String!): String!
     upsertWell(model: WellInput): Well!
     upsertContentType(model: ContentTypeInput!): ContentType!
     upsertContentText(model: ContentTextInput!): ContentText!
@@ -23,6 +26,18 @@ const typeDefs = gql`
     deleteWells(rigId: String!): Boolean!
     upsertRig(model: RigInput!): Rig!
     deleteRig(id: String!): Boolean!
+  }
+
+  type AboutTextTypes {
+    id: String!
+    type: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  input AboutTextTypesInput {
+    id: String
+    type: String!
   }
 
   type AboutText {

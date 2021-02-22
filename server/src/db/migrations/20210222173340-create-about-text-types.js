@@ -1,19 +1,15 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('AboutTexts', {
+    return queryInterface.createTable('AboutTextTypes', {
       id: {
         primaryKey: true,
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: Sequelize.literal('uuid_generate_v4()'),
       },
-      AboutTextTypeId: {
+      type: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      text: {
-        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       createdAt: {
@@ -27,6 +23,6 @@ module.exports = {
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable('AboutTexts');
+    return queryInterface.dropTable('AboutTextTypes');
   }
 };
