@@ -37,7 +37,13 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0]);
 };
 
-const WellsTable = ({ listOfWells, isSoloRig, handleWellDelete, rigId }) => {
+const WellsTable = ({
+  listOfWells,
+  isSoloRig,
+  handleWellModalOpen,
+  handleWellDelete,
+  rigId,
+}) => {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('name');
   const [searchWord, setSearchWord] = useState('');
@@ -108,14 +114,10 @@ const WellsTable = ({ listOfWells, isSoloRig, handleWellDelete, rigId }) => {
               {...droppableProvided.droppableProps}
             >
               {stableSort(filteredWells, getComparator(order, orderBy)).map(
-                (well, index) => {
+                ({ id, latitude, longitude, name }, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
                   return (
-                    <Draggable
-                      draggableId={well.id}
-                      index={index}
-                      key={well.id}
-                    >
+                    <Draggable draggableId={id} index={index} key={id}>
                       {(draggableProvided) => (
                         <TableRow
                           hover
@@ -139,19 +141,23 @@ const WellsTable = ({ listOfWells, isSoloRig, handleWellDelete, rigId }) => {
                             id={labelId}
                             scope="row"
                           >
-                            {well.name}
+                            {name}
                           </TableCell>
                           <TableCell align="left" className="well-cell">
-                            {well.latitude}
+                            {latitude}
                           </TableCell>
                           <TableCell align="left" className="well-cell">
-                            {well.longitude}
+                            {longitude}
                           </TableCell>
                           <TableCell align="right" className="well-cell">
                             <WellDropdown
                               handleWellDelete={handleWellDelete}
-                              wellId={well.id}
+                              wellId={id}
                               isSoloRig={isSoloRig}
+                              handleWellModalOpen={handleWellModalOpen}
+                              wellName={name}
+                              latitude={latitude}
+                              longitude={longitude}
                             />
                           </TableCell>
                         </TableRow>

@@ -5,14 +5,15 @@ import AddIcon from '@material-ui/icons/Add';
 
 import './rig.scss';
 import rigImage from '../../assets/rig.svg';
-import CreateWellModal from '../../components/createWellModal/createWell';
+import WellModal from '../../components/WellModal/WellModal';
 import WellsTable from '../../components/WellsTable/WellsTable';
 
 const Rig = ({
   listOfRigs,
   handleRigModalOpen,
-  wellModalOpen,
-  handleWellModalOpenStatus,
+  wellModalInfo,
+  handleWellModalOpen,
+  handleWellModalClose,
   handleWellDelete,
 }) => {
   const { id } = useParams();
@@ -44,7 +45,9 @@ const Rig = ({
           {listOfWells.length ? (
             <button
               className="add-well-button"
-              onClick={handleWellModalOpenStatus}
+              onClick={() => {
+                handleWellModalOpen('create');
+              }}
             >
               <div>
                 <AddIcon className="button-icon" fontSize="small" /> Create well
@@ -55,10 +58,11 @@ const Rig = ({
       </div>
       {listOfWells.length ? (
         <WellsTable
-          handleWellDelete={handleWellDelete}
-          listOfWells={listOfWells}
-          isSoloRig={listOfRigs.length === 1}
           rigId={id}
+          listOfWells={listOfWells}
+          handleWellModalOpen={handleWellModalOpen}
+          isSoloRig={listOfRigs.length === 1}
+          handleWellDelete={handleWellDelete}
         />
       ) : (
         <div className="wells-table">
@@ -72,7 +76,9 @@ const Rig = ({
             <span className="small-text">Get started by creating a well.</span>
             <button
               className="add-well-button"
-              onClick={handleWellModalOpenStatus}
+              onClick={() => {
+                handleWellModalOpen('create');
+              }}
             >
               <div>
                 <AddIcon className="button-icon" fontSize="small" /> Create well
@@ -81,9 +87,9 @@ const Rig = ({
           </div>
         </div>
       )}
-      <CreateWellModal
-        wellModalOpen={wellModalOpen}
-        handleWellModalClose={handleWellModalOpenStatus}
+      <WellModal
+        wellModalInfo={wellModalInfo}
+        handleWellModalClose={handleWellModalClose}
         rigId={id}
       />
     </div>

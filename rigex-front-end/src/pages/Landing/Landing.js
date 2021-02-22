@@ -33,10 +33,49 @@ const Landing = () => {
   });
   const [currentRigSelection, setCurrentRigSelection] = useState('');
   const [newlyCreatedRig, setNewlyCreated] = useState('');
-  const [wellModalOpen, setWellModalOpen] = useState(false);
+  const [wellModalInfo, setWellModalInfo] = useState({
+    isOpen: false,
+    type: '',
+    currentName: '',
+    currentLatitude: null,
+    currentLongitude: null,
+    id: '',
+  });
 
-  const handleWellModalOpenStatus = () => {
-    setWellModalOpen(!wellModalOpen);
+  const handleWellModalOpen = (
+    type,
+    currentName,
+    currentLatitude,
+    currentLongitude,
+    id
+  ) => {
+    if (currentName && currentLatitude && currentLongitude && id) {
+      setWellModalInfo({
+        type,
+        currentName,
+        currentLatitude,
+        currentLongitude,
+        id,
+        isOpen: true,
+      });
+    } else {
+      setWellModalInfo((previous) => ({
+        ...previous,
+        type,
+        isOpen: true,
+      }));
+    }
+  };
+
+  const handleWellModalClose = () => {
+    setWellModalInfo({
+      isOpen: false,
+      type: '',
+      currentName: '',
+      currentLatitude: null,
+      currentLongitude: null,
+      id: '',
+    });
   };
 
   const { pathId } = useParams();
@@ -207,8 +246,9 @@ const Landing = () => {
               handleWellDelete={handleWellDelete}
               listOfRigs={listOfRigs}
               handleRigModalOpen={handleRigModalOpen}
-              wellModalOpen={wellModalOpen}
-              handleWellModalOpenStatus={handleWellModalOpenStatus}
+              wellModalInfo={wellModalInfo}
+              handleWellModalOpen={handleWellModalOpen}
+              handleWellModalClose={handleWellModalClose}
             />
           </Route>
         </div>
