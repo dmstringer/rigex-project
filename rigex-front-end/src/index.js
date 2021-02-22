@@ -30,14 +30,12 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <Router history={history}>
-          <App />
-        </Router>
-      </Provider>
-    </ApolloProvider>
-  </React.StrictMode>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
