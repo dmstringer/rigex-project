@@ -5,6 +5,9 @@ const typeDefs = gql`
     login(model: UserInput!): User!
     getAllAboutText: [AboutText]!
     getAllRigs: [Rig]!
+    getAllContentTypes: [ContentType]!
+    getAllContentTexts: [ContentText]!
+    getContentTextsByType(id: String!): ContentTextByType!
   }
 
   type Mutation {
@@ -12,6 +15,10 @@ const typeDefs = gql`
     upsertAboutText(model: AboutTextInput!): AboutText!
     deleteAboutText(id: String!): String!
     upsertWell(model: WellInput): Well!
+    upsertContentType(model: ContentTypeInput!): ContentType!
+    upsertContentText(model: ContentTextInput!): ContentText!
+    deleteContentType(id: String!): Boolean!
+    deleteContentText(id: String!): Boolean!
     deleteWell(id: String!): Boolean!
     deleteWells(rigId: String!): Boolean!
     upsertRig(model: RigInput!): Rig!
@@ -73,6 +80,44 @@ const typeDefs = gql`
     longitude: Float
     latitude: Float
     rigId: String
+  }
+
+  type ContentType {
+    id: String!
+    name: String!
+    titleColor: String!
+    backgroundColor: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  input ContentTypeInput {
+    id: String
+    name: String
+    titleColor: String
+    backgroundColor: String
+  }
+
+  type ContentText {
+    id: String!
+    text: String!
+    type: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type ContentTextByType {
+    id: String!
+    name: String!
+    titleColor: String!
+    backgroundColor: String!
+    content: [ContentText]
+  }
+
+  input ContentTextInput {
+    id: String
+    text: String
+    type: String
   }
 `;
 

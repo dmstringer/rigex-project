@@ -78,6 +78,52 @@ module.exports = {
     }
   },
 
+  upsertContentType: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.contentType.upsert({ ...model });
+      return db.contentType.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertContentText: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.contentText.upsert({ ...model });
+      return db.contentText.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteContentType: async (_, { id }) => {
+    try {
+      const contentTypeDeleted = await db.contentType.destroy({
+        where: { id },
+      });
+      return contentTypeDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteContentText: async (_, { id }) => {
+    try {
+      const contentTextDeleted = await db.contentText.destroy({
+        where: { id },
+      });
+      return contentTextDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
   deleteWell: async (_, { id }) => {
     try {
       const wellDeleted = await db.Well.destroy({ where: { id } });

@@ -28,17 +28,40 @@ module.exports = {
 
   getAllAboutText: async () => {
     try {
-      return await db.AboutText.findAll()
+      return await db.AboutText.findAll();
     } catch (error) {
-      return (error)
+      return error;
     }
   },
 
-  getAllRigs: async(parent) => {
+  getAllRigs: async (parent) => {
     try {
-      return await db.Rig.findAll({ include: [db.Well] })
+      return await db.Rig.findAll({ include: [db.Well] });
     } catch (error) {
-      return error
+      return error;
     }
-  }
+  },
+  getAllContentTypes: async () => {
+    try {
+      return await db.contentType.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+  getAllContentTexts: async () => {
+    try {
+      return await db.contentText.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+  getContentTextsByType: async (parent, { id }) => {
+    try {
+      return db.contentType.findByPk(id, {
+        include: [db.contentText],
+      });
+    } catch (error) {
+      return error;
+    }
+  },
 };
