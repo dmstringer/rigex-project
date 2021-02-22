@@ -26,6 +26,14 @@ module.exports = {
     } else return new Error(errorMessages.incorrectPassword);
   },
 
+  getAllAboutTextTypes: async () => {
+    try {
+      return await db.AboutTextTypes.findAll()
+    } catch (error) {
+      return error
+    }
+  },
+
   getAllAboutText: async () => {
     try {
       return await db.AboutText.findAll();

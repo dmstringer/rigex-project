@@ -38,7 +38,28 @@ module.exports = {
 
   deleteAboutText: async (_, { id }) => {
     try {
-      const isDeleted = await db.AboutText.destroy({ where: { id } });
+      await db.AboutText.destroy({ where: { id } });
+      return id
+    } catch (error) {
+      return (error);
+    }
+  },
+
+  upsertAboutTextTypes: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.AboutTextTypes.upsert({ ...model });
+      return db.AboutTextTypes.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteAboutTextTypes: async (_, { id }) => {
+    try {
+      await db.AboutTextTypes.destroy({ where: { id } });
       return id
     } catch (error) {
       return (error);
