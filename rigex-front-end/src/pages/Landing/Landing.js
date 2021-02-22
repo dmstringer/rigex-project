@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, useLocation, useParams } from 'react-router-dom';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import { Rig } from '../index';
 import NoRigs from '../../components/rigs/noRigs';
@@ -10,16 +11,19 @@ import routePaths from '../../constants/routePaths';
 import validatePath from '../../utils/validatePath';
 import history from '../../utils/history';
 import RigSidebar from '../../components/RigSidebar/RigSidebar';
-import { GET_ALL_RIGS } from '../../constants/serviceAPI';
 import { rigActions } from '../../store/rig/action';
 import { wellActions } from '../../store/wells/action';
 import RigModal from '../../components/RigModal/RigModal';
-import { CREATE_OR_UPDATE_RIG } from '../../constants/serviceAPI';
+import {
+  CREATE_OR_UPDATE_RIG,
+  GET_ALL_RIGS,
+  UPSERT_WELL,
+} from '../../constants/serviceAPI';
 import './landing.scss';
 
 const Landing = () => {
   const { pathname } = useLocation();
-  const addWellState = useSelector((state) => state.wells.addSuccess)
+  const addWellState = useSelector((state) => state.wells.addSuccess);
   const [rigModalOpen, setRigModalOpen] = useState({
     isOpen: false,
     type: '',
@@ -28,11 +32,11 @@ const Landing = () => {
   });
   const [currentRigSelection, setCurrentRigSelection] = useState('');
   const [newlyCreatedRig, setNewlyCreated] = useState('');
-  const [wellModalOpen, setWellModalOpen] = useState(false)
+  const [wellModalOpen, setWellModalOpen] = useState(false);
 
   const handleWellModalOpenStatus = () => {
-    setWellModalOpen(!wellModalOpen)
-  }
+    setWellModalOpen(!wellModalOpen);
+  };
 
   const { pathId } = useParams();
   const listOfRigs = useSelector((state) => {
@@ -80,6 +84,12 @@ const Landing = () => {
     }
   );
 
+  const [upsertWell, { wellLoading, wellError }] = useMutation(UPSERT_WELL, {
+    onCompleted: () => {
+      getAllRigs();
+    },
+  });
+
   const handleRigModalOpen = (type, currentName, id) => {
     if (currentName && id) {
       setRigModalOpen({ type, currentName, isOpen: true, id });
@@ -104,6 +114,34 @@ const Landing = () => {
     history.push(routePaths.landing + `/rig/${id}`);
   };
 
+  const onDragEnd = async ({ destination, source, draggableId }) => {
+    if (!destination) {
+      return;
+    }
+
+    const oldRigId = source.droppableId.slice(
+      0,
+      source.droppableId.indexOf(' ')
+    );
+    if (destination.droppableId !== oldRigId) {
+      const oldRig = listOfRigs.find((rig) => rig.id === oldRigId);
+
+      const droppedWell = oldRig.wells.find((well) => well.id === draggableId);
+
+      const newWellDetails = {
+        name: droppedWell.name.toString(),
+        longitude: parseFloat(droppedWell.longitude),
+        latitude: parseFloat(droppedWell.latitude),
+        id: droppedWell.id.toString(),
+        rigId: destination.droppableId.toString(),
+      };
+
+      await upsertWell({
+        variables: { wellInput: newWellDetails },
+      });
+    }
+  };
+
   useEffect(() => {
     if (pathname === routePaths.landing) {
       getAllRigs();
@@ -111,28 +149,36 @@ const Landing = () => {
   }, [getAllRigs, pathname]);
 
   useEffect(() => {
-    if (addWellState !== "confirmed") {
-      getAllRigs()
+    if (addWellState !== 'confirmed') {
+      getAllRigs();
     }
     if (addWellState === true) {
-      dispatch(wellActions.clearSuccess())
+      dispatch(wellActions.clearSuccess());
     }
-
-  }, [getAllRigs, dispatch, addWellState])
+  }, [getAllRigs, dispatch, addWellState]);
 
   useEffect(() => {
     if (newlyCreatedRig.length) {
       handleRigSelect(newlyCreatedRig);
-    } else if (listOfRigs.length) {
+      setNewlyCreated('');
+    } else if (listOfRigs.length && !currentRigSelection.length) {
       handleRigSelect(listOfRigs[0].id);
+    } else if (listOfRigs.length) {
+      handleRigSelect(currentRigSelection);
     }
-  }, [listOfRigs, newlyCreatedRig]);
+  }, [listOfRigs, newlyCreatedRig, currentRigSelection]);
 
   useEffect(() => {
     if (createError) {
       console.log(createError);
     }
   }, [createLoading, createError]);
+
+  useEffect(() => {
+    if (wellError) {
+      console.log(wellError);
+    }
+  }, [wellLoading, wellError]);
 
   if (getLoading) {
     return 'Loading...';
@@ -166,13 +212,15 @@ const Landing = () => {
     <div className="landing">
       <NavBar />
       <div className="content">
-        <RigSidebar
-          rigList={listOfRigs}
-          handleRigModalOpen={handleRigModalOpen}
-          handleRigSelect={handleRigSelect}
-          currentSelection={currentRigSelection}
-        />
-        <MainWindow />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <RigSidebar
+            rigList={listOfRigs}
+            handleRigModalOpen={handleRigModalOpen}
+            handleRigSelect={handleRigSelect}
+            currentSelection={currentRigSelection}
+          />
+          <MainWindow />
+        </DragDropContext>
       </div>
       <RigModal
         rigDetails={rigModalOpen}

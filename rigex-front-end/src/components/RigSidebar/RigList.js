@@ -1,24 +1,33 @@
 import React from 'react';
 
 import './sideBar.scss';
+import { Droppable } from 'react-beautiful-dnd';
 
 const RigList = ({ rigList, handleRigSelect, currentSelection }) => {
   return (
     <ul className="rigList">
       {rigList.map(({ id, name }) => (
-        <li
-          className={
-            currentSelection === id ? 'rigListItem selected' : 'rigListItem'
-          }
-          key={id}
-          onClick={() => {
-            handleRigSelect(id);
-          }}
-        >
-          <div>
-            <span>{name}</span>
-          </div>
-        </li>
+        <Droppable droppableId={id} key={id}>
+          {(provided) => (
+            <li
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={
+                currentSelection === id ? 'rigListItem selected' : 'rigListItem'
+              }
+              onClick={() => {
+                handleRigSelect(id);
+              }}
+            >
+              <div>
+                <span>{name}</span>
+              </div>
+              <table>
+                <tbody>{provided.placeholder}</tbody>
+              </table>
+            </li>
+          )}
+        </Droppable>
       ))}
     </ul>
   );

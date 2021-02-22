@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import './wellsTable.scss';
 import WellsTableHead from './WellsTableHead';
@@ -37,7 +37,7 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0]);
 };
 
-const WellsTable = ({ listOfWells }) => {
+const WellsTable = ({ listOfWells, rigId }) => {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('name');
   const [searchWord, setSearchWord] = useState('');
@@ -62,7 +62,10 @@ const WellsTable = ({ listOfWells }) => {
       setSearchWord(event);
       let regexConst = new RegExp('^' + searchWord, 'i');
       newList = oldList.filter(
-        (well) => regexConst.test(well.name) || regexConst.test(well.latitude) || regexConst.test(well.longitude)
+        (well) =>
+          regexConst.test(well.name) ||
+          regexConst.test(well.latitude) ||
+          regexConst.test(well.longitude)
       );
       setFilteredWells(newList);
     } else {
@@ -71,45 +74,98 @@ const WellsTable = ({ listOfWells }) => {
   };
 
   return (
-    <div className='wellsTableContainer'>
-      <div className='searchFieldContainer'>
-        <img className='searchIcon' alt='Move Icon' src={Search} title='Move Icon' />
+    <div className="wellsTableContainer">
+      <div className="searchFieldContainer">
+        <img
+          className="searchIcon"
+          alt="Move Icon"
+          src={Search}
+          title="Move Icon"
+        />
         <input
-          className='searchField'
+          className="searchField"
           onChange={(event) => handleSearch(event.target.value)}
-          placeholder='Search well name, latitude or longitude'
+          placeholder="Search well name, latitude or longitude"
         />
       </div>
-      <TableContainer>
-        <Table className='wellsTable' aria-labelledby='tableTitle' size='medium' aria-label='enhanced table'>
-          <WellsTableHead
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-            rowCount={filteredWells.length}
-          />
-          <TableBody>
-            {stableSort(filteredWells, getComparator(order, orderBy)).map((well, index) => {
-              const labelId = `enhanced-table-checkbox-${index}`;
-              return (
-                <TableRow hover role='checkbox' tabIndex={-1} key={well.id}>
-                  <TableCell align='left'>
-                    <img className='' alt='Move Icon' src={MoveIcon} title='Move Icon' />
-                  </TableCell>
-                  <TableCell component='th' id={labelId} scope='row' padding='none'>
-                    {well.name}
-                  </TableCell>
-                  <TableCell align='left'>{well.latitude}</TableCell>
-                  <TableCell align='left'>{well.longitude}</TableCell>
-                  <TableCell align='right'>
-                    <img className='' alt='Ellipses Icon' src={EllipsesIcon} title='Ellipses Icon' />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table
+        className="wellsTable"
+        aria-labelledby="tableTitle"
+        size="medium"
+        aria-label="enhanced table"
+      >
+        <WellsTableHead
+          order={order}
+          orderBy={orderBy}
+          onRequestSort={handleRequestSort}
+          rowCount={filteredWells.length}
+          className="table-header"
+        />
+        <Droppable isDropDisabled droppableId={rigId + ' table'}>
+          {(droppableProvided) => (
+            <TableBody
+              ref={droppableProvided.innerRef}
+              {...droppableProvided.droppableProps}
+            >
+              {stableSort(filteredWells, getComparator(order, orderBy)).map(
+                (well, index) => {
+                  const labelId = `enhanced-table-checkbox-${index}`;
+                  return (
+                    <Draggable
+                      draggableId={well.id}
+                      index={index}
+                      key={well.id}
+                    >
+                      {(draggableProvided) => (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          {...draggableProvided.draggableProps}
+                          ref={draggableProvided.innerRef}
+                        >
+                          <TableCell align="left" className="well-cell">
+                            <img
+                              {...draggableProvided.dragHandleProps}
+                              className=""
+                              alt="Move Icon"
+                              src={MoveIcon}
+                              title="Move Icon"
+                            />
+                          </TableCell>
+                          <TableCell
+                            className="well-cell"
+                            component="th"
+                            id={labelId}
+                            scope="row"
+                          >
+                            {well.name}
+                          </TableCell>
+                          <TableCell align="left" className="well-cell">
+                            {well.latitude}
+                          </TableCell>
+                          <TableCell align="left" className="well-cell">
+                            {well.longitude}
+                          </TableCell>
+                          <TableCell align="right" className="well-cell">
+                            <img
+                              className=""
+                              alt="Ellipses Icon"
+                              src={EllipsesIcon}
+                              title="Ellipses Icon"
+                            />
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </Draggable>
+                  );
+                }
+              )}
+              {droppableProvided.placeholder}
+            </TableBody>
+          )}
+        </Droppable>
+      </Table>
     </div>
   );
 };
