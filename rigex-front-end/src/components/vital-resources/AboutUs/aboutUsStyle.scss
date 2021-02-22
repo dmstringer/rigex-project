@@ -30,22 +30,26 @@
             font-weight: 900;
         }
 
-        .name {
+        .subtitle {
             color: $vital-blue;
             font-style: italic;
             padding-bottom: 20px;
+            font-size: 1.4em;
         }
 
-        .paragraph {
+        .description {
             padding-bottom: 30px;
         }
 
-        .bulletpoint {
-            display: flex;
+        .bulletpoints {
             text-transform: uppercase;
             padding-bottom: 10px;
+            list-style-type: none;
+            padding-inline-start: 0px;
+            margin-block-start: 0em;
 
-            div {
+            li div {
+                display: inline;
                 color: $vital-blue;
                 margin-right: 3px;
             }
