@@ -24,6 +24,27 @@ module.exports = {
     };
   },
 
+  upsertAboutText: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.AboutText.upsert({ ...model });
+      return db.AboutText.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteAboutText: async (_, { id }) => {
+    try {
+      const isDeleted = await db.AboutText.destroy({ where: { id } });
+      return id
+    } catch (error) {
+      return (error);
+    }
+  },
+
   deleteRig: async (_, { id }) => {
     try {
       const isDeleted = await db.Rig.destroy({ where: { id } });

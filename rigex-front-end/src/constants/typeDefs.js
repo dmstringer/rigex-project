@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const typeDefs = gql`
   extend type Query {
     login(model: UserInput!): User!
+    getAllAboutText: [AboutText]
     getAllRigs: [Rigs]
   }
 
@@ -22,6 +23,12 @@ export const typeDefs = gql`
     rigId: String!
     createdAt: String!
     updatedAt: String!
+  }
+
+  type AboutText {
+    id: String!
+    type: String!
+    text: String!
   }
 
   extend type Mutation {
