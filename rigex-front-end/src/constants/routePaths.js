@@ -5,8 +5,9 @@ const routePaths = {
   login: '/login',
   vital: '/vital-resources',
   rigScheduler: '/rig-scheduler',
+  map: '/map/:id',
 };
 
-export const nestedLandingPaths = ['/rig'];
+export const nestedLandingPaths = ['/rig', '/map'];
 
 export default routePaths;
