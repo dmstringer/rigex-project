@@ -2,12 +2,13 @@ import React from 'react';
 import Faker from 'faker';
 
 import './headerStyle.scss';
+import Description from '../../components/rigScheduler/Description';
 
 const CompanyLogo = Faker.image.business();
 
 const SchedulerHeader = () => {
   return (
-    <div className="grid-container">
+    <div className="rig-scheduler-header-grid-container">
       <div className="company-logo">
         <div class="logo-container">
           <img
@@ -26,7 +27,7 @@ const SchedulerHeader = () => {
       <div className="computer-image">
         <img className="mockup" alt="Rig Scheduler Mockup" src={CompanyLogo} />
       </div>
-      <div className="description"></div>
+      <Description />
     </div>
   );
 };

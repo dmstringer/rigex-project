@@ -1,14 +1,14 @@
-.grid-container {
+.rig-scheduler-header-grid-container {
   display: grid;
   padding-left: 80px;
-  grid-template-columns: 422px 422px;
-  grid-template-rows: 302.5px auto auto;
-  gap: 11px 20px;
+  grid-template-columns: 402px 402px;
+  grid-template-rows: auto auto auto;
+  gap: 11px 60px;
 
   .company-logo {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.6fr 0.8fr 0.6fr;
+    grid-template-rows: 0.2fr 0.8fr 0.3fr;
     gap: 0px 0px;
     grid-template-areas:
       '. . .'
@@ -26,11 +26,11 @@
       font-size: 40px;
       font-weight: 900;
       color: #ff5812;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .sub-title-text {
       display: flex;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 900;
       color: #00d3bb;
     }
@@ -52,6 +52,14 @@
 
     .mockup {
       max-width: 100%;
+    }
+  }
+  .description {
+    grid-area: 3 / 2 / 4 / 3;
+
+    .description-text {
+      font-size: 17px;
+      color: #ffa000;
     }
   }
 }
