@@ -10,7 +10,7 @@ const SchedulerHeader = () => {
   return (
     <div className="rig-scheduler-header-grid-container">
       <div className="company-logo">
-        <div class="logo-container">
+        <div className="logo-container">
           <img
             className="company-logo-image"
             alt="company logo"
