@@ -45,6 +45,48 @@ module.exports = {
     }
   },
 
+  upsertServices: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.Services.upsert({ ...model });
+      return db.Services.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteServices: async (_, { id }) => {
+    try {
+      await db.Services.destroy({ where: { id } });
+      return id
+    } catch (error) {
+      return (error);
+    }
+  },
+
+  upsertServiceFeatures: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.ServiceFeatures.upsert({ ...model });
+      return db.ServiceFeatures.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteServiceFeatures: async (_, { id }) => {
+    try {
+      await db.ServiceFeatures.destroy({ where: { id } });
+      return id
+    } catch (error) {
+      return (error);
+    }
+  },
+
   upsertAboutTextTypes: async (_, { model }) => {
     if (!model.id) {
       model.id = uuidv4();
