@@ -39,9 +39,9 @@ module.exports = {
   deleteAboutText: async (_, { id }) => {
     try {
       await db.AboutText.destroy({ where: { id } });
-      return id
+      return id;
     } catch (error) {
-      return (error);
+      return error;
     }
   },
 
@@ -60,9 +60,9 @@ module.exports = {
   deleteAboutTextTypes: async (_, { id }) => {
     try {
       await db.AboutTextTypes.destroy({ where: { id } });
-      return id
+      return id;
     } catch (error) {
-      return (error);
+      return error;
     }
   },
 
@@ -158,6 +158,29 @@ module.exports = {
     try {
       const wellsDeleted = await db.Well.destroy({ where: { rigId } });
       return wellsDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertTeamResource: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.teamResource.upsert({ ...model });
+      return db.teamResource.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteTeamResource: async (_, { id }) => {
+    try {
+      const teamResourceDeleted = await db.teamResource.destroy({
+        where: { id },
+      });
+      return teamResourceDeleted ? true : false;
     } catch (error) {
       return error;
     }

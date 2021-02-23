@@ -28,9 +28,9 @@ module.exports = {
 
   getAllAboutTextTypes: async () => {
     try {
-      return await db.AboutTextTypes.findAll()
+      return await db.AboutTextTypes.findAll();
     } catch (error) {
-      return error
+      return error;
     }
   },
 
@@ -68,6 +68,13 @@ module.exports = {
       return db.contentType.findByPk(id, {
         include: [db.contentText],
       });
+    } catch (error) {
+      return error;
+    }
+  },
+  getAllTeamResources: async () => {
+    try {
+      return await db.teamResource.findAll();
     } catch (error) {
       return error;
     }
