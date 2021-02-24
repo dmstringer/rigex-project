@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import VitalHeader from '../../components/vital-resources/Header/Header'
 import { GET_ALL_ABOUT_TEXT } from '../../constants/serviceAPI';
 import { aboutTextActions } from '../../store/aboutText/action'
+import AboutUs from '../../components/vital-resources/AboutUs/AboutUs'
 
 const VitalResources = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const VitalResources = () => {
   return (
     <>
       <VitalHeader />
+      <AboutUs content={aboutUsContent}/>
     </>
   )
 }
