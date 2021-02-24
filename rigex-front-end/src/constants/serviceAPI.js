@@ -27,6 +27,23 @@ export const GET_ALL_ABOUT_TEXT = gql`
   }
 `;
 
+export const GET_ALL_SERVICES = gql`
+  query getAllServices {
+    getAllServices {
+      id
+      title
+      itemInFront
+      description
+      features {
+        id
+        ServiceId
+        itemInFront
+        text
+      }
+    }
+  }
+`;
+
 export const GET_ALL_RIGS = gql`
   query getAllRigs {
     getAllRigs {

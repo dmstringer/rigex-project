@@ -97,7 +97,7 @@ const typeDefs = gql`
   type Services {
     id: String!
     title: String!
-    itemInFront: String!
+    itemInFront: String
     description: String!
     features: [ServiceFeatures]!
     createdAt: String!
@@ -113,7 +113,7 @@ const typeDefs = gql`
   type ServiceFeatures {
     id: String!
     ServiceId: String!
-    itemInFront: String!
+    itemInFront: String
     text: String!
     createdAt: String!
     updatedAt: String!

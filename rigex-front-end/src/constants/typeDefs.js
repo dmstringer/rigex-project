@@ -4,10 +4,30 @@ export const typeDefs = gql`
   extend type Query {
     login(model: UserInput!): User!
     getAllAboutText: [AboutText]
+    getAllServices: [Services]
     getAllRigs: [Rigs]
     getContentTextsByType(id: String!): ContentTextByType!
     getAllContentTextsByType: ContentTextByType!
     getAllTeamResources: [TeamResource]!
+  }
+
+  type Services {
+    id: String!
+    title: String!
+    itemInFront: String
+    description: String!
+    features: [ServiceFeatures]!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type ServiceFeatures {
+    id: String!
+    ServiceId: String!
+    itemInFront: String
+    text: String!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Rig {
