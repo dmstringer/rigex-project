@@ -9,7 +9,7 @@ const VitalHeader = () => {
 
   return (
     <div className="vital-header">
-        <img src={backgroundImg} />
+        <img src={backgroundImg} alt="faker"/>
         <div className="header-text">
             <span>The Canadian Expert Company in</span>
             <p>Fuel Tank & Line Integrity Testing</p>
