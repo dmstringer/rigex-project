@@ -6,6 +6,8 @@ const typeDefs = gql`
     getAllAboutTextTypes: [AboutTextTypes]!
     getAllAboutText: [AboutText]!
     getAllRigs: [Rig]!
+    getAllServices: [Services]!
+    getAllServiceFeatures: [ServiceFeatures]!
     getAllContentTypes: [ContentType]!
     getAllContentTexts: [ContentText]!
     getContentTextsByType(id: String!): ContentTextByType!
@@ -18,6 +20,10 @@ const typeDefs = gql`
     deleteAboutText(id: String!): String!
     upsertAboutTextTypes(model: AboutTextTypesInput!): AboutTextTypes!
     deleteAboutTextTypes(id: String!): String!
+    upsertServices(model: ServicesInput!): Services!
+    deleteServices(id: String!): String!
+    upsertServiceFeatures(model: ServiceFeatureInput!): ServiceFeatures!
+    deleteServiceFeatures(id: String!): String!
     upsertWell(model: WellInput): Well!
     upsertContentType(model: ContentTypeInput!): ContentType!
     upsertContentText(model: ContentTextInput!): ContentText!
@@ -80,6 +86,37 @@ const typeDefs = gql`
   input UserInput {
     email: String!
     password: String!
+  }
+
+  type Services {
+    id: String!
+    title: String!
+    itemInFront: String!
+    description: String!
+    features: [ServiceFeatures]!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  input ServicesInput {
+    title: String!
+    itemInFront: String!
+    description: String!
+  }
+
+  type ServiceFeatures {
+    id: String!
+    ServiceId: String!
+    itemInFront: String!
+    text: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+  input ServiceFeatureInput {
+    id: String
+    ServiceId: String!
+    itemInFront: String!
+    text: String!
   }
 
   type Well {

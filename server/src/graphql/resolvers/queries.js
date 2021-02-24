@@ -42,6 +42,22 @@ module.exports = {
     }
   },
 
+  getAllServices: async () => {
+    try {
+      return await db.Services.findAll({ include: [db.ServiceFeatures] });
+    } catch (error) {
+      return error;
+    }
+  },
+
+  getAllServiceFeatures: async () => {
+    try {
+      return await db.ServiceFeatures.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
   getAllRigs: async (parent) => {
     try {
       return await db.Rig.findAll({ include: [db.Well] });
