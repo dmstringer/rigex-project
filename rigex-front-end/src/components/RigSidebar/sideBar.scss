@@ -68,9 +68,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 3px;
 }
 
-.rigListItem:hover,
+.rigListItem:hover {
+  border: 2px solid $createRigButtonBlue !important;
+}
+
 .selected {
   background-color: $sidebar-gray;
 }

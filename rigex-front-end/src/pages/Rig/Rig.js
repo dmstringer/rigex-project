@@ -8,7 +8,12 @@ import rigImage from '../../assets/rig.svg';
 import CreateWellModal from '../../components/createWellModal/createWell';
 import WellsTable from '../../components/WellsTable/WellsTable';
 
-const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpenStatus }) => {
+const Rig = ({
+  listOfRigs,
+  handleRigModalOpen,
+  wellModalOpen,
+  handleWellModalOpenStatus,
+}) => {
   const { id } = useParams();
 
   let rigName = '';
@@ -35,17 +40,20 @@ const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpe
               <EditIcon className="button-icon" fontSize="small" /> Edit rig
             </div>
           </button>
-          { (listOfWells.length) ? (
-            <button className="add-well-button" onClick={handleWellModalOpenStatus}>
+          {listOfWells.length ? (
+            <button
+              className="add-well-button"
+              onClick={handleWellModalOpenStatus}
+            >
               <div>
                 <AddIcon className="button-icon" fontSize="small" /> Create well
               </div>
             </button>
-          ) : null }
+          ) : null}
         </div>
       </div>
       {listOfWells.length ? (
-        <WellsTable listOfWells={listOfWells} />
+        <WellsTable listOfWells={listOfWells} rigId={id} />
       ) : (
         <div className="wells-table">
           <div className="image-container">
@@ -55,10 +63,11 @@ const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpe
             <span className="add-wells-text">
               Let's create some wells on this rig!
             </span>
-            <span className="small-text" >
-              Get started by creating a well.
-            </span>
-            <button className="add-well-button" onClick={handleWellModalOpenStatus}>
+            <span className="small-text">Get started by creating a well.</span>
+            <button
+              className="add-well-button"
+              onClick={handleWellModalOpenStatus}
+            >
               <div>
                 <AddIcon className="button-icon" fontSize="small" /> Create well
               </div>
@@ -66,8 +75,8 @@ const Rig = ({ listOfRigs, handleRigModalOpen, wellModalOpen, handleWellModalOpe
           </div>
         </div>
       )}
-      <CreateWellModal 
-        wellModalOpen={wellModalOpen} 
+      <CreateWellModal
+        wellModalOpen={wellModalOpen}
         handleWellModalClose={handleWellModalOpenStatus}
         rigId={id}
       />
