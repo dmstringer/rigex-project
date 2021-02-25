@@ -67,3 +67,9 @@ export const UPSERT_WELL = gql`
     }
   }
 `;
+
+export const DELETE_WELL = gql`
+  mutation deleteWell($id: String!) {
+    deleteWell(id: $id)
+  }
+`;

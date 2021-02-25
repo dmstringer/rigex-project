@@ -1,0 +1,16 @@
+@import '../../styles/colors.scss';
+
+.well-ellipses:hover {
+  cursor: pointer;
+  background-color: $dark-background !important;
+  fill: white !important;
+}
+
+.open {
+  background-color: $dark-background !important;
+  fill: white !important;
+}
+
+.well-ellipses {
+  border-radius: 3px;
+}

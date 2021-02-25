@@ -18,6 +18,7 @@ import {
   CREATE_OR_UPDATE_RIG,
   GET_ALL_RIGS,
   UPSERT_WELL,
+  DELETE_WELL,
 } from '../../constants/serviceAPI';
 import './landing.scss';
 
@@ -85,10 +86,14 @@ const Landing = () => {
   );
 
   const [upsertWell, { wellLoading, wellError }] = useMutation(UPSERT_WELL, {
-    onCompleted: () => {
-      getAllRigs();
-    },
+    onCompleted: getAllRigs,
   });
+  const [deleteWell, { deleteLoading, deleteError }] = useMutation(
+    DELETE_WELL,
+    {
+      onCompleted: getAllRigs,
+    }
+  );
 
   const handleRigModalOpen = (type, currentName, id) => {
     if (currentName && id) {
@@ -106,6 +111,12 @@ const Landing = () => {
     const rigDetails = id ? { name, id } : { name };
     createOrUpdateRig({
       variables: { rigInput: rigDetails },
+    });
+  };
+
+  const handleWellDelete = (id) => {
+    deleteWell({
+      variables: { id },
     });
   };
 
@@ -193,6 +204,7 @@ const Landing = () => {
         <div className="right-panel">
           <Route exact path={routePaths.landing + routePaths.rig}>
             <Rig
+              handleWellDelete={handleWellDelete}
               listOfRigs={listOfRigs}
               handleRigModalOpen={handleRigModalOpen}
               wellModalOpen={wellModalOpen}
