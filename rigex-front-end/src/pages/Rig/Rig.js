@@ -13,6 +13,7 @@ const Rig = ({
   handleRigModalOpen,
   wellModalOpen,
   handleWellModalOpenStatus,
+  handleWellDelete,
 }) => {
   const { id } = useParams();
 
@@ -53,7 +54,12 @@ const Rig = ({
         </div>
       </div>
       {listOfWells.length ? (
-        <WellsTable listOfWells={listOfWells} rigId={id} />
+        <WellsTable
+          handleWellDelete={handleWellDelete}
+          listOfWells={listOfWells}
+          isSoloRig={listOfRigs.length === 1}
+          rigId={id}
+        />
       ) : (
         <div className="wells-table">
           <div className="image-container">

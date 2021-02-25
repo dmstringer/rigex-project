@@ -7,9 +7,9 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import './wellsTable.scss';
 import WellsTableHead from './WellsTableHead';
-import EllipsesIcon from '../../assets/dots-horizontal.svg';
 import MoveIcon from '../../assets/Inactive@1.5x.svg';
 import Search from '../../assets/search.svg';
+import WellDropdown from '../WellsDropdown/WellsDropdown';
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -37,7 +37,7 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0]);
 };
 
-const WellsTable = ({ listOfWells, rigId }) => {
+const WellsTable = ({ listOfWells, isSoloRig, handleWellDelete, rigId }) => {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('name');
   const [searchWord, setSearchWord] = useState('');
@@ -148,11 +148,10 @@ const WellsTable = ({ listOfWells, rigId }) => {
                             {well.longitude}
                           </TableCell>
                           <TableCell align="right" className="well-cell">
-                            <img
-                              className=""
-                              alt="Ellipses Icon"
-                              src={EllipsesIcon}
-                              title="Ellipses Icon"
+                            <WellDropdown
+                              handleWellDelete={handleWellDelete}
+                              wellId={well.id}
+                              isSoloRig={isSoloRig}
                             />
                           </TableCell>
                         </TableRow>

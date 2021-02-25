@@ -35,6 +35,7 @@ export const typeDefs = gql`
     upsertRig(model: RigInput!): Rig!
     createAccount(model: UserInput!): User!
     upsertWell(model: WellInput!): Well!
+    deleteWell(id: String!): Boolean!
   }
 
   input UserInput {
