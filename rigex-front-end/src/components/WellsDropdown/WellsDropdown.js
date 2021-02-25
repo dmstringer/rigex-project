@@ -11,7 +11,15 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import './wellsDropdown.scss';
 
-const WellsDropdown = ({ wellId, isSoloRig, handleWellDelete }) => {
+const WellsDropdown = ({
+  wellId,
+  isSoloRig,
+  handleWellDelete,
+  handleWellModalOpen,
+  wellName,
+  latitude,
+  longitude,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -27,6 +35,7 @@ const WellsDropdown = ({ wellId, isSoloRig, handleWellDelete }) => {
           setIsOpen(!isOpen);
           break;
         case 'edit':
+          handleWellModalOpen('update', wellName, latitude, longitude, wellId);
           setIsOpen(!isOpen);
           break;
         case 'move':

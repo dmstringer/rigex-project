@@ -81,3 +81,8 @@
   align-items: center;
   flex-direction: column;
 }
+
+.edit-rig-button:hover,
+.add-well-button:hover {
+  cursor: pointer;
+}

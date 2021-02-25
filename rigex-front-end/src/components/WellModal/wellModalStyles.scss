@@ -1,0 +1,93 @@
+@import '../../styles/colors.scss';
+
+.modal-container {
+  padding: 20px 34px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+
+  button {
+    background-color: $base-white;
+    border: 0px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35px;
+    margin-bottom: 14px;
+
+    button {
+      border: 0;
+      border-radius: 3px;
+      height: 34px !important;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    .inactive {
+      border: 1px solid $lightgrey !important;
+    }
+
+    .create {
+      background-color: $buttonBlue;
+      color: $base-white;
+      margin-left: 10px !important;
+      padding: 0px 12px;
+    }
+
+    .create-add {
+      border: 1px solid $modal-close;
+      color: $modal-close;
+      padding: 0px 25px;
+    }
+
+    .add-inactive {
+      border-color: lightgray !important;
+      color: lightgray !important;
+    }
+
+    .create-inactive {
+      background-color: $disabled-button-background;
+      color: $disabled-button-font;
+    }
+  }
+
+  .input-label {
+    font-family: 'proxima-nova', sans-serif !important;
+    color: $low-opacity-label;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .dialog-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    font-size: 28px;
+  }
+
+  .close-button {
+    padding-right: 0;
+  }
+
+  span {
+    color: red;
+  }
+
+  input {
+    margin-bottom: 10px;
+    padding: 3px;
+    border-color: #dbdee2;
+    border-width: 2px;
+    border-radius: 3px;
+    border-style: solid;
+    height: 30px;
+    width: 501px;
+  }
+}
