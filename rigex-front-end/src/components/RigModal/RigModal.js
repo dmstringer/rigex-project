@@ -47,7 +47,7 @@ const RigModal = ({
       setRigName('');
       setIsValid(false);
     }
-  }, [isOpen]);
+  }, [isOpen, currentName, type]);
 
   return (
     <div>
