@@ -105,9 +105,11 @@ const typeDefs = gql`
   }
 
   input ServicesInput {
+    id: String
     title: String!
-    itemInFront: String!
+    itemInFront: String
     description: String!
+    features: [ServiceFeatureInput]!
   }
 
   type ServiceFeatures {
@@ -118,10 +120,11 @@ const typeDefs = gql`
     createdAt: String!
     updatedAt: String!
   }
+  
   input ServiceFeatureInput {
     id: String
     ServiceId: String!
-    itemInFront: String!
+    itemInFront: String
     text: String!
   }
 
