@@ -21,7 +21,7 @@ const typeDefs = gql`
     upsertAboutText(model: AboutTextInput!): AboutText!
     deleteAboutText(id: String!): String!
     upsertAboutTextTypes(model: AboutTextTypesInput!): AboutTextTypes!
-    deleteAboutTextTypes(id: String!): String!
+    deleteAboutTextTypes(id: String!): Boolean!
     upsertServices(model: ServicesInput!): Services!
     deleteServices(id: String!): String!
     upsertServiceFeatures(model: ServiceFeatureInput!): ServiceFeatures!

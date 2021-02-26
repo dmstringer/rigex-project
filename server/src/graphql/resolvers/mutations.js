@@ -101,8 +101,8 @@ module.exports = {
 
   deleteAboutTextTypes: async (_, { id }) => {
     try {
-      await db.AboutTextTypes.destroy({ where: { id } });
-      return id;
+      const isDeleted = await db.AboutTextTypes.destroy({ where: { id } });
+      return isDeleted ? true : false;
     } catch (error) {
       return error;
     }
