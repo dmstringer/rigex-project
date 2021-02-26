@@ -11,6 +11,7 @@ const headCells = [
   { id: 'name', disablePadding: true, label: 'Well Name' },
   { id: 'latitude', disablePadding: false, label: 'Latitude' },
   { id: 'longitude', disablePadding: false, label: 'Longitude' },
+  { id: 'status', disablePadding: false, label: 'Status' },
 ];
 
 const WellsTableHead = (props) => {
@@ -22,27 +23,30 @@ const WellsTableHead = (props) => {
   return (
     <TableHead>
       <TableRow>
-        <TableCell align='right'></TableCell>
-        {headCells.map((headCell) => (
+        <TableCell align="right"></TableCell>
+        {headCells.map(({ id, disablePadding, label }) => (
           <TableCell
-            key={headCell.id}
-            align='left'
-            padding={headCell.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headCell.id ? order : false}
+            key={id}
+            align={id === 'status' ? 'center' : 'left'}
+            padding={disablePadding ? 'none' : 'default'}
+            sortDirection={orderBy === id ? order : false}
           >
             <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              className={'header ' + (id === 'status' ? 'status-header' : '')}
+              active={orderBy === id}
+              direction={orderBy === id ? order : 'asc'}
+              onClick={createSortHandler(id)}
             >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className='visuallyHidden'>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</span>
+              {label}
+              {orderBy === id ? (
+                <span className="visuallyHidden">
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </span>
               ) : null}
             </TableSortLabel>
           </TableCell>
         ))}
-        <TableCell align='right'></TableCell>
+        <TableCell align="right"></TableCell>
       </TableRow>
     </TableHead>
   );

@@ -191,6 +191,7 @@ const Landing = () => {
         longitude: parseFloat(droppedWell.longitude),
         latitude: parseFloat(droppedWell.latitude),
         id: droppedWell.id.toString(),
+        status: droppedWell.status.toString(),
         rigId: destination.droppableId.toString(),
       };
 

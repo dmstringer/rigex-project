@@ -49,6 +49,10 @@ const WellsTable = ({
   const [searchWord, setSearchWord] = useState('');
   const [filteredWells, setFilteredWells] = useState(listOfWells);
 
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -61,6 +65,7 @@ const WellsTable = ({
         name: well.name,
         latitude: well.latitude,
         longitude: well.longitude,
+        status: well.status,
       };
     });
     if (event !== '') {
@@ -71,7 +76,8 @@ const WellsTable = ({
         (well) =>
           regexConst.test(well.name) ||
           regexConst.test(well.latitude) ||
-          regexConst.test(well.longitude)
+          regexConst.test(well.longitude) ||
+          regexConst.test(well.status)
       );
       setFilteredWells(newList);
     } else {
@@ -114,8 +120,10 @@ const WellsTable = ({
               {...droppableProvided.droppableProps}
             >
               {stableSort(filteredWells, getComparator(order, orderBy)).map(
-                ({ id, latitude, longitude, name }, index) => {
+                ({ id, latitude, longitude, name, status }, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
+                  let statusText = capitalize(status);
+
                   return (
                     <Draggable draggableId={id} index={index} key={id}>
                       {(draggableProvided) => (
@@ -148,6 +156,20 @@ const WellsTable = ({
                           </TableCell>
                           <TableCell align="left" className="well-cell">
                             {longitude}
+                          </TableCell>
+                          <TableCell align="center" className="well-cell">
+                            <div
+                              className={
+                                'status-box status-' +
+                                (status === 'active'
+                                  ? 'green'
+                                  : status === 'inactive'
+                                  ? 'red'
+                                  : 'yellow')
+                              }
+                            >
+                              {statusText}
+                            </div>
                           </TableCell>
                           <TableCell align="right" className="well-cell">
                             <WellDropdown
