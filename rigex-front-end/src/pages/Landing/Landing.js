@@ -39,6 +39,7 @@ const Landing = () => {
     currentName: '',
     currentLatitude: null,
     currentLongitude: null,
+    currentStatus: '',
     id: '',
   });
   const [currentNestedPath, setCurrentNestedPath] = useState(
@@ -50,14 +51,22 @@ const Landing = () => {
     currentName,
     currentLatitude,
     currentLongitude,
+    currentStatus,
     id
   ) => {
-    if (currentName && currentLatitude && currentLongitude && id) {
+    if (
+      currentName &&
+      currentLatitude &&
+      currentLongitude &&
+      id &&
+      currentStatus
+    ) {
       setWellModalInfo({
         type,
         currentName,
         currentLatitude,
         currentLongitude,
+        currentStatus,
         id,
         isOpen: true,
       });
@@ -77,6 +86,7 @@ const Landing = () => {
       currentName: '',
       currentLatitude: null,
       currentLongitude: null,
+      status: '',
       id: '',
     });
   };

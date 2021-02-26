@@ -19,6 +19,7 @@ const WellsDropdown = ({
   wellName,
   latitude,
   longitude,
+  status,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -35,7 +36,14 @@ const WellsDropdown = ({
           setIsOpen(!isOpen);
           break;
         case 'edit':
-          handleWellModalOpen('update', wellName, latitude, longitude, wellId);
+          handleWellModalOpen(
+            'update',
+            wellName,
+            latitude,
+            longitude,
+            status,
+            wellId
+          );
           setIsOpen(!isOpen);
           break;
         case 'move':

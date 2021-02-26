@@ -180,6 +180,7 @@ const WellsTable = ({
                               wellName={name}
                               latitude={latitude}
                               longitude={longitude}
+                              status={status}
                             />
                           </TableCell>
                         </TableRow>
