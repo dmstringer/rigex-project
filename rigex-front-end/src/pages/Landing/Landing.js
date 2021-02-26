@@ -4,11 +4,11 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { Rig } from '../index';
+import { Rig, RigMap } from '../index';
 import NoRigs from '../../components/rigs/noRigs';
 import NavBar from '../../components/navBar/NavBar';
 import routePaths from '../../constants/routePaths';
-import validatePath from '../../utils/validatePath';
+import validatePath, { getNestedPath } from '../../utils/validatePath';
 import history from '../../utils/history';
 import RigSidebar from '../../components/RigSidebar/RigSidebar';
 import { rigActions } from '../../store/rig/action';
@@ -41,6 +41,9 @@ const Landing = () => {
     currentLongitude: null,
     id: '',
   });
+  const [currentNestedPath, setCurrentNestedPath] = useState(
+    getNestedPath(pathname)
+  );
 
   const handleWellModalOpen = (
     type,
@@ -94,6 +97,11 @@ const Landing = () => {
         break;
       }
     }
+    const nestedPathCheck = getNestedPath(pathname);
+    if (isValidNestedPath && currentNestedPath !== nestedPathCheck) {
+      setCurrentNestedPath(nestedPathCheck);
+    }
+
     if (!isValidNestedPath || !rigExists) {
       history.push(routePaths.landing);
     }
@@ -161,7 +169,7 @@ const Landing = () => {
 
   const handleRigSelect = (id) => {
     setCurrentRigSelection(id);
-    history.push(routePaths.landing + `/rig/${id}`);
+    history.push(routePaths.landing + `${currentNestedPath}/${id}`);
   };
 
   const onDragEnd = async ({ destination, source, draggableId }) => {
@@ -196,7 +204,10 @@ const Landing = () => {
     if (pathname === routePaths.landing) {
       getAllRigs();
     }
-  }, [getAllRigs, pathname]);
+    if (!currentNestedPath) {
+      setCurrentNestedPath('/rig');
+    }
+  }, [getAllRigs, pathname, currentNestedPath]);
 
   useEffect(() => {
     if (addWellState !== 'confirmed') {
@@ -230,6 +241,12 @@ const Landing = () => {
     }
   }, [wellLoading, wellError]);
 
+  useEffect(() => {
+    if (deleteError) {
+      console.log(deleteError);
+    }
+  }, [deleteLoading, deleteError]);
+
   if (getLoading) {
     return 'Loading...';
   }
@@ -239,8 +256,13 @@ const Landing = () => {
 
   const MainWindow = () => (
     <div className="main-window">
-      {listOfRigs.length > 0 ? (
-        <div className="right-panel">
+      <div className="right-panel">
+        <Route exact path={routePaths.landing + routePaths.map}>
+          <RigMap
+            rig={listOfRigs.find((rig) => rig.id === currentRigSelection)}
+          />
+        </Route>
+        {listOfRigs.length > 0 ? (
           <Route exact path={routePaths.landing + routePaths.rig}>
             <Rig
               handleWellDelete={handleWellDelete}
@@ -251,12 +273,10 @@ const Landing = () => {
               handleWellModalClose={handleWellModalClose}
             />
           </Route>
-        </div>
-      ) : (
-        <div className="right-panel">
+        ) : (
           <NoRigs handleRigModalOpen={handleRigModalOpen} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 
@@ -270,6 +290,7 @@ const Landing = () => {
             handleRigModalOpen={handleRigModalOpen}
             handleRigSelect={handleRigSelect}
             currentSelection={currentRigSelection}
+            currentNestedPath={currentNestedPath}
           />
           <MainWindow />
         </DragDropContext>

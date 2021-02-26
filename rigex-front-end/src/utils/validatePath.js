@@ -3,11 +3,7 @@ import routePaths, { nestedLandingPaths } from '../constants/routePaths';
 const validatePath = () => {
   const pathName = window.location.pathname;
   const regex = /^[a-z0-9-]+$/i;
-  let currentNestedPath;
-
-  nestedLandingPaths.forEach((nestedPath) => {
-    if (pathName.includes(nestedPath)) currentNestedPath = nestedPath;
-  });
+  const currentNestedPath = getNestedPath(pathName);
   if (!currentNestedPath) return false;
 
   let forwardSlashCount = 0;
@@ -29,5 +25,8 @@ const validatePath = () => {
     pathName.includes(routePaths.landing + currentNestedPath)
   );
 };
+
+export const getNestedPath = (fullPath) =>
+  nestedLandingPaths.find((nestedPath) => fullPath.includes(nestedPath));
 
 export default validatePath;

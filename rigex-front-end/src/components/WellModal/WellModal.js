@@ -96,6 +96,7 @@ export default function WellModal({
       ...wellInfo,
       [name]: value,
     }));
+    let isValidRange = true;
     switch (name) {
       case 'name':
         setIsValidInput((input) => ({
@@ -104,10 +105,21 @@ export default function WellModal({
         }));
         break;
       case 'longitude':
-      case 'latitude':
+        if (value > 180 || value < -180) {
+          isValidRange = false;
+        }
         setIsValidInput((input) => ({
           ...input,
-          [name]: latLongRegExTest.test(value),
+          [name]: latLongRegExTest.test(value) && isValidRange,
+        }));
+        break;
+      case 'latitude':
+        if (value > 90 || value < -90) {
+          isValidRange = false;
+        }
+        setIsValidInput((input) => ({
+          ...input,
+          [name]: latLongRegExTest.test(value) && isValidRange,
         }));
         break;
       default:
