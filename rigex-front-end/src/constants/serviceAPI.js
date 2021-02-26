@@ -107,3 +107,13 @@ export const GET_ALL_CONTENT_TEXTS_BY_TYPE = gql`
     }
   }
 `;
+
+export const GET_ALL_TEAM_RESOURCES = gql`
+  query getAllTeamResources {
+    getAllTeamResources {
+      id
+      teamRole
+      commitment
+    }
+  }
+`;

@@ -7,6 +7,7 @@ export const typeDefs = gql`
     getAllRigs: [Rigs]
     getContentTextsByType(id: String!): ContentTextByType!
     getAllContentTextsByType: ContentTextByType!
+    getAllTeamResources: [TeamResource]!
   }
 
   type Rig {
@@ -73,5 +74,11 @@ export const typeDefs = gql`
     titleColor: String!
     backgroundColor: String!
     content: [ContentText]
+  }
+
+  type TeamResource {
+    id: String!
+    teamRole: String!
+    commitment: String!
   }
 `;
