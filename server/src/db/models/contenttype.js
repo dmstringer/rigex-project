@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
     },
     name: { type: DataTypes.STRING, allowNull: false },
+    section: { type: DataTypes.STRING, allowNull: false },
     titleColor: { type: DataTypes.STRING, allowNull: false },
     backgroundColor: { type: DataTypes.STRING, allowNull: false },
     createdAt: { type: DataTypes.DATE, allowNull: false },

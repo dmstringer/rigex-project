@@ -88,6 +88,7 @@ module.exports = {
       return error;
     }
   },
+
   getAllTeamResources: async () => {
     try {
       return await db.teamResource.findAll();
@@ -95,9 +96,20 @@ module.exports = {
       return error;
     }
   },
+
   getAllInfrastructureTypes: async () => {
     try {
       return await db.infrastructureTypes.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
+  getAllContentTextsByType: async (parent) => {
+    try {
+      return await db.contentType.findAll({
+        include: [db.contentText],
+      });
     } catch (error) {
       return error;
     }

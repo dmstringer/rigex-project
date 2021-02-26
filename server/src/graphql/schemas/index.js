@@ -13,6 +13,7 @@ const typeDefs = gql`
     getContentTextsByType(id: String!): ContentTextByType!
     getAllTeamResources: [TeamResource]!
     getAllInfrastructureTypes: [InfrastructureTypes]!
+    getAllContentTextsByType: [ContentTextByType]!
   }
 
   type Mutation {
@@ -145,6 +146,7 @@ const typeDefs = gql`
   type ContentType {
     id: String!
     name: String!
+    section: String!
     titleColor: String!
     backgroundColor: String!
     createdAt: String!
@@ -154,6 +156,7 @@ const typeDefs = gql`
   input ContentTypeInput {
     id: String
     name: String
+    section: String
     titleColor: String
     backgroundColor: String
   }
@@ -169,6 +172,7 @@ const typeDefs = gql`
   type ContentTextByType {
     id: String!
     name: String!
+    section: String!
     titleColor: String!
     backgroundColor: String!
     content: [ContentText]

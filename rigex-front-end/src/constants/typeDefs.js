@@ -5,6 +5,8 @@ export const typeDefs = gql`
     login(model: UserInput!): User!
     getAllAboutText: [AboutText]
     getAllRigs: [Rigs]
+    getContentTextsByType(id: String!): ContentTextByType!
+    getAllContentTextsByType: ContentTextByType!
   }
 
   type Rig {
@@ -54,5 +56,22 @@ export const typeDefs = gql`
     longitude: Float
     latitude: Float
     rigId: String
+  }
+
+  type ContentText {
+    id: String!
+    text: String!
+    type: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type ContentTextByType {
+    id: String!
+    name: String!
+    section: String!
+    titleColor: String!
+    backgroundColor: String!
+    content: [ContentText]
   }
 `;
