@@ -4,7 +4,8 @@ const rigResolver = require('./rig');
 const chooseUsFeaturesResolver = require('./chooseUsFeatures');
 const chooseUsItemsResolver = require('./chooseUsItems');
 const servicesResolver = require('./services');
-const contentResolver = require('./content');
+const contentTextByTypeResolver = require('./contentTextByType');
+const contentTextWithTypeResolver = require('./contentTextWithType');
 const aboutTextTypesResolver = require('./aboutTextTypes');
 const infrastructureResolver = require('./infrastructure');
 const infrastructureRequirementResolver = require('./infrastructureRequirement');
@@ -14,7 +15,8 @@ module.exports = {
   Mutation: mutations,
   AboutText: aboutTextTypesResolver,
   Rig: rigResolver,
-  ContentTextByType: contentResolver,
+  ContentTextByType: contentTextByTypeResolver,
+  ContentTextWithType: contentTextWithTypeResolver,
   Services: servicesResolver,
   ChooseUsFeatures: chooseUsFeaturesResolver,
   ChooseUsItems: chooseUsItemsResolver,
