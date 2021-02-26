@@ -41,17 +41,23 @@
             padding-bottom: 30px;
         }
 
-        .bulletpoints {
+        .bullet-points {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
             text-transform: uppercase;
             padding-bottom: 10px;
-            list-style-type: none;
-            padding-inline-start: 0px;
-            margin-block-start: 0em;
 
-            li div {
-                display: inline;
-                color: $vital-blue;
-                margin-right: 3px;
+            div {
+                display: flex;
+                align-items: center;
+                line-height: 2em;
+
+                div {
+                    padding-bottom: 1px;
+                    margin-right: 5px;
+                    color: $vital-blue;
+                }
             }
         }
     }
