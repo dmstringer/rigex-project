@@ -227,4 +227,27 @@ module.exports = {
       return error;
     }
   },
+
+  upsertInfrastructureType: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.infrastructureTypes.upsert({ ...model });
+      return db.infrastructureTypes.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteInfrastructureType: async (_, { id }) => {
+    try {
+      const infrastructureTypeDeleted = await db.infrastructureTypes.destroy({
+        where: { id },
+      });
+      return infrastructureTypeDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
 };

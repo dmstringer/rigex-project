@@ -12,6 +12,7 @@ const typeDefs = gql`
     getAllContentTexts: [ContentText]!
     getContentTextsByType(id: String!): ContentTextByType!
     getAllTeamResources: [TeamResource]!
+    getAllInfrastructureTypes: [InfrastructureTypes]!
   }
 
   type Mutation {
@@ -35,6 +36,10 @@ const typeDefs = gql`
     deleteRig(id: String!): Boolean!
     upsertTeamResource(model: TeamResourceInput!): TeamResource!
     deleteTeamResource(id: String!): Boolean!
+    upsertInfrastructureType(
+      model: InfrastructureTypesInput!
+    ): InfrastructureTypes!
+    deleteInfrastructureType(id: String!): Boolean!
   }
 
   type AboutTextTypes {
@@ -185,6 +190,16 @@ const typeDefs = gql`
     id: String
     teamRole: String
     commitment: String
+  }
+
+  type InfrastructureTypes {
+    id: String!
+    name: String!
+  }
+
+  input InfrastructureTypesInput {
+    id: String
+    name: String
   }
 `;
 

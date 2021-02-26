@@ -95,4 +95,11 @@ module.exports = {
       return error;
     }
   },
+  getAllInfrastructureTypes: async () => {
+    try {
+      return await db.infrastructureTypes.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
 };
