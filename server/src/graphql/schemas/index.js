@@ -65,7 +65,7 @@ const typeDefs = gql`
 
   input AboutTextInput {
     id: String
-    type: String!
+    AboutTextTypeId: String!
     text: String!
   }
 
