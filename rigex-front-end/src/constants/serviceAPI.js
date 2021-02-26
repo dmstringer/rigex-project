@@ -55,6 +55,7 @@ export const GET_ALL_RIGS = gql`
         longitude
         latitude
         rigId
+        status
       }
     }
   }
@@ -81,6 +82,7 @@ export const UPSERT_WELL = gql`
       longitude
       latitude
       rigId
+      status
     }
   }
 `;
