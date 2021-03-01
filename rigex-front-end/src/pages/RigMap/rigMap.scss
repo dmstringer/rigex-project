@@ -3,3 +3,68 @@
 .map-container {
   width: 100%;
 }
+
+.info-window {
+  margin-right: 20px;
+  font-family: 'proxima-nova', sans-serif !important;
+  padding-left: 15px;
+
+  h1 {
+    color: $input-field-text;
+    font-size: 20px;
+    margin: 5px 0px;
+  }
+
+  .header {
+    font-size: 14px;
+    color: $new-account-text;
+    margin: 0px;
+    font-weight: 200;
+  }
+
+  .info-column {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    color: $new-account-text;
+    margin-right: 20px;
+
+    .info-icon {
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .info-text {
+      margin-top: 2px;
+      margin-bottom: 0px;
+    }
+  }
+
+  .well-content {
+    margin: 0px;
+  }
+
+  .status {
+    width: 54px;
+    text-align: center;
+    padding: 3px 0px;
+    border-radius: 3px;
+    font-weight: 900;
+  }
+
+  .status-red {
+    background-color: $status-red;
+  }
+
+  .status-green {
+    background-color: $status-green;
+  }
+
+  .status-yellow {
+    background-color: $status-yellow;
+  }
+}
+
+.gm-style .gm-style-iw-t::after {
+  visibility: hidden;
+}
