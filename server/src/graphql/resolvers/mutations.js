@@ -3,7 +3,12 @@ const uuidv4 = require('uuid').v4;
 
 const { isValidEmail, isUniqueEmail } = require('../../utils');
 const { db } = require('../../db/models');
-const { invalidEmail, nonUniqueEmail } = require('../../constants/errors');
+const {
+  invalidEmail,
+  nonUniqueEmail,
+  onlySingleDrillingWell,
+  invalidWellStatus,
+} = require('../../constants/errors');
 
 module.exports = {
   createAccount: async (_, { model: { email, password } }) => {
@@ -60,9 +65,9 @@ module.exports = {
   deleteServices: async (_, { id }) => {
     try {
       await db.Services.destroy({ where: { id } });
-      return id
+      return id;
     } catch (error) {
-      return (error);
+      return error;
     }
   },
 
@@ -81,9 +86,9 @@ module.exports = {
   deleteServiceFeatures: async (_, { id }) => {
     try {
       await db.ServiceFeatures.destroy({ where: { id } });
-      return id
+      return id;
     } catch (error) {
-      return (error);
+      return error;
     }
   },
 
@@ -134,6 +139,15 @@ module.exports = {
       model.id = uuidv4();
     }
     try {
+      if (model.status === 'drilling') {
+        const drillingWell = await db.Well.findOne({
+          where: { rigId: model.rigId, status: 'drilling' },
+        });
+        if (drillingWell) {
+          return new Error(onlySingleDrillingWell);
+        }
+      }
+
       await db.Well.upsert({ ...model });
       return db.Well.findByPk(model.id);
     } catch (error) {

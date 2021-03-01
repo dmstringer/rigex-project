@@ -44,6 +44,7 @@ export const typeDefs = gql`
     longitude: Float!
     latitude: Float!
     rigId: String!
+    status: String!
     createdAt: String!
     updatedAt: String!
   }
@@ -77,6 +78,7 @@ export const typeDefs = gql`
     longitude: Float
     latitude: Float
     rigId: String
+    status: String
   }
 
   type ContentText {

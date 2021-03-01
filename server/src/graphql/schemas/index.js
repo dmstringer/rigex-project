@@ -120,7 +120,7 @@ const typeDefs = gql`
     createdAt: String!
     updatedAt: String!
   }
-  
+
   input ServiceFeatureInput {
     id: String
     ServiceId: String!
@@ -134,6 +134,7 @@ const typeDefs = gql`
     longitude: Float!
     latitude: Float!
     rigId: String!
+    status: String!
     createdAt: String!
     updatedAt: String!
   }
@@ -144,6 +145,7 @@ const typeDefs = gql`
     longitude: Float
     latitude: Float
     rigId: String
+    status: String
   }
 
   type ContentType {
