@@ -58,6 +58,30 @@ module.exports = {
     }
   },
 
+  getAllChooseUs: async () => {
+    try {
+      return await db.ChooseUs.findAll();
+    } catch (error) {
+      return (error);
+    }
+  },
+
+  getAllChooseUsFeatures: async () => {
+    try {
+      return await db.ChooseUsFeatures.findAll({ include: [db.ChooseUsItems] });
+    } catch (error) {
+      return error
+    }
+  },
+
+  getAllChooseUsItems: async () => {
+    try {
+      return await db.ChooseUsItems.findAll({ include: [db.ChooseUsFeatures] });
+    } catch (error) {
+      return error
+    }
+  },
+
   getAllRigs: async (parent) => {
     try {
       return await db.Rig.findAll({ include: [db.Well] });
