@@ -17,8 +17,14 @@ export const typeDefs = gql`
     itemInFront: String
     description: String!
     features: [ServiceFeatures]!
-    createdAt: String!
-    updatedAt: String!
+  }
+
+  input ServicesInput {
+    id: String!
+    itemInFront: String
+    title: String
+    description: String
+    features: [ServiceFeaturesInput]
   }
 
   type ServiceFeatures {
@@ -26,8 +32,13 @@ export const typeDefs = gql`
     ServiceId: String!
     itemInFront: String
     text: String!
-    createdAt: String!
-    updatedAt: String!
+  }
+
+  input ServiceFeaturesInput {
+    id: String
+    ServiceId: String!
+    itemInFront: String
+    text: String!
   }
 
   type Rig {
@@ -58,6 +69,7 @@ export const typeDefs = gql`
   extend type Mutation {
     upsertRig(model: RigInput!): Rig!
     createAccount(model: UserInput!): User!
+    upsertService(model: ServiceInput!): Services!
     upsertWell(model: WellInput!): Well!
     deleteWell(id: String!): Boolean!
   }

@@ -74,6 +74,23 @@ export const CREATE_OR_UPDATE_RIG = gql`
   }
 `;
 
+export const UPSERT_SERVICES = gql`
+  mutation upsertServices($servicesInput: ServicesInput!) {
+    upsertServices(model: $servicesInput) {
+      id
+      title
+      itemInFront
+      description
+      features {
+        id
+        ServiceId
+        itemInFront
+        text
+      }
+    }
+  }
+`;
+
 export const UPSERT_WELL = gql`
   mutation upsertWell($wellInput: WellInput!) {
     upsertWell(model: $wellInput) {

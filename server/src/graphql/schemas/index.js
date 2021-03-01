@@ -25,7 +25,7 @@ const typeDefs = gql`
     deleteAboutTextTypes(id: String!): Boolean!
     upsertServices(model: ServicesInput!): Services!
     deleteServices(id: String!): String!
-    upsertServiceFeatures(model: ServiceFeatureInput!): ServiceFeatures!
+    upsertServiceFeatures(model: ServiceFeaturesInput!): ServiceFeatures!
     deleteServiceFeatures(id: String!): String!
     upsertWell(model: WellInput): Well!
     upsertContentType(model: ContentTypeInput!): ContentType!
@@ -109,10 +109,10 @@ const typeDefs = gql`
 
   input ServicesInput {
     id: String
-    title: String!
     itemInFront: String
-    description: String!
-    features: [ServiceFeatureInput]!
+    title: String
+    description: String
+    features: [ServiceFeaturesInput]
   }
 
   type ServiceFeatures {
@@ -120,12 +120,10 @@ const typeDefs = gql`
     ServiceId: String!
     itemInFront: String
     text: String!
-    createdAt: String!
-    updatedAt: String!
   }
 
-  input ServiceFeatureInput {
-    id: String
+  input ServiceFeaturesInput {
+    id: String!
     ServiceId: String!
     itemInFront: String
     text: String!
