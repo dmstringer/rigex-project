@@ -15,7 +15,7 @@ const AboutUs = ({ content }) => {
   content.forEach( contentObject => {
     switch (contentObject.type) {
       case 'list item':
-        aboutUsContent.listItems.push( <li key={contentObject.id}> <div><CheckCircleOutlineIcon fontSize="small" /></div> {contentObject.text} </li> )
+        aboutUsContent.listItems.push(<div> <div><CheckCircleOutlineIcon fontSize="small" /></div> {contentObject.text} </div>)
         break;
       default:
         aboutUsContent[contentObject.type] = contentObject.text
@@ -32,7 +32,7 @@ const AboutUs = ({ content }) => {
         <span className="title">{aboutUsContent.title}</span>
         <span className="subtitle">{aboutUsContent.subtitle}</span>
         <span className="description">{aboutUsContent.description}</span>
-        <ul className="bulletpoints" > {aboutUsContent.listItems} </ul>
+        <div className="bullet-points" > {aboutUsContent.listItems} </div>
       </div>
     </div>
   )
