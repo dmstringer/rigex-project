@@ -264,4 +264,27 @@ module.exports = {
       return error;
     }
   },
+
+  upsertDiskDrive: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.diskDrive.upsert({ ...model });
+      return db.diskDrive.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteDiskDrive: async (_, { id }) => {
+    try {
+      const diskDriveDeleted = await db.diskDrive.destroy({
+        where: { id },
+      });
+      return diskDriveDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
 };

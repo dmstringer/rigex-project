@@ -14,6 +14,7 @@ const typeDefs = gql`
     getAllTeamResources: [TeamResource]!
     getAllInfrastructureTypes: [InfrastructureTypes]!
     getAllContentTextsByType: [ContentTextByType]!
+    getAllDiskDrives: [DiskDrive]!
   }
 
   type Mutation {
@@ -41,6 +42,8 @@ const typeDefs = gql`
       model: InfrastructureTypesInput!
     ): InfrastructureTypes!
     deleteInfrastructureType(id: String!): Boolean!
+    upsertDiskDrive(model: DiskDriveInput!): DiskDrive!
+    deleteDiskDrive(id: String!): Boolean!
   }
 
   type AboutTextTypes {
@@ -209,6 +212,18 @@ const typeDefs = gql`
   input InfrastructureTypesInput {
     id: String
     name: String
+  }
+
+  input DiskDriveInput {
+    id: String
+    title: String
+  }
+
+  type DiskDrive {
+    id: String!
+    title: String!
+    createdAt: String!
+    updatedAt: String!
   }
 `;
 
