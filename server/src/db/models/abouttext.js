@@ -7,8 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: { type: DataTypes.DATE, allowNull: false },
     updatedAt: { type: DataTypes.DATE, allowNull: false },
   });
-  AboutText.associate = function(models) {
-    AboutText.belongsTo(models.AboutTextTypes, { foreignKey: 'AboutTextTypeId' })
+  AboutText.associate = function (models) {
+    AboutText.belongsTo(models.AboutTextTypes, {
+      foreignKey: 'AboutTextTypeId',
+    });
   };
   return AboutText;
 };

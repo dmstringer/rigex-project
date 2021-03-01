@@ -114,4 +114,12 @@ module.exports = {
       return error;
     }
   },
+
+  getAllDiskDrives: async () => {
+    try {
+      return await db.diskDrive.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
 };
