@@ -50,6 +50,27 @@ module.exports = {
     }
   },
 
+  upsertStatistics: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.Statistics.upsert({ ...model });
+      return db.Statistics.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteStatistics: async (_, { id }) => {
+    try {
+      const isDeleted = await db.Statistics.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
   upsertServices: async (_, { model }) => {
     if (!model.id) {
       model.id = uuidv4();

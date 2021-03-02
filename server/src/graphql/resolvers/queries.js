@@ -58,6 +58,14 @@ module.exports = {
     }
   },
 
+  getAllStatistics: async () => {
+    try {
+      return await db.Statistics.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
   getAllChooseUs: async () => {
     try {
       return await db.ChooseUs.findAll();
