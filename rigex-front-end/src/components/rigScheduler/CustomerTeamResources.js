@@ -17,7 +17,7 @@ const CustomerTeamResources = ({ customerTeamResources }) => {
             className="table-heading-container"
           >
             <tr className="table-title-row">
-              <th className="table-title" colspan="2">
+              <th className="table-title" colSpan="2">
                 CUSTOMER TEAM RESOURCES
               </th>
             </tr>

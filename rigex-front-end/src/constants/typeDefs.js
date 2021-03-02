@@ -9,6 +9,8 @@ export const typeDefs = gql`
     getContentTextsByType(id: String!): ContentTextByType!
     getAllContentTextsByType: ContentTextByType!
     getAllTeamResources: [TeamResource]!
+    getAllInfrastructureRequirements: [InfrastructureTypes]!
+    getAllDiskDrives: [DiskDrive]!
   }
 
   type Services {
@@ -114,5 +116,35 @@ export const typeDefs = gql`
     id: String!
     teamRole: String!
     commitment: String!
+  }
+
+  type InfrastructureTypes {
+    id: String!
+    name: String!
+    content: [InfrastructureRequirement]!
+  }
+
+  type InfrastructureRequirement {
+    id: String!
+    title: String!
+    hasDrives: [ServerDrive]!
+    type: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type ServerDrive {
+    id: String!
+    infrastructureRequirementFk: String!
+    diskDriveFk: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type DiskDrive {
+    id: String!
+    title: String!
+    createdAt: String!
+    updatedAt: String!
   }
 `;

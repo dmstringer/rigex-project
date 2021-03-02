@@ -6,6 +6,8 @@ const chooseUsItemsResolver = require('./chooseUsItems');
 const servicesResolver = require('./services');
 const contentResolver = require('./content');
 const aboutTextTypesResolver = require('./aboutTextTypes');
+const infrastructureResolver = require('./infrastructure');
+const infrastructureRequirementResolver = require('./infrastructureRequirement');
 
 module.exports = {
   Query: queries,
@@ -15,5 +17,7 @@ module.exports = {
   ContentTextByType: contentResolver,
   Services: servicesResolver,
   ChooseUsFeatures: chooseUsFeaturesResolver,
-  ChooseUsItems: chooseUsItemsResolver
+  ChooseUsItems: chooseUsItemsResolver,
+  InfrastructureTypes: infrastructureResolver,
+  InfrastructureRequirement: infrastructureRequirementResolver,
 };

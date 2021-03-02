@@ -1,0 +1,24 @@
+.infrastructure-section-title {
+  width: auto;
+  margin: 30px;
+  text-align: left;
+  padding-left: 50px;
+
+  .infrastructure-section-title-text {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 900;
+    color: #ff5812;
+    text-align: center;
+  }
+}
+
+.infrastructure-section-content {
+  background-color: #eafdfb;
+  margin: 0px 60px 20px 60px;
+}
+
+.infrastructure-section-note {
+  margin: 30px 75px;
+  font-size: 12px;
+}

@@ -340,12 +340,60 @@ module.exports = {
     }
   },
 
+  upsertInfrastructureRequirement: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.infrastructureRequirements.upsert({ ...model });
+      return db.infrastructureRequirements.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
   deleteDiskDrive: async (_, { id }) => {
     try {
       const diskDriveDeleted = await db.diskDrive.destroy({
         where: { id },
       });
       return diskDriveDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteInfrastructureRequirement: async (_, { id }) => {
+    try {
+      const infrastructureRequirementDeleted = await db.infrastructureRequirements.destroy(
+        {
+          where: { id },
+        }
+      );
+      return infrastructureRequirementDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertServerDrive: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.serverDrive.upsert({ ...model });
+      return db.serverDrive.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteServerDrive: async (_, { id }) => {
+    try {
+      const serverDriveDeleted = await db.serverDrive.destroy({
+        where: { id },
+      });
+      return serverDriveDeleted ? true : false;
     } catch (error) {
       return error;
     }

@@ -146,4 +146,20 @@ module.exports = {
       return error;
     }
   },
+
+  getAllInfrastructureRequirements: async (parent) => {
+    try {
+      return await db.infrastructureTypes.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
+  getAllServerDrives: async () => {
+    try {
+      return await db.serverDrive.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
 };

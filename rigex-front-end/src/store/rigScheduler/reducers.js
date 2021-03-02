@@ -9,6 +9,18 @@ const rigSchedulerReducer = (state = [], action) => {
       };
     case actions.GET_ALL_TEAM_RESOURCES:
       return { ...state, resources: [...action.payload.getAllTeamResources] };
+    case actions.GET_ALL_INFRASTRUCTURE_REQUIREMENTS:
+      return {
+        ...state,
+        infrastructureRequirements: [
+          ...action.payload.getAllInfrastructureRequirements,
+        ],
+      };
+    case actions.GET_ALL_DISK_DRIVES:
+      return {
+        ...state,
+        diskDrives: [...action.payload.getAllDiskDrives],
+      };
     default:
       return state;
   }
