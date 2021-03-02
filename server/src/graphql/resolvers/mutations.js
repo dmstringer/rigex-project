@@ -92,6 +92,69 @@ module.exports = {
     }
   },
 
+  upsertChooseUs: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.ChooseUs.upsert({ ...model });
+      return db.ChooseUs.findByPk(model.id);
+    } catch (error) {
+      return error
+    }
+  },
+
+  deleteChooseUsFeatures: async (_, { id }) => {
+    try {
+      const isDeleted = await db.ChooseUsFeatures.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertChooseUsFeatures: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.ChooseUsFeatures.upsert({ ...model });
+      return db.ChooseUsFeatures.findByPk(model.id);
+    } catch (error) {
+      return error
+    }
+  },
+
+  deleteChooseUsItems: async (_, { id }) => {
+    try {
+      const isDeleted = await db.ChooseUsItems.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertChooseUsItems: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.ChooseUsItems.upsert({ ...model });
+      return db.ChooseUsItems.findByPk(model.id);
+    } catch (error) {
+      return error
+    }
+  },
+
+  deleteChooseUs: async (_, { id }) => {
+    try {
+      const isDeleted = await db.ChooseUs.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
   upsertAboutTextTypes: async (_, { model }) => {
     if (!model.id) {
       model.id = uuidv4();

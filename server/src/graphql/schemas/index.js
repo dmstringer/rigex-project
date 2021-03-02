@@ -8,6 +8,9 @@ const typeDefs = gql`
     getAllRigs: [Rig]!
     getAllServices: [Services]!
     getAllServiceFeatures: [ServiceFeatures]!
+    getAllChooseUs: [ChooseUs]!
+    getAllChooseUsFeatures: [ChooseUsFeatures]!
+    getAllChooseUsItems: [ChooseUsItems]!
     getAllContentTypes: [ContentType]!
     getAllContentTexts: [ContentText]!
     getContentTextsByType(id: String!): ContentTextByType!
@@ -27,6 +30,12 @@ const typeDefs = gql`
     deleteServices(id: String!): String!
     upsertServiceFeatures(model: ServiceFeaturesInput!): ServiceFeatures!
     deleteServiceFeatures(id: String!): String!
+    upsertChooseUs(model: ChooseUsInput!): ChooseUs!
+    deleteChooseUs(id: String!): Boolean!
+    upsertChooseUsFeatures(model: ChooseUsFeaturesInput!): ChooseUsFeatures!
+    deleteChooseUsFeatures(id: String!): Boolean!
+    upsertChooseUsItems(model: ChooseUsItemsInput!): ChooseUsItems!
+    deleteChooseUsItems(id: String!): Boolean!
     upsertWell(model: WellInput): Well!
     upsertContentType(model: ContentTypeInput!): ContentType!
     upsertContentText(model: ContentTextInput!): ContentText!
@@ -70,6 +79,44 @@ const typeDefs = gql`
     id: String
     AboutTextTypeId: String!
     text: String!
+  }
+
+  type ChooseUs {
+    id: String!
+    title: String!
+    description: String!
+  }
+
+  input ChooseUsInput {
+    id: String
+    title: String!
+    description: String!
+  }
+
+  type ChooseUsFeatures {
+    id: String!
+    title: String!
+    items: [ChooseUsItems]
+  }
+
+  input ChooseUsFeaturesInput {
+    id: String
+    title: String!
+  }
+
+  type ChooseUsItems {
+    id: String!
+    ChooseUsFeaturesId: String!
+    text: String!
+    itemInFront: String
+    feature: ChooseUsFeatures
+  }
+
+  input ChooseUsItemsInput {
+    id: String
+    ChooseUsFeaturesId: String!
+    text: String!
+    itemInFront: String
   }
 
   type Rig {
