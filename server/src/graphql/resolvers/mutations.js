@@ -71,6 +71,27 @@ module.exports = {
     }
   },
 
+  upsertTeamMembers: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.TeamMembers.upsert({ ...model });
+      return db.TeamMembers.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteTeamMembers: async (_, { id }) => {
+    try {
+      const isDeleted = await db.TeamMembers.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
   upsertServices: async (_, { model }) => {
     if (!model.id) {
       model.id = uuidv4();
