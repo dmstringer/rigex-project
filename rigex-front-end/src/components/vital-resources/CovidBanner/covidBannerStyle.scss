@@ -1,0 +1,19 @@
+@import '../../../styles/colors.scss';
+
+.covid-banner {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $banner-background;
+    color: $base-white;
+    font-weight: 900;
+
+    div button {
+        background-color: $banner-background;
+        color: $base-white;
+        border: 2px solid $base-white;
+        padding: 5px 10px;
+    }
+}

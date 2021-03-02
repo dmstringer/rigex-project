@@ -9,6 +9,7 @@ import { servicesActions } from '../../store/services/action'
 import { UPSERT_SERVICES } from '../../constants/serviceAPI'
 import AboutUs from '../../components/vital-resources/AboutUs/AboutUs'
 import Services from '../../components/vital-resources/Services/Services';
+import CovidBanner from '../../components/vital-resources/CovidBanner/CovidBanner';
 
 const sortServicesCards = (services) => {
   const sortedCards = []
@@ -66,6 +67,7 @@ const VitalResources = () => {
       <VitalHeader />
       <AboutUs content={aboutUsContent} />
       <Services content={sortedServiceCards} upsertServices={upsertServices} setDropReset={setDropReset} dropReset={dropReset} />
+      <CovidBanner />
     </>
   )
 }
