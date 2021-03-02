@@ -18,6 +18,8 @@ const typeDefs = gql`
     getAllInfrastructureTypes: [InfrastructureTypes]!
     getAllContentTextsByType: [ContentTextByType]!
     getAllDiskDrives: [DiskDrive]!
+    getAllInfrastructureRequirements: [InfrastructureTypes]!
+    getAllServerDrives: [ServerDrive]!
   }
 
   type Mutation {
@@ -53,6 +55,12 @@ const typeDefs = gql`
     deleteInfrastructureType(id: String!): Boolean!
     upsertDiskDrive(model: DiskDriveInput!): DiskDrive!
     deleteDiskDrive(id: String!): Boolean!
+    upsertInfrastructureRequirement(
+      model: InfrastructureRequirementInput!
+    ): InfrastructureRequirement!
+    deleteInfrastructureRequirement(id: String!): Boolean!
+    upsertServerDrive(model: ServerDriveInput!): ServerDrive!
+    deleteServerDrive(id: String!): Boolean!
   }
 
   type AboutTextTypes {
@@ -252,6 +260,7 @@ const typeDefs = gql`
   type InfrastructureTypes {
     id: String!
     name: String!
+    content: [InfrastructureRequirement]!
   }
 
   input InfrastructureTypesInput {
@@ -267,6 +276,40 @@ const typeDefs = gql`
   type DiskDrive {
     id: String!
     title: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type InfrastructureRequirement {
+    id: String!
+    title: String!
+    hasDrives: [ServerDrive]!
+    type: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  input InfrastructureRequirementInput {
+    id: String
+    title: String
+    hasDrives: Boolean
+    type: String
+  }
+
+  type FormattedInfrastructureRequirement {
+    data: String
+  }
+
+  input ServerDriveInput {
+    id: String
+    infrastructureRequirementFk: String
+    diskDriveFk: String
+  }
+
+  type ServerDrive {
+    id: String!
+    infrastructureRequirementFk: String!
+    diskDriveFk: String!
     createdAt: String!
     updatedAt: String!
   }
