@@ -21,6 +21,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: '767SDG3123G',
+        longitude: -63.094586,
+        latitude: 18.66323423,
+        rigId: '12e8a014-f0d2-40e8-bfcf-8113ecb9126f',
+        status: 'inactive',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
