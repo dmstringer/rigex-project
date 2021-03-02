@@ -6,6 +6,8 @@ export const typeDefs = gql`
     getAllAboutText: [AboutText]
     getAllServices: [Services]
     getAllRigs: [Rigs]
+    getAllChooseUs: [ChooseUs]!
+    getAllChooseUsFeatures: [ChooseUsFeatures]!
     getContentTextsByType(id: String!): ContentTextByType!
     getAllContentTextsByType: ContentTextByType!
     getAllTeamResources: [TeamResource]!
@@ -39,6 +41,33 @@ export const typeDefs = gql`
     ServiceId: String!
     itemInFront: String
     text: String!
+  }
+
+  type ChooseUs {
+    id: String!
+    title: String!
+    description: String!
+  }
+
+  type ChooseUsFeatures {
+    id: String!
+    title: String!
+    items: [ChooseUsItems]
+  }
+
+  type ChooseUsItems {
+    id: String!
+    ChooseUsFeaturesId: String!
+    text: String!
+    itemInFront: String
+    feature: ChooseUsFeatures
+  }
+
+  input ChooseUsItemsInput {
+    id: String
+    ChooseUsFeaturesId: String!
+    text: String!
+    itemInFront: String
   }
 
   type Rig {

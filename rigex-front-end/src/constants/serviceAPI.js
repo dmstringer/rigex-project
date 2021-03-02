@@ -44,6 +44,25 @@ export const GET_ALL_SERVICES = gql`
   }
 `;
 
+export const GET_ALL_CHOOSE_US = gql`
+  query getAllChooseUs {
+    getAllChooseUs {
+      id
+      title
+      description
+    }
+    getAllChooseUsFeatures {
+      id
+      title
+      items {
+        id
+        text
+        itemInFront
+      }
+    }
+  }
+`;
+
 export const GET_ALL_RIGS = gql`
   query getAllRigs {
     getAllRigs {
