@@ -63,6 +63,16 @@ export const GET_ALL_CHOOSE_US = gql`
   }
 `;
 
+export const GET_ALL_STATISTICS = gql`
+  query getAllStatistics {
+    getAllStatistics {
+      id
+      mainText
+      subText
+    }
+  }
+`;
+
 export const GET_ALL_RIGS = gql`
   query getAllRigs {
     getAllRigs {
