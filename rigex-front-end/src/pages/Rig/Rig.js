@@ -29,6 +29,16 @@ const Rig = ({
     return null;
   });
 
+  const checkForDrilling = (status) => {
+    if (status === 'drilling') {
+      const drillingWell = listOfWells.find((well) => well.status === status);
+      if (drillingWell) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <div className="well-panel">
       <div className="title-bar">
@@ -88,6 +98,7 @@ const Rig = ({
         </div>
       )}
       <WellModal
+        checkForDrilling={checkForDrilling}
         wellModalInfo={wellModalInfo}
         handleWellModalClose={handleWellModalClose}
         rigId={id}

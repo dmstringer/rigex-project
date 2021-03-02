@@ -7,6 +7,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { wellActions } from '../../store/wells/action';
 import { UPSERT_WELL } from '../../constants/serviceAPI';
 import { latLongRegExTest } from '../../constants/regexTests';
+import radioActive from '../../assets/radio-active.png';
+import radioInactive from '../../assets/radio-inactive.png';
 import './wellModalStyles.scss';
 
 export default function WellModal({
@@ -16,20 +18,24 @@ export default function WellModal({
     currentName,
     currentLatitude,
     currentLongitude,
+    currentStatus,
     id,
   },
   handleWellModalClose,
   rigId,
+  checkForDrilling,
 }) {
   const [wellInfo, setWellInfo] = useState({
     name: '',
     latitude: '',
     longitude: '',
+    status: '',
   });
   const [isValidInput, setIsValidInput] = useState({
     name: false,
     latitude: false,
     longitude: false,
+    status: false,
   });
   const [isCreateType, setIsCreateType] = useState(true);
   const [isActiveSubmit, setIsActiveSubmit] = useState(false);
@@ -44,6 +50,7 @@ export default function WellModal({
       latitude: parseFloat(wellInfo.latitude),
       rigId: rigId.toString(),
       id: id && id,
+      status: wellInfo.status,
     };
 
     await upsertWell({
@@ -82,6 +89,7 @@ export default function WellModal({
         name: currentName,
         latitude: currentLatitude,
         longitude: currentLongitude,
+        status: currentStatus,
       });
       setIsValidInput({
         name: true,
@@ -122,6 +130,11 @@ export default function WellModal({
           [name]: latLongRegExTest.test(value) && isValidRange,
         }));
         break;
+      case 'status':
+        setIsValidInput((input) => ({
+          ...input,
+          [name]: checkForDrilling(value),
+        }));
       default:
         break;
     }
@@ -151,6 +164,7 @@ export default function WellModal({
         <input
           name="name"
           type="text"
+          className="input-field"
           value={wellInfo.name}
           placeholder="Enter a well name"
           onChange={handleChange}
@@ -162,6 +176,7 @@ export default function WellModal({
         <input
           name="latitude"
           type="text"
+          className="input-field"
           value={wellInfo.latitude}
           placeholder="Enter latitude"
           onChange={handleChange}
@@ -173,10 +188,73 @@ export default function WellModal({
         <input
           name="longitude"
           type="text"
+          className="input-field"
           value={wellInfo.longitude}
           placeholder="Enter longitude"
           onChange={handleChange}
         />
+        <div className="input-label">
+          {' '}
+          Status<span>*</span>
+        </div>
+        <div className="status-row">
+          <div className="radio-container">
+            <img
+              alt="radio button"
+              className="radio"
+              onClick={() => {
+                const event = {
+                  target: {
+                    name: 'status',
+                    value: 'active',
+                  },
+                };
+                handleChange(event);
+              }}
+              src={wellInfo.status === 'active' ? radioActive : radioInactive}
+            />
+            <label for="active" className="radio-label">
+              Active
+            </label>
+          </div>
+          <div className="radio-container">
+            <img
+              alt="radio button"
+              onClick={() => {
+                const event = {
+                  target: {
+                    name: 'status',
+                    value: 'inactive',
+                  },
+                };
+                handleChange(event);
+              }}
+              src={wellInfo.status === 'inactive' ? radioActive : radioInactive}
+            />
+            <label for="inactive" className="radio-label">
+              Inactive
+            </label>
+          </div>
+          <div className="radio-container">
+            <img
+              alt="radio button"
+              className="radio"
+              onClick={() => {
+                const event = {
+                  target: {
+                    name: 'status',
+                    value: 'drilling',
+                  },
+                };
+                handleChange(event);
+              }}
+              src={wellInfo.status === 'drilling' ? radioActive : radioInactive}
+            />
+            <label for="drilling" className="radio-label">
+              Drilling
+            </label>
+          </div>
+        </div>
         <div className="dialog-actions">
           {isCreateType && (
             <button
