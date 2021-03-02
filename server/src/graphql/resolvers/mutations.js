@@ -1,13 +1,19 @@
 const bcrypt = require('bcryptjs');
 const uuidv4 = require('uuid').v4;
 
-const { isValidEmail, isUniqueEmail } = require('../../utils');
+const {
+  isValidEmail,
+  isUniqueEmail,
+  isValidDeliveryPhaseInput,
+  adjustFollowingDeliveryPhases,
+} = require('../../utils');
 const { db } = require('../../db/models');
 const {
   invalidEmail,
   nonUniqueEmail,
   onlySingleDrillingWell,
   invalidWellStatus,
+  invalidDeliveryPhaseInput,
 } = require('../../constants/errors');
 
 module.exports = {
@@ -478,6 +484,34 @@ module.exports = {
         where: { id },
       });
       return serverDriveDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertDeliveryPhase: async (_, { model }) => {
+    const isValidInput = isValidDeliveryPhaseInput(model);
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    if (!isValidInput) {
+      return new Error(invalidDeliveryPhaseInput);
+    }
+    try {
+      adjustFollowingDeliveryPhases(model);
+      await db.deliveryPhase.upsert({ ...model });
+      return db.deliveryPhase.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteDeliveryPhase: async (_, { id }) => {
+    try {
+      const deliveryPhaseDeleted = await db.deliveryPhase.destroy({
+        where: { id },
+      });
+      return deliveryPhaseDeleted ? true : false;
     } catch (error) {
       return error;
     }

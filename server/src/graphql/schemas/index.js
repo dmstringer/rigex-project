@@ -24,6 +24,7 @@ const typeDefs = gql`
     getAllDiskDrives: [DiskDrive]!
     getAllInfrastructureRequirements: [InfrastructureTypes]!
     getAllServerDrives: [ServerDrive]!
+    getAllDeliveryPhases: GetAllDeliveryPhases!
   }
 
   type Mutation {
@@ -73,6 +74,8 @@ const typeDefs = gql`
     deleteInfrastructureRequirement(id: String!): Boolean!
     upsertServerDrive(model: ServerDriveInput!): ServerDrive!
     deleteServerDrive(id: String!): Boolean!
+    upsertDeliveryPhase(model: DeliveryPhaseInput!): DeliveryPhase!
+    deleteDeliveryPhase(id: String!): Boolean!
   }
 
   type AboutTextTypes {
@@ -386,6 +389,35 @@ const typeDefs = gql`
     diskDriveFk: String!
     createdAt: String!
     updatedAt: String!
+  }
+
+  input DeliveryPhaseInput {
+    id: String
+    text: String!
+    durationInHours: Float
+    itemInFrontOf: String
+    typeId: String!
+    freezeDuration: Boolean
+  }
+
+  type DeliveryPhase {
+    id: String!
+    text: String!
+    durationInHours: Float
+    itemInFrontOf: String
+    typeId: String!
+    freezeDuration: Boolean
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type GetAllDeliveryPhases {
+    data: GetAllDeliveryPhasesInner!
+  }
+
+  type GetAllDeliveryPhasesInner {
+    preDeliveryPhase: [DeliveryPhase]!
+    deliveryPhase: [DeliveryPhase]!
   }
 `;
 

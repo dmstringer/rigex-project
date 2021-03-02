@@ -94,7 +94,7 @@ module.exports = {
     try {
       return await db.ChooseUs.findAll();
     } catch (error) {
-      return (error);
+      return error;
     }
   },
 
@@ -102,7 +102,7 @@ module.exports = {
     try {
       return await db.ChooseUsFeatures.findAll({ include: [db.ChooseUsItems] });
     } catch (error) {
-      return error
+      return error;
     }
   },
 
@@ -110,7 +110,7 @@ module.exports = {
     try {
       return await db.ChooseUsItems.findAll({ include: [db.ChooseUsFeatures] });
     } catch (error) {
-      return error
+      return error;
     }
   },
 
@@ -190,6 +190,14 @@ module.exports = {
   getAllServerDrives: async () => {
     try {
       return await db.serverDrive.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
+  getAllDeliveryPhases: async () => {
+    try {
+      return await db.deliveryPhase.findAll();
     } catch (error) {
       return error;
     }
