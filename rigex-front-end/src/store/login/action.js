@@ -10,6 +10,16 @@ const setLoggedInUser = (user) => {
     history.replace(routePaths.landing);
   };
 };
+
+const logout = () => {
+  return (dispatch) => {
+    // history.replace(routePaths.login);
+    dispatch({ type: actionTypes.LOGOUT });
+    localStorage.removeItem('userId');
+  };
+};
+
 export const loginActions = {
   setLoggedInUser,
+  logout,
 };

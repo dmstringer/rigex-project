@@ -23,6 +23,18 @@ import {
 import './landing.scss';
 
 const Landing = () => {
+  const user = useSelector((state) => state.login.user);
+  const [userState, setUserState] = useState({});
+
+  useEffect(() => {
+    if (user) {
+      setUserState(user);
+    }
+    if (!user) {
+      history.replace(routePaths.login);
+    }
+  }, [user]);
+
   const { pathname } = useLocation();
   const addWellState = useSelector((state) => state.wells.addSuccess);
   const [rigModalOpen, setRigModalOpen] = useState({
@@ -42,9 +54,7 @@ const Landing = () => {
     currentStatus: '',
     id: '',
   });
-  const [currentNestedPath, setCurrentNestedPath] = useState(
-    getNestedPath(pathname)
-  );
+  const [currentNestedPath, setCurrentNestedPath] = useState('/rig');
 
   const handleWellModalOpen = (
     type,
@@ -293,7 +303,7 @@ const Landing = () => {
 
   return (
     <div className="landing">
-      <NavBar />
+      <NavBar user={userState} />
       <div className="content">
         <DragDropContext onDragEnd={onDragEnd}>
           <RigSidebar
