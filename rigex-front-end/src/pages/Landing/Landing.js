@@ -303,7 +303,11 @@ const Landing = () => {
 
   return (
     <div className="landing">
-      <NavBar user={userState} />
+      <NavBar
+        user={userState}
+        rigList={listOfRigs}
+        handleRigSelect={handleRigSelect}
+      />
       <div className="content">
         <DragDropContext onDragEnd={onDragEnd}>
           <RigSidebar
