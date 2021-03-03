@@ -19,7 +19,7 @@ const SchedulerInfrastructureBlock = ({
     };
 
     const GenerateDrives = ({ hasDrives }) => {
-      if (hasDrives.length > 0) {
+      if (hasDrives.length) {
         return (
           <ul className="infrastructure-drives-list-text">
             {hasDrives.map((element) => (
