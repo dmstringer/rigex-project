@@ -31,6 +31,7 @@ const RigScheduler = () => {
           ListHeading={element.name}
           ListContent={element.content}
           ListHeadingColor={element.titleColor}
+          ListBackgroundColor={element.backgroundColor}
         />
       ));
     } else {

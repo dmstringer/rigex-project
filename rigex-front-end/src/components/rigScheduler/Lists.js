@@ -2,7 +2,12 @@ import React from 'react';
 
 import './listsStyle.scss';
 
-const SchedulerListBlock = ({ ListHeading, ListContent, ListHeadingColor }) => {
+const SchedulerListBlock = ({
+  ListHeading,
+  ListContent,
+  ListHeadingColor,
+  ListBackgroundColor,
+}) => {
   const SchedulerListBlockRender = () => {
     if (ListContent) {
       return ListContent.map((element) => (
@@ -14,13 +19,15 @@ const SchedulerListBlock = ({ ListHeading, ListContent, ListHeadingColor }) => {
   };
 
   return (
-    <div className="lists-section">
-      <span className={'lists-section-heading ' + ListHeadingColor}>
-        {ListHeading}
-      </span>
-      <ul>
-        <SchedulerListBlockRender />
-      </ul>
+    <div className="list-section-container">
+      <div id={ListBackgroundColor} className="lists-section">
+        <span className={'lists-section-heading ' + ListHeadingColor}>
+          {ListHeading}
+        </span>
+        <ul>
+          <SchedulerListBlockRender />
+        </ul>
+      </div>
     </div>
   );
 };
