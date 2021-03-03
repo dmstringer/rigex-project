@@ -6,6 +6,7 @@ const typeDefs = gql`
     getAllAboutTextTypes: [AboutTextTypes]!
     getAllAboutText: [AboutText]!
     getAllRigs: [Rig]!
+    getAllTeamMembers: [TeamMembers]!
     getAllServices: [Services]!
     getAllServiceFeatures: [ServiceFeatures]!
     getAllStatistics: [Statistics]!
@@ -29,6 +30,8 @@ const typeDefs = gql`
     deleteAboutText(id: String!): String!
     upsertAboutTextTypes(model: AboutTextTypesInput!): AboutTextTypes!
     deleteAboutTextTypes(id: String!): Boolean!
+    upsertTeamMembers(model: TeamMembersInput!): TeamMembers!
+    deleteTeamMembers(id: String!): Boolean!
     upsertServices(model: ServicesInput!): Services!
     deleteServices(id: String!): String!
     upsertServiceFeatures(model: ServiceFeaturesInput!): ServiceFeatures!
@@ -102,6 +105,22 @@ const typeDefs = gql`
     id: String
     mainText: String!
     subText: String!
+  }
+
+  type TeamMembers {
+    id: String!
+    firstName: String!
+    lastName: String!
+    position: String!
+    itemInFront: String
+  }
+
+  input TeamMembersInput {
+    id: String
+    firstName: String!
+    lastName: String!
+    position: String!
+    itemInFront: String
   }
 
   type ChooseUs {

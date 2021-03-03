@@ -42,6 +42,14 @@ module.exports = {
     }
   },
 
+  getAllTeamMembers: async () => {
+    try {
+      return await db.TeamMembers.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
   getAllServices: async () => {
     try {
       return await db.Services.findAll({ include: [db.ServiceFeatures] });
