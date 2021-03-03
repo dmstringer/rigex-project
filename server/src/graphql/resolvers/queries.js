@@ -66,6 +66,22 @@ module.exports = {
     }
   },
 
+  getAllTests: async () => {
+    try {
+      return await db.Tests.findAll({ include: [db.TestFeatures] });
+    } catch (error) {
+      return error;
+    }
+  },
+
+  getAllTestFeatures: async () => {
+    try {
+      return await db.TestFeatures.findAll();
+    } catch (error) {
+      return error;
+    }
+  },
+
   getAllStatistics: async () => {
     try {
       return await db.Statistics.findAll();

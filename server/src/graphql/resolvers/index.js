@@ -4,6 +4,7 @@ const rigResolver = require('./rig');
 const chooseUsFeaturesResolver = require('./chooseUsFeatures');
 const chooseUsItemsResolver = require('./chooseUsItems');
 const servicesResolver = require('./services');
+const testsResolver = require('./tests')
 const contentTextByTypeResolver = require('./contentTextByType');
 const contentTextWithTypeResolver = require('./contentTextWithType');
 const aboutTextTypesResolver = require('./aboutTextTypes');
@@ -17,6 +18,7 @@ module.exports = {
   Rig: rigResolver,
   ContentTextByType: contentTextByTypeResolver,
   ContentTextWithType: contentTextWithTypeResolver,
+  Tests: testsResolver,
   Services: servicesResolver,
   ChooseUsFeatures: chooseUsFeaturesResolver,
   ChooseUsItems: chooseUsItemsResolver,
