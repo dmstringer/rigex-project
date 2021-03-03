@@ -4,7 +4,8 @@ import thunkMiddleware from 'redux-thunk';
 
 import loginReducer from './login/reducers';
 import rigReducer from './rig/reducers';
-import serviceReducer from './services/reducers'
+import serviceReducer from './services/reducers';
+import chooseUsReducer from './chooseUs/reducers';
 import aboutTextReducer from './aboutText/reducers';
 import statisticsReducer from "./statistics/reducers";
 import teamReducer from './team/reducers'
@@ -18,6 +19,7 @@ export const store = createStore(
       rigs: rigReducer,
       aboutText: aboutTextReducer,
       services: serviceReducer,
+      chooseUs: chooseUsReducer,
       statistics: statisticsReducer,
       team: teamReducer,
       wells: wellReducer,
