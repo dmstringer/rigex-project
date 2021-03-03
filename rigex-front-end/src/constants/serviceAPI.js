@@ -194,3 +194,31 @@ export const GET_ALL_TEAM_RESOURCES = gql`
     }
   }
 `;
+
+export const GET_ALL_INFRASTRUCTURE_REQUIREMENTS = gql`
+  query getAllInfrastructureRequirements {
+    getAllInfrastructureRequirements {
+      id
+      name
+      content {
+        id
+        title
+        hasDrives {
+          id
+          infrastructureRequirementFk
+          diskDriveFk
+        }
+        type
+      }
+    }
+  }
+`;
+
+export const GET_ALL_DISK_DRIVES = gql`
+  query getAllDiskDrives {
+    getAllDiskDrives {
+      id
+      title
+    }
+  }
+`;

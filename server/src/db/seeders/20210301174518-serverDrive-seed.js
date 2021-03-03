@@ -6,7 +6,7 @@ module.exports = {
       {
         id: '51324abb-f547-4fe9-a209-bdb993eda9e7',
         infrastructureRequirementFk: '8e6c9387-a075-46ee-acd8-faf33895f666',
-        diskDriveFk: '35793ec2-c53e-434b-8d94-041775be3f92',
+        diskDriveFk: 'c3c26883-5ceb-4e61-9ca5-3bf3003f3303',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -34,7 +34,7 @@ module.exports = {
       {
         id: '5d0506ec-0ec4-44b7-8634-bc1f8a803461',
         infrastructureRequirementFk: '3b4c5502-7047-40ce-9159-9ba890b06cb1',
-        diskDriveFk: 'c3c26883-5ceb-4e61-9ca5-3bf3003f3303',
+        diskDriveFk: '35793ec2-c53e-434b-8d94-041775be3f92',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

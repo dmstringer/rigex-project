@@ -11,7 +11,9 @@ const SchedulerListBlock = ({
   const SchedulerListBlockRender = () => {
     if (ListContent) {
       return ListContent.map((element) => (
-        <li className="lists-section-text">{element.text}</li>
+        <li key={element.id} className="lists-section-text">
+          {element.text}
+        </li>
       ));
     } else {
       return null;

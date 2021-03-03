@@ -16,8 +16,26 @@ const getAllTeamResources = (resources) => {
     });
   };
 };
+const getAllInfrastructureRequirements = (InfrastructureRequirements) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_ALL_INFRASTRUCTURE_REQUIREMENTS,
+      payload: InfrastructureRequirements,
+    });
+  };
+};
+const getAllDiskDrives = (diskDrives) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_ALL_DISK_DRIVES,
+      payload: diskDrives,
+    });
+  };
+};
 
 export const rigSchedulerActions = {
   getAllContentTextsByType,
   getAllTeamResources,
+  getAllInfrastructureRequirements,
+  getAllDiskDrives,
 };
