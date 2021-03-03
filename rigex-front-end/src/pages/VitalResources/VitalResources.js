@@ -3,8 +3,9 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
 import VitalHeader from '../../components/vital-resources/Header/Header'
-import { GET_ALL_ABOUT_TEXT, GET_ALL_SERVICES, GET_ALL_STATISTICS } from '../../constants/serviceAPI';
+import { GET_ALL_ABOUT_TEXT, GET_ALL_SERVICES, GET_ALL_TEAM_MEMBERS, GET_ALL_STATISTICS } from '../../constants/serviceAPI';
 import { aboutTextActions } from '../../store/aboutText/action'
+import { teamActions } from '../../store/team/actions'
 import { servicesActions } from '../../store/services/action'
 import { statisticsActions } from '../../store/statistics/action'
 import { UPSERT_SERVICES } from '../../constants/serviceAPI'
@@ -12,6 +13,7 @@ import AboutUs from '../../components/vital-resources/AboutUs/AboutUs'
 import Services from '../../components/vital-resources/Services/Services';
 import Statistics from '../../components/vital-resources/Statistics/Statistics';
 import CovidBanner from '../../components/vital-resources/CovidBanner/CovidBanner';
+import Team from '../../components/vital-resources/Team/Team';
 
 const sortServicesCards = (services) => {
   const sortedCards = []
@@ -39,6 +41,12 @@ const VitalResources = () => {
       dispatch(aboutTextActions.getAllAboutText(aboutData));
     },
   });
+  const [getAllTeamMembers] = useLazyQuery(GET_ALL_TEAM_MEMBERS, {
+    errorPolicy: 'all',
+    onCompleted: (teamData) => {
+      dispatch(teamActions.getAllTeamMembers(teamData));
+    },
+  });
   const [getAllServices] = useLazyQuery(GET_ALL_SERVICES, {
     errorPolicy: 'all',
     onCompleted: (servicesData) => {
@@ -55,14 +63,16 @@ const VitalResources = () => {
   const [upsertServices] = useMutation(UPSERT_SERVICES)
 
   const aboutUsContent = useSelector( state => state.aboutText)
+  const teamContent = useSelector(state => state.team)
   const servicesContent = useSelector( state => state.services)
   const statisticsContent = useSelector(state => state.statistics)
 
   useEffect(() => {
     getAllAboutText()
+    getAllTeamMembers()
     getAllServices()
     getAllStatistics()
-  }, [getAllAboutText, getAllServices, getAllStatistics])
+  }, [getAllAboutText, getAllTeamMembers, getAllServices, getAllStatistics])
 
   useEffect(() => {
     getAllServices()
@@ -79,6 +89,7 @@ const VitalResources = () => {
       <Services content={sortedServiceCards} upsertServices={upsertServices} setDropReset={setDropReset} dropReset={dropReset} />
       <Statistics content={statisticsContent} />
       <CovidBanner />
+      <Team content={teamContent} />
     </>
   )
 }

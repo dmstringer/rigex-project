@@ -44,6 +44,18 @@ export const GET_ALL_SERVICES = gql`
   }
 `;
 
+export const GET_ALL_TEAM_MEMBERS = gql`
+  query getAllTeamMembers {
+    getAllTeamMembers {
+      id
+      firstName
+      lastName
+      position
+      itemInFront
+    }
+  }
+`;
+
 export const GET_ALL_CHOOSE_US = gql`
   query getAllChooseUs {
     getAllChooseUs {
