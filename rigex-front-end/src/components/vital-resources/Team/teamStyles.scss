@@ -1,0 +1,53 @@
+@import '../../../styles/colors.scss';
+
+.team-section {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+
+    .title {
+        text-align: center;
+        font-size: 1.6em;
+    }
+ 
+    .card-area {
+        display: flex;
+        justify-content: center;
+
+        .card-container {
+            overflow: hidden;
+            margin: 10px;
+            height: 180px;
+            width: 180px;
+
+            .overlay {
+                position: relative;
+                width: 100%;
+                top: -50px;
+                background: $low-opacity-label;
+                height: 45px;
+                z-index: 2;
+                padding-top: 7px;
+
+                span {
+                    display: block;
+                    text-align: center;
+                    color: $base-white;
+                    font-size: .9em;
+                    font-weight: 900;
+                }
+
+                span:last-of-type {
+                    font-style: italic;
+                    font-size: .5em;
+                    font-weight: 400;
+                }
+            }
+
+            img {
+                height: 180px;
+                width: 180px;
+            }
+        }
+    }
+}

@@ -7,6 +7,7 @@ import rigReducer from './rig/reducers';
 import serviceReducer from './services/reducers'
 import aboutTextReducer from './aboutText/reducers';
 import statisticsReducer from "./statistics/reducers";
+import teamReducer from './team/reducers'
 import wellReducer from './wells/reducers';
 import rigSchedulerReducer from './rigScheduler/reducers';
 
@@ -18,6 +19,7 @@ export const store = createStore(
       aboutText: aboutTextReducer,
       services: serviceReducer,
       statistics: statisticsReducer,
+      team: teamReducer,
       wells: wellReducer,
       rigScheduler: rigSchedulerReducer,
     },
