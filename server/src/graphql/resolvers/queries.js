@@ -112,16 +112,16 @@ module.exports = {
       return error;
     }
   },
-  getAllContentTexts: async () => {
+  getAllContentTexts: async (parent) => {
     try {
-      return await db.contentText.findAll();
+      return await db.contentType.findAll({ include: [db.contentText] });
     } catch (error) {
       return error;
     }
   },
   getContentTextsByType: async (parent, { id }) => {
     try {
-      return db.contentType.findByPk(id, {
+      return await db.contentType.findByPk(id, {
         include: [db.contentText],
       });
     } catch (error) {

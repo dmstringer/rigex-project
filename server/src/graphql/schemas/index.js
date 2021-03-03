@@ -14,7 +14,7 @@ const typeDefs = gql`
     getAllChooseUsFeatures: [ChooseUsFeatures]!
     getAllChooseUsItems: [ChooseUsItems]!
     getAllContentTypes: [ContentType]!
-    getAllContentTexts: [ContentText]!
+    getAllContentTexts: ContentTextWithType!
     getContentTextsByType(id: String!): ContentTextByType!
     getAllTeamResources: [TeamResource]!
     getAllInfrastructureTypes: [InfrastructureTypes]!
@@ -271,6 +271,17 @@ const typeDefs = gql`
     titleColor: String!
     backgroundColor: String!
     content: [ContentText]
+  }
+
+  type ContentTextWithType {
+    capabilities: [ContentText]!
+    features: [ContentText]!
+    benefits: [ContentText]!
+    webServer: [ContentText]!
+    integratedSystems: [ContentText]!
+    preDeliveryPhase: [ContentText]!
+    deliveryPhase: [ContentText]!
+    databaseServer: [ContentText]!
   }
 
   input ContentTextInput {
