@@ -8,6 +8,7 @@ const typeDefs = gql`
     getAllRigs: [Rig]!
     getAllServices: [Services]!
     getAllServiceFeatures: [ServiceFeatures]!
+    getAllStatistics: [Statistics]!
     getAllChooseUs: [ChooseUs]!
     getAllChooseUsFeatures: [ChooseUsFeatures]!
     getAllChooseUsItems: [ChooseUsItems]!
@@ -32,6 +33,8 @@ const typeDefs = gql`
     deleteServices(id: String!): String!
     upsertServiceFeatures(model: ServiceFeaturesInput!): ServiceFeatures!
     deleteServiceFeatures(id: String!): String!
+    upsertStatistics(model: StatisticsInput!): Statistics!
+    deleteStatistics(id: String!): String!
     upsertChooseUs(model: ChooseUsInput!): ChooseUs!
     deleteChooseUs(id: String!): Boolean!
     upsertChooseUsFeatures(model: ChooseUsFeaturesInput!): ChooseUsFeatures!
@@ -87,6 +90,18 @@ const typeDefs = gql`
     id: String
     AboutTextTypeId: String!
     text: String!
+  }
+
+  type Statistics {
+    id: String!
+    mainText: String!
+    subText: String!
+  }
+
+  input StatisticsInput {
+    id: String
+    mainText: String!
+    subText: String!
   }
 
   type ChooseUs {
