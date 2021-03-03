@@ -70,6 +70,12 @@ export const typeDefs = gql`
     itemInFront: String
   }
 
+  type Statistics {
+    id: String!
+    mainText: String!
+    subText: String!
+  }
+
   type Rig {
     id: String!
     name: String!
