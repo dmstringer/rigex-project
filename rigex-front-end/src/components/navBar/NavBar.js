@@ -1,12 +1,13 @@
+import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
 import routePaths from '../../constants/routePaths';
 import logo from '../../assets/rigex-logo-small.svg';
 import './navBar.scss';
 import history from '../../utils/history';
+import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';
 
-export default function NavBar() {
+export default function NavBar({ user }) {
   return (
     <div className="navBar">
       <div className="logo">
@@ -19,7 +20,7 @@ export default function NavBar() {
           <SearchIcon fontSize="large" />
         </button>
         <button aria-label="account of current user">
-          <PersonOutlineOutlinedIcon fontSize="large" />
+          <ProfileDropdown user={user} />
         </button>
       </div>
     </div>
