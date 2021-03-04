@@ -1,0 +1,41 @@
+@import '../../../styles/colors.scss';
+
+.test-section {
+    padding-top: 15px;
+ 
+    .test-feature {
+        display: flex;
+
+        .picture {
+            width: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+            }
+        }
+        
+        .content {
+            padding-left: 15px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+
+            span {
+                font-size: 1.5em;
+                font-weight: 900;
+                padding-bottom: 10px;
+            }
+
+            div div {
+                display: flex;
+                align-items: center;
+                font-size: .6em;
+
+                svg {
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+}
