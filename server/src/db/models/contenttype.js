@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   contentType.associate = function (models) {
     contentType.hasMany(models.contentText, { foreignKey: 'type' });
+    contentType.hasMany(models.deliveryPhase, { foreignKey: 'typeId' });
   };
   return contentType;
 };

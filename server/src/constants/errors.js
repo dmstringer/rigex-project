@@ -6,6 +6,8 @@ const errorMessages = Object.freeze({
   onlySingleDrillingWell: 'Only one well per rig can be drilling at a time',
   invalidWellStatus:
     'Well statuses can only be one of the following: active, drilling, inactive',
+  invalidDeliveryPhaseInput:
+    'Pre-Delivery phases must not contain an itemInFront or freezeDuration value',
 });
 
 module.exports = errorMessages;
