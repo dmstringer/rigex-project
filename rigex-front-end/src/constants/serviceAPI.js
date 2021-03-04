@@ -83,6 +83,7 @@ export const GET_ALL_CHOOSE_US = gql`
         id
         text
         itemInFront
+        ChooseUsFeaturesId
       }
     }
   }
@@ -141,6 +142,17 @@ export const UPSERT_SERVICES = gql`
         itemInFront
         text
       }
+    }
+  }
+`;
+
+export const UPSERT_CHOOSE_US_ITEM = gql`
+  mutation upsertChooseUsItems($chooseUsItemsInput: ChooseUsItemsInput!) {
+    upsertChooseUsItems(model: $chooseUsItemsInput) {
+      id
+      text
+      itemInFront
+      ChooseUsFeaturesId
     }
   }
 `;
