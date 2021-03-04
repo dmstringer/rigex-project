@@ -133,7 +133,7 @@ export default function WellModal({
       case 'status':
         setIsValidInput((input) => ({
           ...input,
-          [name]: checkForDrilling(value),
+          [name]: checkForDrilling(value, id),
         }));
       default:
         break;
@@ -213,7 +213,7 @@ export default function WellModal({
               }}
               src={wellInfo.status === 'active' ? radioActive : radioInactive}
             />
-            <label for="active" className="radio-label">
+            <label htmlFor="active" className="radio-label">
               Active
             </label>
           </div>
@@ -231,7 +231,7 @@ export default function WellModal({
               }}
               src={wellInfo.status === 'inactive' ? radioActive : radioInactive}
             />
-            <label for="inactive" className="radio-label">
+            <label htmlFor="inactive" className="radio-label">
               Inactive
             </label>
           </div>
@@ -250,7 +250,7 @@ export default function WellModal({
               }}
               src={wellInfo.status === 'drilling' ? radioActive : radioInactive}
             />
-            <label for="drilling" className="radio-label">
+            <label htmlFor="drilling" className="radio-label">
               Drilling
             </label>
           </div>

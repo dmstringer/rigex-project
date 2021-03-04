@@ -29,9 +29,11 @@ const Rig = ({
     return null;
   });
 
-  const checkForDrilling = (status) => {
+  const checkForDrilling = (status, id) => {
     if (status === 'drilling') {
-      const drillingWell = listOfWells.find((well) => well.status === status);
+      const drillingWell = listOfWells.find(
+        (well) => well.status === status && well.id !== id
+      );
       if (drillingWell) {
         return false;
       }
