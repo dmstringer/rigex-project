@@ -24,13 +24,10 @@ const ImplementationTimeline = ({ deliveryPhases }) => {
       0
     );
     const totalDurationInWeeks = totalDurationInHours / 40;
-
     const ab = [1, totalDurationInWeeks];
-
     const start = ab[0];
     const end = ab[1];
     const interval = (end - start) / 5;
-
     const out = Array(5)
       .fill()
       .map((_, i) => [start + i * interval, start + (i + 1) * interval]);

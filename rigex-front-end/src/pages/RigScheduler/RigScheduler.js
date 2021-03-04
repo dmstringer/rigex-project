@@ -133,6 +133,7 @@ const RigScheduler = () => {
       <CustomerTeamResources
         customerTeamResources={teamResourcesContentState}
       />
+      <ImplementationTimeline deliveryPhases={deliveryPhasesContentState} />
       <div className="infrastructure-section-title">
         <span className="infrastructure-section-title-text">
           Infrastructure Requirements
@@ -151,7 +152,6 @@ const RigScheduler = () => {
           </em>
         </span>
       </div>
-      <ImplementationTimeline deliveryPhases={deliveryPhasesContentState} />
     </div>
   );
 };
