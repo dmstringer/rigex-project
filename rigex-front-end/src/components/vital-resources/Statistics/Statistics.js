@@ -6,7 +6,7 @@ const Statistics = ({ content }) => {
 
     const statisticsArray =  content.map( item => {
         return (
-            <div>
+            <div key={item.id}>
                 <h1>{item.mainText}</h1>
                 <span>{item.subText}</span>
             </div>
