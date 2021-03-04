@@ -9,8 +9,8 @@ const Team = ({ content }) => {
 
     const teamContent = content.map(item => {
         return (
-            <div className="card-container" >
-                <img src={randomImage} />
+            <div className="card-container" key={item.id}>
+                <img src={randomImage} alt="faker"/>
                 <div className="overlay">
                     <span>{item.firstName} {item.lastName}</span>
                     <span>{item.position}</span>
