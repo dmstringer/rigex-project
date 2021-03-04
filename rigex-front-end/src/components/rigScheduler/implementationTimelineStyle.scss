@@ -90,28 +90,28 @@
       }
 
       tr:nth-child(6n + 1) td .bar {
-        background-color: #ffb200;
-        border-color: #ffb200;
+        background-color: $rig-scheduler-bar-color-1;
+        border-color: $rig-scheduler-bar-color-1;
       }
       tr:nth-child(6n + 2) td .bar {
-        background-color: #ffe800;
-        border-color: #ffe800;
+        background-color: $rig-scheduler-bar-color-2;
+        border-color: $rig-scheduler-bar-color-2;
       }
       tr:nth-child(6n + 3) td .bar {
-        background-color: #f68698;
-        border-color: #f68698;
+        background-color: $rig-scheduler-bar-color-3;
+        border-color: $rig-scheduler-bar-color-3;
       }
       tr:nth-child(6n + 4) td .bar {
-        background-color: #f6a36f;
-        border-color: #f6a36f;
+        background-color: $rig-scheduler-bar-color-4;
+        border-color: $rig-scheduler-bar-color-4;
       }
       tr:nth-child(6n + 5) td .bar {
-        background-color: #ef9bc9;
-        border-color: #ef9bc9;
+        background-color: $rig-scheduler-bar-color-5;
+        border-color: $rig-scheduler-bar-color-5;
       }
       tr:nth-child(6n + 6) td .bar {
-        background-color: #fab19c;
-        border-color: #fab19c;
+        background-color: $rig-scheduler-bar-color-6;
+        border-color: $rig-scheduler-bar-color-6;
       }
     }
   }
