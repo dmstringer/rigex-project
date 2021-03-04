@@ -134,6 +134,48 @@ module.exports = {
     }
   },
 
+  upsertTests: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.Tests.upsert({ ...model });
+      return db.Tests.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteTests: async (_, { id }) => {
+    try {
+      const isDeleted = await db.Tests.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  upsertTestFeatures: async (_, { model }) => {
+    if (!model.id) {
+      model.id = uuidv4();
+    }
+    try {
+      await db.TestFeatures.upsert({ ...model });
+      return db.TestFeatures.findByPk(model.id);
+    } catch (error) {
+      return error;
+    }
+  },
+
+  deleteTestFeatures: async (_, { id }) => {
+    try {
+      const isDeleted = await db.TestFeatures.destroy({ where: { id } });
+      return isDeleted ? true : false;
+    } catch (error) {
+      return error;
+    }
+  },
+
   upsertChooseUs: async (_, { model }) => {
     if (!model.id) {
       model.id = uuidv4();

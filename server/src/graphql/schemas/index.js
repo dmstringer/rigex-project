@@ -9,6 +9,8 @@ const typeDefs = gql`
     getAllTeamMembers: [TeamMembers]!
     getAllServices: [Services]!
     getAllServiceFeatures: [ServiceFeatures]!
+    getAllTests: [Tests]!
+    getAllTestFeatures: [TestFeatures]!
     getAllStatistics: [Statistics]!
     getAllChooseUs: [ChooseUs]!
     getAllChooseUsFeatures: [ChooseUsFeatures]!
@@ -36,6 +38,10 @@ const typeDefs = gql`
     deleteServices(id: String!): String!
     upsertServiceFeatures(model: ServiceFeaturesInput!): ServiceFeatures!
     deleteServiceFeatures(id: String!): String!
+    upsertTests(model: TestsInput!): Tests!
+    deleteTests(id: String!): String!
+    upsertTestFeatures(model: TestFeaturesInput!): TestFeatures!
+    deleteTestFeatures(id: String!): String!
     upsertStatistics(model: StatisticsInput!): Statistics!
     deleteStatistics(id: String!): String!
     upsertChooseUs(model: ChooseUsInput!): ChooseUs!
@@ -159,6 +165,29 @@ const typeDefs = gql`
     ChooseUsFeaturesId: String!
     text: String!
     itemInFront: String
+  }
+
+  type Tests {
+    id: String!
+    title: String!
+    items: [TestFeatures]!
+  }
+
+  type TestFeatures {
+    id: String!
+    text: String!
+    TestsId: String!
+  }
+
+  input TestsInput {
+    id: String
+    title: String!
+  }
+
+  input TestFeaturesInput {
+    id: String
+    text: String!
+    TestsId: String!
   }
 
   type Rig {
