@@ -43,8 +43,8 @@ module.exports = {
 
   deleteAboutText: async (_, { id }) => {
     try {
-      await db.AboutText.destroy({ where: { id } });
-      return id;
+      const isDeleted = await db.AboutText.destroy({ where: { id } });
+      return isDeleted ? true : false;
     } catch (error) {
       return error;
     }
@@ -106,8 +106,8 @@ module.exports = {
 
   deleteServices: async (_, { id }) => {
     try {
-      await db.Services.destroy({ where: { id } });
-      return id;
+      const isDeleted = await db.Services.destroy({ where: { id } });
+      return isDeleted ? true : false;
     } catch (error) {
       return error;
     }
@@ -127,8 +127,8 @@ module.exports = {
 
   deleteServiceFeatures: async (_, { id }) => {
     try {
-      await db.ServiceFeatures.destroy({ where: { id } });
-      return id;
+      const isDeleted = await db.ServiceFeatures.destroy({ where: { id } });
+      return isDeleted ? true : false;
     } catch (error) {
       return error;
     }
