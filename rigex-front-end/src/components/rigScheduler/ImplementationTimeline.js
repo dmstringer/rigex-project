@@ -18,24 +18,20 @@ const ImplementationTimeline = ({ deliveryPhases }) => {
 
   const DeliveryPhaseHeading = () => {
     const totalDurationInHours = deliveryPhases.data.deliveryPhase.reduce(
-      function (previous, current) {
-        return parseFloat(previous + current.durationInHours);
-      },
+      (previous, current) => parseFloat(previous + current.durationInHours),
       0
     );
     const totalDurationInWeeks = totalDurationInHours / 40;
-    const ab = [1, totalDurationInWeeks];
-    const start = ab[0];
-    const end = ab[1];
+    const durations = [1, totalDurationInWeeks];
+    const start = durations[0];
+    const end = durations[1];
     const interval = (end - start) / 5;
     const out = Array(5)
       .fill()
       .map((_, i) => [start + i * interval, start + (i + 1) * interval]);
-    let sortedOut = out.map(function (subArray) {
-      return subArray.map(function (elem) {
-        return Number(elem.toFixed(0));
-      });
-    });
+    let sortedOut = out.map((subArray) =>
+      subArray.map((elem) => Number(elem.toFixed(0)))
+    );
     return (
       <tr>
         <th className="table-heading">DELIVERY PHASE</th>
@@ -63,13 +59,10 @@ const ImplementationTimeline = ({ deliveryPhases }) => {
   const DeliveryPhaseBar = ({ duration }) => {
     runningMargin[0] = runningMargin[1];
     const currentDuration = parseFloat(duration);
-    const totalDuration = deliveryPhases.data.deliveryPhase.reduce(function (
-      previous,
-      current
-    ) {
-      return parseFloat(previous + current.durationInHours);
-    },
-    0);
+    const totalDuration = deliveryPhases.data.deliveryPhase.reduce(
+      (previous, current) => parseFloat(previous + current.durationInHours),
+      0
+    );
     const durationPercentage = (100 * currentDuration) / totalDuration;
     runningMargin[1] = runningMargin[0] + durationPercentage;
     return (
