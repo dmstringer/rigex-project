@@ -6,7 +6,7 @@ export const typeDefs = gql`
     getAllAboutText: [AboutText]
     getAllServices: [Services]
     getAllRigs: [Rigs]
-    getAllTeamMembers:  [TeamMembers]!
+    getAllTeamMembers: [TeamMembers]!
     getAllTests: [Tests]!
     getAllChooseUs: [ChooseUs]!
     getAllChooseUsFeatures: [ChooseUsFeatures]!
@@ -15,6 +15,7 @@ export const typeDefs = gql`
     getAllTeamResources: [TeamResource]!
     getAllInfrastructureRequirements: [InfrastructureTypes]!
     getAllDiskDrives: [DiskDrive]!
+    getAllDeliveryPhases: GetAllDeliveryPhases!
   }
 
   type Services {
@@ -209,6 +210,26 @@ export const typeDefs = gql`
   type DiskDrive {
     id: String!
     title: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type GetAllDeliveryPhases {
+    data: GetAllDeliveryPhasesInner!
+  }
+
+  type GetAllDeliveryPhasesInner {
+    preDeliveryPhase: [DeliveryPhase]!
+    deliveryPhase: [DeliveryPhase]!
+  }
+
+  type DeliveryPhase {
+    id: String!
+    text: String!
+    durationInHours: Float
+    itemInFrontOf: String
+    typeId: String!
+    freezeDuration: Boolean
     createdAt: String!
     updatedAt: String!
   }

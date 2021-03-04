@@ -10,6 +10,7 @@ const contentTextWithTypeResolver = require('./contentTextWithType');
 const aboutTextTypesResolver = require('./aboutTextTypes');
 const infrastructureResolver = require('./infrastructure');
 const infrastructureRequirementResolver = require('./infrastructureRequirement');
+const deliveryPhaseResolver = require('./deliveryPhase');
 
 module.exports = {
   Query: queries,
@@ -24,4 +25,5 @@ module.exports = {
   ChooseUsItems: chooseUsItemsResolver,
   InfrastructureTypes: infrastructureResolver,
   InfrastructureRequirement: infrastructureRequirementResolver,
+  GetAllDeliveryPhases: deliveryPhaseResolver,
 };

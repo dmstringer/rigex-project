@@ -235,3 +235,32 @@ export const GET_ALL_DISK_DRIVES = gql`
     }
   }
 `;
+
+export const GET_ALL_DELIVERY_PHASES = gql`
+  query getAllDeliveryPhases {
+    getAllDeliveryPhases {
+      data {
+        preDeliveryPhase {
+          id
+          text
+          durationInHours
+          itemInFrontOf
+          typeId
+          freezeDuration
+          createdAt
+          updatedAt
+        }
+        deliveryPhase {
+          id
+          text
+          durationInHours
+          itemInFrontOf
+          typeId
+          freezeDuration
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;

@@ -21,6 +21,11 @@ const rigSchedulerReducer = (state = [], action) => {
         ...state,
         diskDrives: [...action.payload.getAllDiskDrives],
       };
+    case actions.GET_ALL_DELIVERY_PHASES:
+      return {
+        ...state,
+        deliveryPhases: action.payload.getAllDeliveryPhases,
+      };
     default:
       return state;
   }
