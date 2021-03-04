@@ -6,11 +6,13 @@ import VitalHeader from '../../components/vital-resources/Header/Header'
 import {
   GET_ALL_ABOUT_TEXT,
   GET_ALL_SERVICES,
+  GET_ALL_TEST_CONTENT,
   GET_ALL_TEAM_MEMBERS,
   GET_ALL_STATISTICS,
   GET_ALL_CHOOSE_US,
- } from '../../constants/serviceAPI';
+} from '../../constants/serviceAPI';
 import { aboutTextActions } from '../../store/aboutText/action'
+import { testActions } from '../../store/test/actions'
 import { teamActions } from '../../store/team/actions'
 import { chooseUsActions } from '../../store/chooseUs/actions'
 import { servicesActions } from '../../store/services/action'
@@ -22,6 +24,7 @@ import Services from '../../components/vital-resources/Services/Services';
 import Statistics from '../../components/vital-resources/Statistics/Statistics';
 import CovidBanner from '../../components/vital-resources/CovidBanner/CovidBanner';
 import Team from '../../components/vital-resources/Team/Team';
+import Tests from '../../components/vital-resources/Tests/Tests';
 
 const sortServicesCards = (services) => {
   const sortedCards = []
@@ -73,6 +76,12 @@ const VitalResources = () => {
       dispatch(statisticsActions.getAllStatistics(statisticsData));
     },
   });
+  const [getAllTests] = useLazyQuery(GET_ALL_TEST_CONTENT, {
+    errorPolicy: 'all',
+    onCompleted: (testsData) => {
+      dispatch(testActions.getAllTestContent(testsData));
+    },
+  });
 
   const [upsertServices] = useMutation(UPSERT_SERVICES)
 
@@ -81,6 +90,7 @@ const VitalResources = () => {
   const chooseUsContent = useSelector(state => state.chooseUs)
   const servicesContent = useSelector( state => state.services)
   const statisticsContent = useSelector(state => state.statistics)
+  const testContent = useSelector(state => state.test)
 
   useEffect(() => {
     getAllAboutText()
@@ -88,7 +98,8 @@ const VitalResources = () => {
     getAllChooseUs()
     getAllServices()
     getAllStatistics()
-  }, [getAllAboutText, getAllTeamMembers, getAllChooseUs, getAllServices, getAllStatistics])
+    getAllTests()
+  }, [getAllAboutText, getAllTeamMembers, getAllChooseUs, getAllServices, getAllStatistics, getAllTests])
 
   useEffect(() => {
     getAllServices()
@@ -106,6 +117,7 @@ const VitalResources = () => {
       <ChooseUs content={chooseUsContent} />
       <Statistics content={statisticsContent} />
       <CovidBanner />
+      <Tests content={testContent} />
       <Team content={teamContent} />
     </>
   )

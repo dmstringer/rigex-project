@@ -8,7 +8,8 @@ import serviceReducer from './services/reducers';
 import chooseUsReducer from './chooseUs/reducers';
 import aboutTextReducer from './aboutText/reducers';
 import statisticsReducer from "./statistics/reducers";
-import teamReducer from './team/reducers'
+import teamReducer from './team/reducers';
+import testReducer from './test/reducers';
 import wellReducer from './wells/reducers';
 import rigSchedulerReducer from './rigScheduler/reducers';
 
@@ -21,6 +22,7 @@ export const store = createStore(
       services: serviceReducer,
       chooseUs: chooseUsReducer,
       statistics: statisticsReducer,
+      test: testReducer,
       team: teamReducer,
       wells: wellReducer,
       rigScheduler: rigSchedulerReducer,

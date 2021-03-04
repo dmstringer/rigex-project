@@ -44,6 +44,19 @@ export const GET_ALL_SERVICES = gql`
   }
 `;
 
+export const GET_ALL_TEST_CONTENT = gql`
+  query getAllTestContent {
+    getAllTests {
+      id
+      title
+      items {
+        id
+        text
+      }
+    }
+  }
+`;
+
 export const GET_ALL_TEAM_MEMBERS = gql`
   query getAllTeamMembers {
     getAllTeamMembers {
