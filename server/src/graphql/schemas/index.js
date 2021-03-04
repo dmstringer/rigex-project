@@ -274,8 +274,8 @@ const typeDefs = gql`
     id: String!
     name: String!
     section: String!
-    titleColor: String!
-    backgroundColor: String!
+    titleColor: String
+    backgroundColor: String
     createdAt: String!
     updatedAt: String!
   }
@@ -300,8 +300,8 @@ const typeDefs = gql`
     id: String!
     name: String!
     section: String!
-    titleColor: String!
-    backgroundColor: String!
+    titleColor: String
+    backgroundColor: String
     content: [ContentText]
   }
 

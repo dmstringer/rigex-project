@@ -67,10 +67,10 @@ module.exports = {
       {
         id: '39dde71b-19b3-48ea-8431-daa9a65a26ab',
         text: 'End User Training',
-        durationInHours: 20,
+        durationInHours: 80,
         itemInFrontOf: null,
         typeId: 'cd52d508-0bca-4c9d-afed-f9039e1ac0f0',
-        freezeDuration: true,
+        freezeDuration: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
