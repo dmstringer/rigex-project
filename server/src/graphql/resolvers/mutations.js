@@ -142,7 +142,7 @@ module.exports = {
       await db.ChooseUs.upsert({ ...model });
       return db.ChooseUs.findByPk(model.id);
     } catch (error) {
-      return error
+      return error;
     }
   },
 
@@ -163,7 +163,7 @@ module.exports = {
       await db.ChooseUsFeatures.upsert({ ...model });
       return db.ChooseUsFeatures.findByPk(model.id);
     } catch (error) {
-      return error
+      return error;
     }
   },
 
@@ -184,7 +184,7 @@ module.exports = {
       await db.ChooseUsItems.upsert({ ...model });
       return db.ChooseUsItems.findByPk(model.id);
     } catch (error) {
-      return error
+      return error;
     }
   },
 
@@ -248,7 +248,7 @@ module.exports = {
         const drillingWell = await db.Well.findOne({
           where: { rigId: model.rigId, status: 'drilling' },
         });
-        if (drillingWell) {
+        if (drillingWell && drillingWell.id !== model.id) {
           return new Error(onlySingleDrillingWell);
         }
       }
