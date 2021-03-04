@@ -49,7 +49,7 @@ const createSwapArray = (itemsCopy) => {
     itemsCopy.forEach( (item, index) => {
         if (index === 0 && item.itemInFront !== null) {
                 updateObjectsArray.push({ variables: {chooseUsItemsInput: createChooseUsItemModel(item, null)}})
-        } else if (item.itemInFront !== itemsCopy[index-1].id) {
+        } else if (index !== 0 && item.itemInFront !== itemsCopy[index-1].id) {
                 updateObjectsArray.push({ variables: {chooseUsItemsInput: createChooseUsItemModel(item, itemsCopy[index-1].id)}})
         }
     })
