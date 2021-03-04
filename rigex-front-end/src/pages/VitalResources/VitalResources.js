@@ -17,7 +17,7 @@ import { teamActions } from '../../store/team/actions'
 import { chooseUsActions } from '../../store/chooseUs/actions'
 import { servicesActions } from '../../store/services/action'
 import { statisticsActions } from '../../store/statistics/action'
-import { UPSERT_SERVICES } from '../../constants/serviceAPI'
+import { UPSERT_SERVICES, UPSERT_CHOOSE_US_ITEM } from '../../constants/serviceAPI'
 import AboutUs from '../../components/vital-resources/AboutUs/AboutUs';
 import ChooseUs from '../../components/vital-resources/ChooseUs/ChooseUs';
 import Services from '../../components/vital-resources/Services/Services';
@@ -84,6 +84,7 @@ const VitalResources = () => {
   });
 
   const [upsertServices] = useMutation(UPSERT_SERVICES)
+  const [upsertChooseUsItems] = useMutation(UPSERT_CHOOSE_US_ITEM)
 
   const aboutUsContent = useSelector( state => state.aboutText)
   const teamContent = useSelector(state => state.team)
@@ -103,7 +104,8 @@ const VitalResources = () => {
 
   useEffect(() => {
     getAllServices()
-  }, [getAllServices, dropReset])
+    getAllChooseUs()
+  }, [getAllServices, getAllChooseUs, dropReset])
 
   useEffect(() => {
     setSortedServiceCards(sortServicesCards(servicesContent))
@@ -114,7 +116,7 @@ const VitalResources = () => {
       <VitalHeader />
       <AboutUs content={aboutUsContent} />
       <Services content={sortedServiceCards} upsertServices={upsertServices} setDropReset={setDropReset} dropReset={dropReset} />
-      <ChooseUs content={chooseUsContent} />
+      <ChooseUs content={chooseUsContent} upsertChooseUsItems={upsertChooseUsItems} setDropReset={setDropReset} dropReset={dropReset}/>
       <Statistics content={statisticsContent} />
       <CovidBanner />
       <Tests content={testContent} />

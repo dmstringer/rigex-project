@@ -97,9 +97,9 @@ export const typeDefs = gql`
 
   input ChooseUsItemsInput {
     id: String
-    ChooseUsFeaturesId: String!
     text: String!
     itemInFront: String
+    ChooseUsFeaturesId: String!
   }
 
   type Statistics {
@@ -137,6 +137,7 @@ export const typeDefs = gql`
     upsertRig(model: RigInput!): Rig!
     createAccount(model: UserInput!): User!
     upsertService(model: ServiceInput!): Services!
+    upsertChooseUsItems(model: ChooseUsItemsInput): ChooseUsItem!
     upsertWell(model: WellInput!): Well!
     deleteWell(id: String!): Boolean!
   }
