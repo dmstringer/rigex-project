@@ -10,10 +10,15 @@
     color: $base-white;
     font-weight: 900;
 
-    div button {
-        background-color: $banner-background;
-        color: $base-white;
-        border: 2px solid $base-white;
-        padding: 5px 10px;
+    div {
+        button {
+            background-color: $banner-background;
+            color: $base-white;
+            border: 2px solid $base-white;
+            padding: 5px 10px;
+        }
+        button:hover {
+            background-color: $vital-services-blue;
+        }
     }
 }
