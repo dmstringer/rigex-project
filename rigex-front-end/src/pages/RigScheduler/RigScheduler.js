@@ -11,9 +11,11 @@ import {
   GET_ALL_TEAM_RESOURCES,
   GET_ALL_INFRASTRUCTURE_REQUIREMENTS,
   GET_ALL_DISK_DRIVES,
+  GET_ALL_DELIVERY_PHASES,
 } from '../../constants/serviceAPI';
 import CustomerTeamResources from '../../components/rigScheduler/CustomerTeamResources';
 import { rigSchedulerActions } from '../../store/rigScheduler/action';
+import ImplementationTimeline from '../../components/rigScheduler/ImplementationTimeline';
 
 const RigScheduler = () => {
   const dispatch = useDispatch();
@@ -97,6 +99,16 @@ const RigScheduler = () => {
       return <SchedulerInfrastructureBlock />;
     }
   };
+  const [getAllDeliveryPhases] = useLazyQuery(GET_ALL_DELIVERY_PHASES, {
+    errorPolicy: 'all',
+    onCompleted: (phases) => {
+      dispatch(rigSchedulerActions.getAllDeliveryPhases(phases));
+    },
+  });
+
+  const deliveryPhasesContentState = useSelector(
+    (state) => state.rigScheduler.deliveryPhases
+  );
 
   useEffect(() => {
     getAllTeamResources();
@@ -110,6 +122,10 @@ const RigScheduler = () => {
     getAllDiskDrives,
   ]);
 
+  useEffect(() => {
+    getAllDeliveryPhases();
+  }, [getAllTeamResources, getContentTextsByType, getAllDeliveryPhases]);
+
   return (
     <div>
       <SchedulerHeader />
@@ -117,6 +133,7 @@ const RigScheduler = () => {
       <CustomerTeamResources
         customerTeamResources={teamResourcesContentState}
       />
+      <ImplementationTimeline deliveryPhases={deliveryPhasesContentState} />
       <div className="infrastructure-section-title">
         <span className="infrastructure-section-title-text">
           Infrastructure Requirements

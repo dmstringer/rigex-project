@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         id: '5b2add67-9ef7-4e0f-a3a6-6b9df558acdf',
-        text: 'Integration &amp; Customisation',
+        text: 'Integration & Customisation',
         durationInHours: 120,
         itemInFrontOf: 'cbc89e45-e209-48eb-a667-48253adb89ff',
         typeId: 'cd52d508-0bca-4c9d-afed-f9039e1ac0f0',

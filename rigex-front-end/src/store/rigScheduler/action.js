@@ -32,10 +32,19 @@ const getAllDiskDrives = (diskDrives) => {
     });
   };
 };
+const getAllDeliveryPhases = (phases) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_ALL_DELIVERY_PHASES,
+      payload: phases,
+    });
+  };
+};
 
 export const rigSchedulerActions = {
   getAllContentTextsByType,
   getAllTeamResources,
   getAllInfrastructureRequirements,
   getAllDiskDrives,
+  getAllDeliveryPhases,
 };
