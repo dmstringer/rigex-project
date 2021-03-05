@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: { type: DataTypes.STRING, allowNull: false },
     section: { type: DataTypes.STRING, allowNull: false },
-    titleColor: { type: DataTypes.STRING, allowNull: false },
-    backgroundColor: { type: DataTypes.STRING, allowNull: false },
+    titleColor: { type: DataTypes.STRING, allowNull: true },
+    backgroundColor: { type: DataTypes.STRING, allowNull: true },
     createdAt: { type: DataTypes.DATE, allowNull: false },
     updatedAt: { type: DataTypes.DATE, allowNull: false },
   });
